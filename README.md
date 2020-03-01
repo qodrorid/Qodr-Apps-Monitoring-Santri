@@ -1,4 +1,4 @@
-<p align="center"><img src="https://donasi.qodr.or.id/assets/images/logo-color.png" width="3200"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/qodrorid/Qodr-Apps-Monitoring-Santri/master/public/qodr.svg" width="3200"></p>
 
 ## About Qodr Apps Monitoring Santri
 
