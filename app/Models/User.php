@@ -52,20 +52,12 @@ class User extends Authenticatable
     public static function boot() {
         parent::boot();
 
-        static::saving(function($model) {
-            $pengurus = [2, 3, 4, 5, 6, 7];
-            $mitra    = 8;
-            $santri   = 9;
-    
-            if (in_array($this->role_id, $pengurus)) {
-                
-            } else if ((int) $this->role_id === $mitra) {
-                
-            } else if ((int) $this->role_id === $santri) {
-                
-            }
+        static::creating(function($model) {
+            return static::eventProfile($model, 'create');
+        });
 
-            return $model;
+        static::updating(function($model) {
+            return static::eventProfile($model, 'update');
         });
     }
 
@@ -96,7 +88,7 @@ class User extends Authenticatable
         }
     }
 
-    private function eventProfile(User $model, string $action)
+    private static function eventProfile(User $model, string $action)
     {
         $pengurus = [2, 3, 4, 5, 6, 7];
         $mitra    = 8;
@@ -107,12 +99,25 @@ class User extends Authenticatable
             'name'    => $model->name
         ];
 
-        if (in_array($this->role_id, $pengurus)) {
-            ProfilePengurus::$action($data);
-        } else if ((int) $this->role_id === $mitra) {
-            ProfileMitra::$action($data);
-        } else if ((int) $this->role_id === $santri) {
-            ProfileSantri::$action($data);
+        if ($action === 'create') {
+            if (in_array((int) $model->role_id, $pengurus)) {
+                ProfilePengurus::create($data);
+            } else if ((int) $model->role_id === $mitra) {
+                ProfileMitra::create($data);
+            } else if ((int) $model->role_id === $santri) {
+                ProfileSantri::create($data);
+            }
+        } else {
+            if (in_array((int) $model->role_id, $pengurus)) {
+                $profile = ProfilePengurus::where('user_id', $model->id)->first();
+                $profile->update($data);
+            } else if ((int) $model->role_id === $mitra) {
+                $profile = ProfileMitra::where('user_id', $model->id)->first();
+                $profile->update($data);
+            } else if ((int) $model->role_id === $santri) {
+                $profile = ProfileSantri::where('user_id', $model->id)->first();
+                $profile->update($data);
+            }
         }
 
         return $model;
