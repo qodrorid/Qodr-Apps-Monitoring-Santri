@@ -1,5 +1,3 @@
-<p align="center"><img src="https://raw.githubusercontent.com/qodrorid/Qodr-Apps-Monitoring-Santri/master/public/qodr.svg" width="3200"></p>
-
 ## About Qodr Apps Monitoring Santri
 
 Qodr Apps Monitoring Santri is an application that is used to monitoring student activities in carrying out daily activities
