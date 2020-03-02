@@ -14,3 +14,4 @@ yarn-error.log
 # add other
 package-lock.json
 composer.lock
+yarn.lock

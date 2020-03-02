@@ -12,5 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
+
+Auth::routes([
+    'verify'   => true,
+    'reset'    => true,
+    'register' => false
+]);
+
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});
+
