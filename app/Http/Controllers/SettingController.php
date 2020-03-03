@@ -12,9 +12,20 @@ class SettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $settings = Setting::where(function($query) use ($request) {
+            if (!is_null($request->keyword)) {
+                $query->where('name', 'like', "%$request->keyword%")
+                    ->orWhere('setting', 'like', "%$request->keyword%");
+            }
+        })->paginate($request->showitem ?? 5);
+
+        $settings->appends($request->query());
+
+        $view = $request->ajax() ? 'list' : 'index';
+
+        return view('pages.settings.' . $view, compact('settings'));
     }
 
     /**
@@ -25,7 +36,19 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'    => 'required',
+            'setting' => 'required'
+        ]);
+
+        $data = $request->all();
+
+        try {
+            Setting::create($data);
+            return $this->success('Successfuly create new setting!');
+        } catch (QueryException $error) {
+            return $this->responseQueryException($error);
+        }
     }
 
     /**
@@ -36,7 +59,7 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
-        //
+        return $this->success('Successfuly get data setting!', $setting);
     }
 
     /**
@@ -48,7 +71,17 @@ class SettingController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
-        //
+        $request->validate([
+            'name'    => 'required',
+            'setting' => 'required'
+        ]);
+        
+        try {
+            $setting->update($request->all());
+            return $this->success('Successfuly update data setting!');
+        } catch (QueryException $error) {
+            return $this->responseQueryException($error);
+        }
     }
 
     /**
@@ -59,6 +92,11 @@ class SettingController extends Controller
      */
     public function destroy(Setting $setting)
     {
-        //
+        try {
+            $setting->delete();
+            return $this->success('Successfuly delete setting!');
+        } catch (QueryException $error) {
+            return $this->responseQueryException($error);
+        }
     }
 }

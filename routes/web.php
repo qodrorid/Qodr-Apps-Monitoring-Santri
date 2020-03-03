@@ -45,6 +45,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
         // list and update roles
         Route::resource('roles', 'RolesController')->except(['create', 'show', 'store']);
 
+        // crud settings
+        Route::resource('settings', 'SettingController')->except(['create', 'show']);
+
     });
 
 });

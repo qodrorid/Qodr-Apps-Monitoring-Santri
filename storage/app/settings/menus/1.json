@@ -24,6 +24,7 @@
             {
                 "title": "Settings",
                 "icon": "icon-cpu",
+                "route": "settings.index",
                 "parent": true
             },
             {
