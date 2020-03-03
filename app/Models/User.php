@@ -13,7 +13,7 @@ use App\Models\ProfileSantri;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
