@@ -17279,7 +17279,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"); // serialize objec jquery
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"); // locading swal custom css
+
+var swalCustomClass = {
+  actions: 'swal2-icon-size',
+  popup: 'swal2-bg'
+}; // serialize objec jquery
 
 $.fn.serializeObject = function () {
   var obj = {};
@@ -17358,27 +17363,50 @@ $.created = function (url, data) {
   var multipart = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   var config = multipart ? multipartConfig : {};
   return new Promise(function (resolve, reject) {
-    $.ajax(_objectSpread({
-      url: urlbase(url),
-      headers: headers,
-      method: 'POST',
-      data: data,
-      dataType: 'json'
-    }, config, {
-      success: function success(response) {
-        if (alert) swal("Success!", response.message, "success");
-        resolve(response);
-      },
-      error: function error(_error) {
-        if (_error.responseJSON) {
-          if (alert) swal("Error!", _error.responseJSON.message, "error");
-          reject(_error.responseJSON);
-        } else {
-          if (alert) swal("Error!", _error.statusText, "error");
-          reject(_error);
-        }
+    Swal.fire({
+      customClass: swalCustomClass,
+      allowOutsideClick: false,
+      onBeforeOpen: function onBeforeOpen() {
+        $('.modal.show').modal('hide');
+        Swal.showLoading();
+        $.ajax(_objectSpread({
+          url: urlbase(url),
+          headers: headers,
+          method: 'POST',
+          data: data,
+          dataType: 'json'
+        }, config, {
+          success: function success(response) {
+            if (alert) Swal.fire({
+              type: 'success',
+              title: 'Success!',
+              text: response.message,
+              allowOutsideClick: false
+            });
+            resolve(response);
+          },
+          error: function error(_error) {
+            if (_error.responseJSON) {
+              if (alert) Swal.fire({
+                type: 'error',
+                title: 'Error!',
+                text: _error.responseJSON.message,
+                allowOutsideClick: false
+              });
+              reject(_error.responseJSON);
+            } else {
+              if (alert) Swal.fire({
+                type: 'error',
+                title: 'Error!',
+                text: _error.statusText,
+                allowOutsideClick: false
+              });
+              reject(_error);
+            }
+          }
+        }));
       }
-    }));
+    });
   });
 }; // created data
 
@@ -17388,50 +17416,96 @@ $.updated = function (url, data) {
   var multipart = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   var config = multipart ? multipartConfig : {};
   return new Promise(function (resolve, reject) {
-    $.ajax(_objectSpread({
-      url: urlbase(url),
-      headers: headers,
-      method: 'PUT',
-      data: data,
-      dataType: 'json'
-    }, config, {
-      success: function success(response) {
-        if (alert) swal("Success!", response.message, "success");
-        resolve(response);
-      },
-      error: function error(_error2) {
-        if (_error2.responseJSON) {
-          if (alert) swal("Error!", _error2.responseJSON.message, "error");
-          reject(_error2.responseJSON);
-        } else {
-          if (alert) swal("Error!", _error2.statusText, "error");
-          reject(_error2);
-        }
+    Swal.fire({
+      customClass: swalCustomClass,
+      allowOutsideClick: false,
+      onBeforeOpen: function onBeforeOpen() {
+        $('.modal.show').modal('hide');
+        Swal.showLoading();
+        $.ajax(_objectSpread({
+          url: urlbase(url),
+          headers: headers,
+          method: 'PUT',
+          data: data,
+          dataType: 'json'
+        }, config, {
+          success: function success(response) {
+            if (alert) Swal.fire({
+              type: 'success',
+              title: 'Success!',
+              text: response.message,
+              allowOutsideClick: false
+            });
+            resolve(response);
+          },
+          error: function error(_error2) {
+            if (_error2.responseJSON) {
+              if (alert) Swal.fire({
+                type: 'error',
+                title: 'Error!',
+                text: _error2.responseJSON.message,
+                allowOutsideClick: false
+              });
+              reject(_error2.responseJSON);
+            } else {
+              if (alert) Swal.fire({
+                type: 'error',
+                title: 'Error!',
+                text: _error2.statusText,
+                allowOutsideClick: false
+              });
+              reject(_error2);
+            }
+          }
+        }));
       }
-    }));
+    });
   });
 }; // created data
 
 
 $.deleted = function (url) {
   return new Promise(function (resolve, reject) {
-    $.ajax({
-      url: urlbase(url),
-      headers: headers,
-      method: 'DELETE',
-      dataType: 'json',
-      success: function success(response) {
-        swal("Success!", response.message, "success");
-        resolve(response);
-      },
-      error: function error(_error3) {
-        if (_error3.responseJSON) {
-          swal("Error!", _error3.responseJSON.message, "error");
-          reject(_error3.responseJSON);
-        } else {
-          swal("Error!", _error3.statusText, "error");
-          reject(_error3);
-        }
+    Swal.fire({
+      customClass: swalCustomClass,
+      allowOutsideClick: false,
+      onBeforeOpen: function onBeforeOpen() {
+        $('.modal.show').modal('hide');
+        Swal.showLoading();
+        $.ajax({
+          url: urlbase(url),
+          headers: headers,
+          method: 'DELETE',
+          dataType: 'json',
+          success: function success(response) {
+            Swal.fire({
+              type: 'success',
+              title: 'Success!',
+              text: response.message,
+              allowOutsideClick: false
+            });
+            resolve(response);
+          },
+          error: function error(_error3) {
+            if (_error3.responseJSON) {
+              Swal.fire({
+                type: 'error',
+                title: 'Error!',
+                text: _error3.responseJSON.message,
+                allowOutsideClick: false
+              });
+              reject(_error3.responseJSON);
+            } else {
+              Swal.fire({
+                type: 'error',
+                title: 'Error!',
+                text: _error3.statusText,
+                allowOutsideClick: false
+              });
+              reject(_error3);
+            }
+          }
+        });
       }
     });
   });
@@ -17485,7 +17559,12 @@ $.listdata = function (url, config) {
       linkpaginate();
     },
     error: function error(_error5) {
-      swal("Error!", _error5.statusText, "error");
+      Swal.fire({
+        type: 'error',
+        title: 'Error!',
+        text: _error5.statusText,
+        allowOutsideClick: false
+      });
     }
   });
 }; // change showitem

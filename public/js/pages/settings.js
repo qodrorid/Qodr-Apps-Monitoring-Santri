@@ -47,17 +47,21 @@ function edit(id) {
  * @return @void
  */
 function deleted(id) {
-    swal({
-        title: "Are you sure?",
-        text: "the data will go into the trash",
-        type: "warning",
+    Swal.fire({
+        title: 'Are you sure ?',
+        text: 'the data will go into the trash',
+        type: 'warning',
         showCancelButton: true,
-        closeOnConfirm: false,
-        showLoaderOnConfirm: true,
-    }, () => {
-        $.deleted(`/settings/${id}`).then(() => {
-            $.listdata('/settings')
-        })
+        confirmButtonColor: '#1ABC9C',
+        cancelButtonColor: '#E74C3C',
+        confirmButtonText: 'Delete',
+        allowOutsideClick: false
+    }).then((result) => {
+        if (result.value) {
+            $.deleted(`/settings/${id}`).then(() => {
+                $.listdata('/settings')
+            })
+        }
     })
 }
 

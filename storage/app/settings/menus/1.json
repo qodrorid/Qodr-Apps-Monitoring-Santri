@@ -30,6 +30,7 @@
             {
                 "title": "Logs",
                 "icon": "icon-file-text",
+                "route": "logs.index",
                 "parent": true
             },
             {

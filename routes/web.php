@@ -48,6 +48,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
         // crud settings
         Route::resource('settings', 'SettingController')->except(['create', 'show']);
 
+        // view logs
+        Route::get('logs', 'LogsController@index')->name('logs.index');
+        Route::get('logs/{filename}', 'LogsController@view')->name('logs.view');
     });
 
 });
