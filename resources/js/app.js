@@ -1,5 +1,11 @@
 window._ = require('lodash')
 
+// locading swal custom css
+var swalCustomClass = {
+    actions: 'swal2-icon-size',
+    popup: 'swal2-bg'
+}
+
 // serialize objec jquery
 $.fn.serializeObject = function() {
     var obj = {}
@@ -75,25 +81,48 @@ const multipartConfig = {
 $.created = function(url, data, alert = true, multipart = false) {
     let config = multipart ? multipartConfig : {}
     return new Promise((resolve, reject) => {
-        $.ajax({
-            url: urlbase(url),
-            headers,
-            method: 'POST',
-            data: data,
-            dataType: 'json',
-            ...config,
-            success: (response) => {
-                if (alert) swal("Success!", response.message, "success")
-                resolve(response)
-            },
-            error: (error) => {
-                if (error.responseJSON) {
-                    if (alert) swal("Error!", error.responseJSON.message, "error")
-                    reject(error.responseJSON)
-                } else {
-                    if (alert) swal("Error!", error.statusText, "error")
-                    reject(error)
-                }
+        Swal.fire({
+            customClass: swalCustomClass,
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                $('.modal.show').modal('hide')
+                Swal.showLoading()
+                $.ajax({
+                    url: urlbase(url),
+                    headers,
+                    method: 'POST',
+                    data: data,
+                    dataType: 'json',
+                    ...config,
+                    success: (response) => {
+                        if (alert) Swal.fire({
+                            type: 'success',
+                            title: 'Success!',
+                            text: response.message,
+                            allowOutsideClick: false
+                        })
+                        resolve(response)
+                    },
+                    error: (error) => {
+                        if (error.responseJSON) {
+                            if (alert) Swal.fire({
+                                type: 'error',
+                                title: 'Error!',
+                                text: error.responseJSON.message,
+                                allowOutsideClick: false
+                            })
+                            reject(error.responseJSON)
+                        } else {
+                            if (alert) Swal.fire({
+                                type: 'error',
+                                title: 'Error!',
+                                text: error.statusText,
+                                allowOutsideClick: false
+                            })
+                            reject(error)
+                        }
+                    }
+                })
             }
         })
     })
@@ -103,25 +132,48 @@ $.created = function(url, data, alert = true, multipart = false) {
 $.updated = function(url, data, alert = true, multipart = false) {
     let config = multipart ? multipartConfig : {}
     return new Promise((resolve, reject) => {
-        $.ajax({
-            url: urlbase(url),
-            headers,
-            method: 'PUT',
-            data: data,
-            dataType: 'json',
-            ...config,
-            success: (response) => {
-                if (alert) swal("Success!", response.message, "success")
-                resolve(response)
-            },
-            error: (error) => {
-                if (error.responseJSON) {
-                    if (alert) swal("Error!", error.responseJSON.message, "error")
-                    reject(error.responseJSON)
-                } else {
-                    if (alert) swal("Error!", error.statusText, "error")
-                    reject(error)
-                }
+        Swal.fire({
+            customClass: swalCustomClass,
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                $('.modal.show').modal('hide')
+                Swal.showLoading()
+                $.ajax({
+                    url: urlbase(url),
+                    headers,
+                    method: 'PUT',
+                    data: data,
+                    dataType: 'json',
+                    ...config,
+                    success: (response) => {
+                        if (alert) Swal.fire({
+                            type: 'success',
+                            title: 'Success!',
+                            text: response.message,
+                            allowOutsideClick: false
+                        })
+                        resolve(response)
+                    },
+                    error: (error) => {
+                        if (error.responseJSON) {
+                            if (alert) Swal.fire({
+                                type: 'error',
+                                title: 'Error!',
+                                text: error.responseJSON.message,
+                                allowOutsideClick: false
+                            })
+                            reject(error.responseJSON)
+                        } else {
+                            if (alert) Swal.fire({
+                                type: 'error',
+                                title: 'Error!',
+                                text: error.statusText,
+                                allowOutsideClick: false
+                            })
+                            reject(error)
+                        }
+                    }
+                })
             }
         })
     })
@@ -130,23 +182,46 @@ $.updated = function(url, data, alert = true, multipart = false) {
 // created data
 $.deleted = function(url) {
     return new Promise((resolve, reject) => {
-        $.ajax({
-            url: urlbase(url),
-            headers,
-            method: 'DELETE',
-            dataType: 'json',
-            success: (response) => {
-                swal("Success!", response.message, "success")
-                resolve(response)
-            },
-            error: (error) => {
-                if (error.responseJSON) {
-                    swal("Error!", error.responseJSON.message, "error")
-                    reject(error.responseJSON)
-                } else {
-                    swal("Error!", error.statusText, "error")
-                    reject(error)
-                }
+        Swal.fire({
+            customClass: swalCustomClass,
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                $('.modal.show').modal('hide')
+                Swal.showLoading()
+                $.ajax({
+                    url: urlbase(url),
+                    headers,
+                    method: 'DELETE',
+                    dataType: 'json',
+                    success: (response) => {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Success!',
+                            text: response.message,
+                            allowOutsideClick: false
+                        })
+                        resolve(response)
+                    },
+                    error: (error) => {
+                        if (error.responseJSON) {
+                            Swal.fire({
+                                type: 'error',
+                                title: 'Error!',
+                                text: error.responseJSON.message,
+                                allowOutsideClick: false
+                            })
+                            reject(error.responseJSON)
+                        } else {
+                            Swal.fire({
+                                type: 'error',
+                                title: 'Error!',
+                                text: error.statusText,
+                                allowOutsideClick: false
+                            })
+                            reject(error)
+                        }
+                    }
+                })
             }
         })
     })
@@ -199,7 +274,12 @@ $.listdata = function(url, config, listid = 'listitem') {
             linkpaginate()
         },
         error: (error) => {
-            swal("Error!", error.statusText, "error")
+            Swal.fire({
+                type: 'error',
+                title: 'Error!',
+                text: error.statusText,
+                allowOutsideClick: false
+            })
         }
     })
 }
