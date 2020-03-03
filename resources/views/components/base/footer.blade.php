@@ -5,8 +5,10 @@
 {{ HTML::script('plugins/jquery/jquery.slimscroll.js') }}
 {{ HTML::script('plugins/modernizr/modernizr.js') }}
 {{ HTML::script('plugins/modernizr/css-scrollbars.js') }}
+{{ HTML::script('plugins/sweetalert/sweetalert.min.js') }}
 {{ HTML::script('js/pcoded.min.js') }}
 {{ HTML::script('js/vartical-layout.min.js') }}
 {{ HTML::script('js/jquery.mCustomScrollbar.concat.min.js') }}
 {{ HTML::script('js/script.js') }}
-@yield('javascipt')
+{{ HTML::script('js/app.js') }}
+@yield('javascript')

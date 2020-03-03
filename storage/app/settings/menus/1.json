@@ -17,6 +17,7 @@
             {
                 "title": "Users",
                 "icon": "icon-user-plus",
+                "route": "users.index",
                 "parent": true
             },
             {

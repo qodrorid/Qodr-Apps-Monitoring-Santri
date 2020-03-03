@@ -52,11 +52,11 @@ class User extends Authenticatable
     public static function boot() {
         parent::boot();
 
-        static::creating(function($model) {
+        static::created(function($model) {
             return static::eventProfile($model, 'create');
         });
 
-        static::updating(function($model) {
+        static::updated(function($model) {
             return static::eventProfile($model, 'update');
         });
     }
