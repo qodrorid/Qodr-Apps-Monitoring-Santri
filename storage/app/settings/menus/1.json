@@ -1,0 +1,40 @@
+[
+    {
+        "title": "Navigation",
+        "level": true,
+        "childs": [
+            {
+                "title": "Dashboard",
+                "icon": "icon-home",
+                "route": "dashboard",
+                "parent": true
+            },
+            {
+                "title": "Roles",
+                "icon": "icon-user-check",
+                "parent": true
+            },
+            {
+                "title": "Users",
+                "icon": "icon-user-plus",
+                "route": "users.index",
+                "parent": true
+            },
+            {
+                "title": "Settings",
+                "icon": "icon-cpu",
+                "parent": true
+            },
+            {
+                "title": "Logs",
+                "icon": "icon-file-text",
+                "parent": true
+            },
+            {
+                "title": "Trash",
+                "icon": "icon-trash",
+                "parent": true
+            }
+        ]
+    }
+]
