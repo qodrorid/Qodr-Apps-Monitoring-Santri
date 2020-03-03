@@ -92,4 +92,5 @@
         </div>
     </div>
 </div>
+@include('pages.users.form')
 @endsection
