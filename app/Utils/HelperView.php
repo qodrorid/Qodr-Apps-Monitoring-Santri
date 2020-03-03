@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Utils;
 
 use Auth;
@@ -78,6 +79,31 @@ class HelperView
             return '';
         } else {
             return Route::is($routes) ? $class : '';
+        }
+    }
+
+    /**
+     * Color Lable Role
+     *
+     * @param int $role
+     * @return string
+     */
+    public static function labelRole(int $role)
+    {
+        switch ($role) {
+            case 1:
+                return 'bg-inverse';
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                return 'bg-primary';
+            case 8:
+                return 'bg-danger';
+            case 9:
+                return 'bg-warning';
         }
     }
 

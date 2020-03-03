@@ -229,6 +229,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'HelperView' => App\Utils\HelperView::class,
+        'HelperTag' => App\Utils\HelperTag::class,
 
     ],
 
