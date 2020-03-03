@@ -92,5 +92,9 @@
         </div>
     </div>
 </div>
-@include('pages.users.form')
+@include('pages.roles.form')
+@endsection
+
+@section('javascript')
+{{ HTML::script('js/pages/roles.js') }}
 @endsection
