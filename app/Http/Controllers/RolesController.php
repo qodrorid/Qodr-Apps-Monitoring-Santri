@@ -36,7 +36,8 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Role::select('name', 'description')->find($id);
+        return $this->success('Successfuly get data role!', $data);
     }
 
     /**
@@ -46,9 +47,34 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        
+        try {
+            $role->update($request->all());
+            return $this->success('Successfuly update data role!');
+        } catch (QueryException $error) {
+            return $this->responseQueryException($error);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Role $role)
+    {
+        try {
+            $role->delete();
+            return $this->success('Successfuly delete role!');
+        } catch (QueryException $error) {
+            return $this->responseQueryException($error);
+        }
     }
 
 }
