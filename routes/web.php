@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::put('/users/reset_password/{user}', 'UsersController@resetPassword')->name('users.reset-password');
 
         // list and update roles
-        Route::resource('roles', 'RolesController')->except(['create', 'show', 'store', 'destroy']);
+        Route::resource('roles', 'RolesController')->except(['create', 'show', 'store']);
 
     });
 
