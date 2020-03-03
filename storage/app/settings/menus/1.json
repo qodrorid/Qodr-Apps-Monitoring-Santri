@@ -12,6 +12,7 @@
             {
                 "title": "Roles",
                 "icon": "icon-user-check",
+                "route": "roles.index",
                 "parent": true
             },
             {
