@@ -17279,7 +17279,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"); // locading swal custom css
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"); // State Query
+
+var stateQuery = {}; // locading swal custom css
 
 var swalCustomClass = {
   actions: 'swal2-icon-size',
@@ -17556,6 +17558,7 @@ $.listdata = function (url, config) {
     dataType: 'html',
     success: function success(response) {
       $('#' + listid).html(response);
+      window.stateQuery = config;
       linkpaginate();
     },
     error: function error(_error5) {
@@ -17571,16 +17574,16 @@ $.listdata = function (url, config) {
 
 
 $('select[name="showitem"]').change(function () {
-  $.listdata($(this).data('url'));
+  $.listdata($(this).data('url'), window.stateQuery);
 }); // button search paginate
 
 $('.btn-paginate-search').click(function () {
-  $.listdata($(this).data('url'));
+  $.listdata($(this).data('url'), window.stateQuery);
 }); // enter form search paginate
 
 $('input[name="keyword"]').keypress(function (e) {
   if (e.which == 13) {
-    $.listdata($(this).data('url'));
+    $.listdata($(this).data('url'), window.stateQuery);
     return false;
   }
 }); // link paginate

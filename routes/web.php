@@ -49,8 +49,15 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::resource('settings', 'SettingController')->except(['create', 'show']);
 
         // view logs
-        Route::get('logs', 'LogsController@index')->name('logs.index');
-        Route::get('logs/{filename}', 'LogsController@view')->name('logs.view');
+        Route::get('/logs', 'LogsController@index')->name('logs.index');
+        Route::get('/logs/{filename}', 'LogsController@view')->name('logs.view');
+
+        // trash
+        Route::get('/trash', 'TrashController@index')->name('trash.index');
+        Route::get('/trash/view', 'TrashController@view')->name('trash.view');
+        Route::get('/trash/restore/{id}/{table}', 'TrashController@restore')->name('trash.restore');
+        Route::get('/trash/delete/{id}/{table}', 'TrashController@delete')->name('trash.delete');
+    
     });
 
 });
