@@ -16,6 +16,12 @@
                 "parent": true
             },
             {
+                "title": "Branches",
+                "icon": "icon-git-branch",
+                "route": "branch.index",
+                "parent": true
+            },
+            {
                 "title": "Users",
                 "icon": "icon-user-plus",
                 "route": "users.index",
