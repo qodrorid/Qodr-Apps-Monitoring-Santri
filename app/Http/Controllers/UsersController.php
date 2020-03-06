@@ -75,7 +75,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $data = User::select('name', 'username', 'email', 'password', 'role_id')->find($id);
+        $data = User::select('name', 'username', 'email', 'password', 'role_id', 'branch_id')->find($id);
         return $this->success('Successfuly get data user!', $data);
     }
 
@@ -94,9 +94,17 @@ class UsersController extends Controller
             'email'        => 'required',
             'role_id'      => 'required'
         ]);
+
+        if (
+            ($request->role_id != 1 and $request->role_id != 2) and
+            $request->branch_id === null
+        ) abort(404);
+        
+        $data = $request->all();
+        $data['branch_id'] = $request->branch_id;
         
         try {
-            $user->update($request->all());
+            $user->update($data);
             return $this->success('Successfuly update data user!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);

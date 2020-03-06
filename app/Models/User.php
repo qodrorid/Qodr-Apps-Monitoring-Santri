@@ -26,7 +26,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'role_id'
+        'role_id',
+        'branch_id'
     ];
 
     /**
@@ -70,6 +71,11 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo('App\Models\Role', 'role_id', 'id');
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo('App\Models\Branch', 'branch_id', 'id');
     }
 
     public function profile()

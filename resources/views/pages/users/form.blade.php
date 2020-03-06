@@ -28,9 +28,16 @@
                     </div>
                     <div class="form-group">
                         <label for="role_id">Role</label>
-                        <select name="role_id" id="role_id" class="form-control">
+                        <select name="role_id" id="role_id" class="form-control" required>
                             <option value="">--- Select Role ---</option>
                             {!! HelperTag::roleSelect() !!}
+                        </select>
+                    </div>
+                    <div class="form-group branch">
+                        <label for="branch_id">Branch</label>
+                        <select name="branch_id" id="branch_id" class="form-control" required>
+                            <option value="">--- Select Branch ---</option>
+                            {!! HelperTag::branchSelect() !!}
                         </select>
                     </div>
                 </div>

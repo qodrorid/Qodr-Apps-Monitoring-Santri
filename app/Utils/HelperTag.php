@@ -21,7 +21,18 @@ class HelperTag
     public static function roleSelect($selected = null)
     {
         $result = '';
-        $roles = DB::table('roles')->select('id', 'name')->get();
+        $roles = DB::table('roles')->select('id', 'name')->where('id', '!=', 1)->get();
+        foreach ($roles as $role) {
+            $result .= '<option value="' . $role->id . '" ' . ($selected === $role->id ? 'selected' : '') . '>' . $role->name . '</option>';
+        }
+        
+        return $result;
+    }
+    
+    public static function branchSelect($selected = null)
+    {
+        $result = '';
+        $roles = DB::table('branches')->select('id', 'name')->whereNull('deleted_at')->get();
         foreach ($roles as $role) {
             $result .= '<option value="' . $role->id . '" ' . ($selected === $role->id ? 'selected' : '') . '>' . $role->name . '</option>';
         }

@@ -48,6 +48,8 @@ function edit(id) {
         
         $('.password').hide().find('#password').removeAttr('name').prop('required', false)
         
+        branchCheck()
+        
         $('#form-users').modal('show').find('.modal-title').text('Update data user')
     })
 }
@@ -148,3 +150,21 @@ $('#form-reset-password').on('hide.bs.modal', function () {
     form.removeAttr('action-link')
     form.find('[name]').val('')
 })
+
+// change role
+$('select[name="role_id"]').change(function() {
+    branchCheck()
+})
+
+// branch
+function branchCheck() {
+    let val    = $('select[name="role_id"]').val()
+    let branch = $('.form-group.branch')
+    if (val == 1 || val == 2) {
+        branch.find('select[name="branch_id"]').prop('required', false).val('')
+        branch.hide()
+    } else {
+        branch.find('select[name="branch_id"]').prop('required', true)
+        branch.show()
+    }
+}
