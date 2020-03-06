@@ -12,7 +12,7 @@ use App\Models\ProfilePengurus;
 use App\Models\ProfileMitra;
 use App\Models\ProfileSantri;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, SoftDeletes;
 

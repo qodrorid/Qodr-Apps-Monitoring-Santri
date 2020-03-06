@@ -24,7 +24,6 @@ Route::get('/', function () {
 // disactive register and active verify
 Auth::routes([
     'verify'   => true,
-    'reset'    => true,
     'register' => false
 ]);
 

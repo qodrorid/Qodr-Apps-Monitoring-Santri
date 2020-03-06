@@ -7,7 +7,6 @@
 {{ HTML::script('plugins/modernizr/css-scrollbars.js') }}
 {{ HTML::script('plugins/sweetalert/sweetalert.min.js') }}
 {{ HTML::script('js/pcoded.min.js') }}
-{{ HTML::script('js/vartical-layout.min.js') }}
 {{ HTML::script('js/jquery.mCustomScrollbar.concat.min.js') }}
 {{ HTML::script('js/script.js') }}
 {{ HTML::script('js/app.js') }}

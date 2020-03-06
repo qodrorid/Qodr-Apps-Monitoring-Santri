@@ -33,5 +33,6 @@
 </div>
 
 @include('components.base.footer')
+{{ HTML::script('js/vartical-layout.min.js') }}
 </body>
 </html>
