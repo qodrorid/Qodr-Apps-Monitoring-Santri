@@ -1,4 +1,6 @@
 window._ = require('lodash')
+// State Query
+var stateQuery = {}
 
 // locading swal custom css
 var swalCustomClass = {
@@ -271,6 +273,7 @@ $.listdata = function(url, config, listid = 'listitem') {
         dataType: 'html',
         success: (response) => {
             $('#' + listid).html(response)
+            window.stateQuery = config
             linkpaginate()
         },
         error: (error) => {
@@ -286,18 +289,18 @@ $.listdata = function(url, config, listid = 'listitem') {
 
 // change showitem
 $('select[name="showitem"]').change(function() {
-    $.listdata($(this).data('url'))
+    $.listdata($(this).data('url'), window.stateQuery)
 })
 
 // button search paginate
 $('.btn-paginate-search').click(function() {
-    $.listdata($(this).data('url'))
+    $.listdata($(this).data('url'), window.stateQuery)
 })
 
 // enter form search paginate
 $('input[name="keyword"]').keypress(function (e) {
     if (e.which == 13) {
-        $.listdata($(this).data('url'))
+        $.listdata($(this).data('url'), window.stateQuery)
         return false
     }
 })

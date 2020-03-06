@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label for="role_id">Role</label>
                         <select name="role_id" id="role_id" class="form-control">
-                            <option value="">--- Pilih Role ---</option>
+                            <option value="">--- Select Role ---</option>
                             {!! HelperTag::roleSelect() !!}
                         </select>
                     </div>

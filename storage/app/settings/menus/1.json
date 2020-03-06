@@ -36,6 +36,7 @@
             {
                 "title": "Trash",
                 "icon": "icon-trash",
+                "route": "trash.index",
                 "parent": true
             }
         ]
