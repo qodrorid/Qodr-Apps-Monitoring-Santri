@@ -17,7 +17,7 @@
             },
             {
                 "title": "Branches",
-                "icon": "icon-home",
+                "icon": "icon-git-branch",
                 "route": "branch.index",
                 "parent": true
             },
