@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
-                'role_id'           => 1
+                'role_id'           => 1,
+                'branch_id'         => null
             ],
             [
                 'name'              => 'Jhon Doe',
@@ -27,7 +28,8 @@ class UserSeeder extends Seeder
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
-                'role_id'           => 2
+                'role_id'           => 2,
+                'branch_id'         => null
             ],
             [
                 'name'              => 'Jhon Doe',
@@ -35,7 +37,8 @@ class UserSeeder extends Seeder
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
-                'role_id'           => 3
+                'role_id'           => 3,
+                'branch_id'         => 1
             ],
             [
                 'name'              => 'Jhon Doe',
@@ -43,7 +46,8 @@ class UserSeeder extends Seeder
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
-                'role_id'           => 4
+                'role_id'           => 4,
+                'branch_id'         => 1
             ],
             [
                 'name'              => 'Jhon Doe',
@@ -51,7 +55,8 @@ class UserSeeder extends Seeder
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
-                'role_id'           => 5
+                'role_id'           => 5,
+                'branch_id'         => 1
             ],
             [
                 'name'              => 'Jhon Doe',
@@ -59,7 +64,8 @@ class UserSeeder extends Seeder
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
-                'role_id'           => 6
+                'role_id'           => 6,
+                'branch_id'         => 1
             ],
             [
                 'name'              => 'Jhon Doe',
@@ -67,7 +73,8 @@ class UserSeeder extends Seeder
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
-                'role_id'           => 7
+                'role_id'           => 7,
+                'branch_id'         => 1
             ],
             [
                 'name'              => 'Jhon Doe',
@@ -75,7 +82,8 @@ class UserSeeder extends Seeder
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
-                'role_id'           => 8
+                'role_id'           => 8,
+                'branch_id'         => 1
             ],
             [
                 'name'              => 'Jhon Doe',
@@ -83,7 +91,8 @@ class UserSeeder extends Seeder
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
-                'role_id'           => 9
+                'role_id'           => 9,
+                'branch_id'         => 1
             ]
         ]);
 

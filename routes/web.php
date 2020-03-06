@@ -37,16 +37,19 @@ Route::middleware(['auth', 'verified'])->group(function() {
     // access only for super user
     Route::middleware('role:1')->group(function() {
 
-        // crud users, verified, detail, and reset password
-        Route::resource('users', 'UsersController')->except(['create']);
-        Route::get('/users/verified/{user}', 'UsersController@verified')->name('users.verified');
-        Route::put('/users/reset_password/{user}', 'UsersController@resetPassword')->name('users.reset-password');
-
         // list and update roles
         Route::resource('roles', 'RolesController')->except(['create', 'show', 'store']);
 
         // crud settings
         Route::resource('settings', 'SettingController')->except(['create', 'show']);
+
+        // crud settings
+        Route::resource('branch', 'BranchController')->except(['create', 'show']);
+
+        // crud users, verified, detail, and reset password
+        Route::resource('users', 'UsersController')->except(['create']);
+        Route::get('/users/verified/{user}', 'UsersController@verified')->name('users.verified');
+        Route::put('/users/reset_password/{user}', 'UsersController@resetPassword')->name('users.reset-password');
 
         // view logs
         Route::get('/logs', 'LogsController@index')->name('logs.index');

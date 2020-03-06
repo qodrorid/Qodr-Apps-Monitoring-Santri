@@ -47,16 +47,18 @@ class DashboardController extends Controller
 
     private function superUser()
     {
-        $logs  = Storage::disk('logs')->files();
-        $roles = DB::table('roles')->whereNull('deleted_at')->count();
-        $users = DB::table('users')->whereNull('deleted_at')->count();
+        $logs   = Storage::disk('logs')->files();
+        $roles  = DB::table('roles')->whereNull('deleted_at')->count();
+        $users  = DB::table('users')->whereNull('deleted_at')->count();
+        $branch = DB::table('branches')->whereNull('deleted_at')->count();
         
         unset($logs[0]);
         
         $widget = (object) [
-            'logs' => count($logs),
-            'role' => $roles,
-            'user' => $users,
+            'logs'   => count($logs),
+            'role'   => $roles,
+            'user'   => $users,
+            'branch' => $branch
         ];
 
         return view('pages.dashboard.1', compact('widget'));
