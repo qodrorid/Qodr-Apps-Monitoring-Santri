@@ -22,10 +22,12 @@ class CreateUsersTable extends Migration
             $table->string('password', 100);
             $table->string('picture')->default('avatar.png');
             $table->unsignedInteger('role_id');
+            $table->unsignedInteger('branch_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
         });
     }
 

@@ -2,19 +2,17 @@
 $('form[name="form-users"').on('submit', function(e) {
     e.preventDefault()
     
-    let form = $(this)
-    let data = form.serializeObject()
-    let url  = form.attr('action-link')
-    let type = form.attr('action-type')
+    let form  = $(this)
+    let data  = form.serializeObject()
+    let url   = form.attr('action-link')
+    let type  = form.attr('action-type')
 
     if (type == 'create') {
         $.created(url, data).then(() => {
-            $('#form-users').modal('hide')
             $.listdata('/users')
         })
     } else {
         $.updated(url, data).then(() => {
-            $('#form-users').modal('hide')
             $.listdata('/users')
         })
     }
@@ -28,9 +26,7 @@ $('form[name="form-reset-password"').on('submit', function(e) {
     let url  = form.attr('action-link')
     let data = form.serializeObject()
     
-    $.updated(url, data).then(() => {
-        $('#form-reset-password').modal('hide')
-    })
+    $.updated(url, data)
 })
 
 /**
@@ -52,6 +48,8 @@ function edit(id) {
         
         $('.password').hide().find('#password').removeAttr('name').prop('required', false)
         
+        branchCheck()
+        
         $('#form-users').modal('show').find('.modal-title').text('Update data user')
     })
 }
@@ -62,17 +60,21 @@ function edit(id) {
  * @return @void
  */
 function deleted(id) {
-    swal({
-        title: "Are you sure?",
-        text: "the data will go into the trash",
-        type: "warning",
+    Swal.fire({
+        title: 'Are you sure ?',
+        text: 'the data will go into the trash',
+        type: 'warning',
         showCancelButton: true,
-        closeOnConfirm: false,
-        showLoaderOnConfirm: true,
-    }, () => {
-        $.deleted(`/users/${id}`).then(() => {
-            $.listdata('/users')
-        })
+        confirmButtonColor: '#1ABC9C',
+        cancelButtonColor: '#E74C3C',
+        confirmButtonText: 'Delete',
+        allowOutsideClick: false
+    }).then((result) => {
+        if (result.value) {
+            $.deleted(`/users/${id}`).then(() => {
+                $.listdata('/users')
+            })
+        }
     })
 }
 
@@ -82,20 +84,34 @@ function deleted(id) {
  * @return @void
  */
 function verified(id) {
-    swal({
-        title: "Verified this user?",
+    Swal.fire({
+        title: "Verified this user ?",
         text: "it will give user access",
-        type: "info",
+        type: 'warning',
         showCancelButton: true,
-        closeOnConfirm: false,
-        showLoaderOnConfirm: true,
-    }, () => {
-        $.get(`/users/verified/${id}`).then(response => {
-            swal("Success!", response.message, "success")
-            $.listdata('/users')
-        }).catch(error => {
-            swal("Error!", error.statusText, "error")
-        })
+        confirmButtonColor: '#1ABC9C',
+        cancelButtonColor: '#E74C3C',
+        confirmButtonText: 'Verified',
+        allowOutsideClick: false
+    }).then((result) => {
+        if (result.value) {
+            Swal.fire({
+                customClass: {
+                    actions: 'swal2-icon-size',
+                    popup: 'swal2-bg'
+                },
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    $.get(`/users/verified/${id}`).then(response => {
+                        Swal.fire("Success!", response.message, "success")
+                        $.listdata('/users')
+                    }).catch(error => {
+                        Swal.fire("Error!", error.statusText, "error")
+                    })
+                }
+            })
+        }
     })
 }
 
@@ -134,3 +150,21 @@ $('#form-reset-password').on('hide.bs.modal', function () {
     form.removeAttr('action-link')
     form.find('[name]').val('')
 })
+
+// change role
+$('select[name="role_id"]').change(function() {
+    branchCheck()
+})
+
+// branch
+function branchCheck() {
+    let val    = $('select[name="role_id"]').val()
+    let branch = $('.form-group.branch')
+    if (val == 1 || val == 2) {
+        branch.find('select[name="branch_id"]').prop('required', false).val('')
+        branch.hide()
+    } else {
+        branch.find('select[name="branch_id"]').prop('required', true)
+        branch.show()
+    }
+}

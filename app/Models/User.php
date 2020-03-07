@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 // profile models
 use App\Models\ProfilePengurus;
 use App\Models\ProfileMitra;
 use App\Models\ProfileSantri;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +26,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'role_id'
+        'role_id',
+        'branch_id'
     ];
 
     /**
@@ -69,6 +71,11 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo('App\Models\Role', 'role_id', 'id');
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo('App\Models\Branch', 'branch_id', 'id');
     }
 
     public function profile()

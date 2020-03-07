@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add User</h5>
+                <h5 class="modal-title">Create new User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -28,9 +28,16 @@
                     </div>
                     <div class="form-group">
                         <label for="role_id">Role</label>
-                        <select name="role_id" id="role_id" class="form-control">
-                            <option value="">--- Pilih Role ---</option>
+                        <select name="role_id" id="role_id" class="form-control" required>
+                            <option value="">--- Select Role ---</option>
                             {!! HelperTag::roleSelect() !!}
+                        </select>
+                    </div>
+                    <div class="form-group branch">
+                        <label for="branch_id">Branch</label>
+                        <select name="branch_id" id="branch_id" class="form-control" required>
+                            <option value="">--- Select Branch ---</option>
+                            {!! HelperTag::branchSelect() !!}
                         </select>
                     </div>
                 </div>

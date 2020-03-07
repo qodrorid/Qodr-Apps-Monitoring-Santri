@@ -30,13 +30,15 @@
                             <i class="feather icon-chevron-down"></i>
                         </div>
                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                            @if (Auth::user()->role_id !== 1 && !is_null(Auth::user()->email_verified_at))
                             <li>
                                 <a href="#!">
                                     <i class="feather icon-user"></i> Profile
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            @endif
+                            <li onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a href="{{ route('logout') }}">
                                     <i class="feather icon-log-out"></i> Logout
                                 </a>
                             </li>

@@ -12,6 +12,13 @@
             {
                 "title": "Roles",
                 "icon": "icon-user-check",
+                "route": "roles.index",
+                "parent": true
+            },
+            {
+                "title": "Branches",
+                "icon": "icon-git-branch",
+                "route": "branch.index",
                 "parent": true
             },
             {
@@ -23,16 +30,19 @@
             {
                 "title": "Settings",
                 "icon": "icon-cpu",
+                "route": "settings.index",
                 "parent": true
             },
             {
                 "title": "Logs",
                 "icon": "icon-file-text",
+                "route": "logs.index",
                 "parent": true
             },
             {
                 "title": "Trash",
                 "icon": "icon-trash",
+                "route": "trash.index",
                 "parent": true
             }
         ]

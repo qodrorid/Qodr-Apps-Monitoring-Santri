@@ -1,13 +1,21 @@
-@extends('layouts.app')
+@extends('templates.verify')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
-                <div class="card-body">
+@include('components.page-header', [
+    'title' => 'Verification Email',
+    'subtitle' => 'Verify your email address',
+    'breadcrumb' => [
+        'users',
+        'verify'
+    ]
+])
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-block">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}
