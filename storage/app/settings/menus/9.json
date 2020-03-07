@@ -16,11 +16,11 @@
                 "childs": [
                     {
                         "title": "Report Tracking",
-                        "route": "wakatime-report.index"
+                        "route": "wakatime.report"
                     },
                     {
                         "title": "Url Embed",
-                        "route": "wakatime-urls.index"
+                        "route": "wakatime.url"
                     }
                 ]
             }

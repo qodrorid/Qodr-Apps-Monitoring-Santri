@@ -16,9 +16,10 @@ class CreateWakatimeUrlsTable extends Migration
         Schema::create('wakatime_urls', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->text('coding_activity');
-            $table->text('languages');
-            $table->text('editors');
+            $table->text('coding_activity')->nullable();
+            $table->text('languages')->nullable();
+            $table->text('editors')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

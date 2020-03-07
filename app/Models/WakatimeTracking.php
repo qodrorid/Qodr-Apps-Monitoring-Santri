@@ -4,17 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WakatimeUrl extends Model
+class WakatimeTracking extends Model
 {
 
-    protected $table = 'wakatime_urls';
+    protected $table = 'wakatime_trackings';
 
     protected $fillable = [
         'user_id',
         'coding_activity',
         'languages',
-        'editors',
-        'status'
+        'editors'
     ];
 
     protected $hidden = [

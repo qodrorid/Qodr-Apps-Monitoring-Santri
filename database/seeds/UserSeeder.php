@@ -139,5 +139,12 @@ class UserSeeder extends Seeder
                 'name'    => 'Jhon Doe'
             ]
         ]);
+
+        // ====== Wakatime Url Santri ======
+        DB::table('wakatime_urls')->insert([
+            [
+                'user_id' => 9
+            ]
+        ]);
     }
 }
