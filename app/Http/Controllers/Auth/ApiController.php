@@ -22,7 +22,7 @@ class ApiController extends Controller
         
         $user = Auth::user();
         
-        $tokenResult = $user->createToken('Qodr');
+        $tokenResult = $user->createToken(env('API_KEY'));
         $accessToken = $tokenResult->accessToken;
         
         $tokenResult->token->save();
