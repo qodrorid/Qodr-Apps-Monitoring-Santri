@@ -16,7 +16,11 @@ class CreateWakatimeTrackingsTable extends Migration
         Schema::create('wakatime_trackings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->text('coding_activity');
+            $table->string('digital', 5);
+            $table->tinyInteger('hours');
+            $table->tinyInteger('minutes');
+            $table->string('text_duration', 32);
+            $table->date('date');
             $table->text('languages');
             $table->text('editors');
             $table->timestamps();

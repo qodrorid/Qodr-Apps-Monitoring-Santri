@@ -66,7 +66,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::middleware('role:9')->group(function() {
 
         // Wakatime
-        Route::get('/wakatime/report', 'WakatimeController@index')->name('wakatime.report');
+        Route::get('/wakatime/report', 'WakatimeController@report')->name('wakatime.report');
         Route::get('/wakatime/url', 'WakatimeController@url')->name('wakatime.url');
         Route::put('/wakatime/url/{wakatime}', 'WakatimeController@update')->name('wakatime.update');
     

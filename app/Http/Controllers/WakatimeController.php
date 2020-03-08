@@ -4,19 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\WakatimeUrl;
-use Curl;
+use App\Models\WakatimeTracking;
+use Carbon\Carbon;
+
 use Auth;
+use Curl;
+use DB;
 
 class WakatimeController extends Controller
 {
     
     public function report()
     {
-        // $urlWakatime = 'https://wakatime.com/share/@theger09/79cb0cfb-8f7e-4644-8be5-b68a484abfb3.json';
-        // $response    = Curl::to($urlWakatime)->asJson()->get();
+        $startOfWeek = now()->startOfWeek();
+        $endOfWeek   = now()->endOfWeek();
 
-        // dd(date('Y-m-d H:i:s', strtotime($response->data[0]->range->start)));
-        // dd($response->data);
+        $userId   = Auth::user()->id;
+        $wakatime = WakatimeTracking::where('user_id', $userId)->whereBetween('date', [$startOfWeek, $endOfWeek])->get();
+        $lastData = $wakatime->last();
+        
+        $codingActivity = [];
+        foreach ($wakatime as $item) {
+            $codingActivity[] = number_format($item->hours + ($item->minutes / 60), 2, '.', '');
+        }
+
+        $languages = collect(json_decode($lastData->languages));
+        $editors   = collect(json_decode($lastData->editors));
+        
+        $report = (object) [
+            'codingActivity' => json_encode($codingActivity),
+            'languages' => $languages,
+            'editors' => $editors
+        ];
+
+        return view('pages.wakatime.report-santri', compact('report'));
     }
 
     public function url()

@@ -12,6 +12,9 @@ use App\Models\ProfilePengurus;
 use App\Models\ProfileMitra;
 use App\Models\ProfileSantri;
 
+// wakatime
+use App\Models\WakatimeUrl;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, SoftDeletes;
@@ -113,6 +116,7 @@ class User extends Authenticatable implements MustVerifyEmail
                 ProfileMitra::create($data);
             } else if ((int) $model->role_id === $santri) {
                 ProfileSantri::create($data);
+                WakatimeUrl::create(['user_id' => $model->id]);
             }
         } else {
             if (in_array((int) $model->role_id, $pengurus)) {

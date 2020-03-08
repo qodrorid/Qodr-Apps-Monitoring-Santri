@@ -11,7 +11,11 @@ class WakatimeTracking extends Model
 
     protected $fillable = [
         'user_id',
-        'coding_activity',
+        'digital',
+        'hours',
+        'minutes',
+        'text_duration',
+        'date',
         'languages',
         'editors'
     ];
