@@ -18,7 +18,15 @@ class CreateProfileSantrisTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name', 32);
             $table->enum('gender', ['male', 'female'])->default('male');
+            $table->string('phone', 15)->nullable();
             $table->text('address')->nullable();
+            $table->string('father_name', 32)->nullable();
+            $table->string('father_phone', 15)->nullable();
+            $table->text('father_address')->nullable();
+            $table->string('mother_name', 32)->nullable();
+            $table->string('mother_phone', 15)->nullable();
+            $table->text('mother_address')->nullable();
+            $table->enum('status', ['santri', 'magang', 'mentor'])->default('santri');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

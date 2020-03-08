@@ -8,6 +8,21 @@
                 "icon": "icon-home",
                 "route": "dashboard",
                 "parent": true
+            },
+            {
+                "title": "Wakatime",
+                "icon": "icon-clock",
+                "parent": true,
+                "childs": [
+                    {
+                        "title": "Report Student",
+                        "route": "wakatime.index"
+                    },
+                    {
+                        "title": "Url Status",
+                        "route": "wakatime.index-url"
+                    }
+                ]
             }
         ]
     }
