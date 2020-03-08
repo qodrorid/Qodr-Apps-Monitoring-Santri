@@ -74,5 +74,5 @@
 @endsection
 
 @section('javascript')
-{{ HTML::script('js/pages/santri/wakatime.js') }}
+{{ HTML::script('js/pages/wakatime.js') }}
 @endsection

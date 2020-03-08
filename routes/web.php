@@ -62,6 +62,17 @@ Route::middleware(['auth', 'verified'])->group(function() {
     
     });
 
+    // access only for admin, ketua and divisi It
+    Route::middleware('role:2,3,6')->group(function() {
+
+        // wakatime
+        Route::get('/wakatime', 'WakatimeController@index')->name('wakatime.index');
+        Route::get('/wakatime/report/{userid}', 'WakatimeController@report')->name('wakatime.view-report');
+        Route::get('/wakatime/url/list', 'WakatimeController@indexurl')->name('wakatime.index-url');
+        Route::get('/wakatime/url/{wakatime}/status', 'WakatimeController@status')->name('wakatime.status');
+
+    });
+
     // access only for santri
     Route::middleware('role:9')->group(function() {
 

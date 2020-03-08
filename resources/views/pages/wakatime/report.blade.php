@@ -26,7 +26,9 @@
                     </div>
                 </div>
                 <div class="card-block">
-                    <canvas id="codingActivity" style="width: 100%; height: 330px"></canvas>
+                    <div class="row">
+                        <canvas id="codingActivity" style="width: 100%; height: 330px"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,6 +78,10 @@
         type: 'bar',
         data: codingActivity,
         options: {
+            title: {
+                display: true,
+                title: '{{ $startOfWeek . ' s/d ' . $endOfWeek }}'
+            },
             responsive: true,
             legend: {
                 display: false
@@ -92,9 +98,9 @@
 
     var languagesElemt = document.getElementById("languages");
     var languages = {
-        labels: {!! json_encode($report->languages->pluck('name')->toArray()) !!},
+        labels: {!! $report->languages->name !!},
         datasets: [{
-            data: {!! json_encode($report->languages->pluck('percent')->toArray()) !!},
+            data: {!! $report->languages->percent !!},
             backgroundColor: [
                 '#25A6F7',
                 '#FB9A7D',
@@ -144,9 +150,9 @@
 
     var editorsElemt = document.getElementById("editors");
     var editors = {
-        labels: {!! json_encode($report->editors->pluck('name')->toArray()) !!},
+        labels: {!! $report->editors->name !!},
         datasets: [{
-            data: {!! json_encode($report->editors->pluck('percent')->toArray()) !!},
+            data: {!! $report->editors->percent !!},
             backgroundColor: [
                 "#25A6F7",
                 "#FB9A7D",
