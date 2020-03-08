@@ -13,6 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'auth'], function () {
+
+    // login route
+    Route::post('/login', 'Auth\ApiController@login');
+
+});
+
+Route::group(['middleware' => 'auth:api'], function() {
+
+    // logout
+    Route::get('/logout', 'Auth\ApiController@logout');
+
+    // santri
+    Route::group(['middleware' => 'role:9'], function() {
+
+        // wakatime
+        Route::get('/wakatime/dashboard', 'Api\WakatimeController@dashboard');
+    
+    });
+
 });

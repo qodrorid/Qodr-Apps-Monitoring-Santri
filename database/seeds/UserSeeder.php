@@ -143,7 +143,11 @@ class UserSeeder extends Seeder
         // ====== Wakatime Url Santri ======
         DB::table('wakatime_urls')->insert([
             [
-                'user_id' => 9
+                'user_id' => 9,
+                'coding_activity' => 'https://wakatime.com/share/@theger09/79cb0cfb-8f7e-4644-8be5-b68a484abfb3.json',
+                'languages' => 'https://wakatime.com/share/@theger09/4e688423-496f-4c77-8d6f-aaf38b8e2b28.json',
+                'editors' => 'https://wakatime.com/share/@theger09/1f06ea3e-8ff3-4e72-b7bd-dd8353ed9291.json',
+                'status' => true
             ]
         ]);
     }
