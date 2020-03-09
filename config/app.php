@@ -167,7 +167,6 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Ixudra\Curl\CurlServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Application Service Providers...
