@@ -35,8 +35,9 @@ class WakatimeJob implements ShouldQueue
      */
     public function handle()
     {
-        $wakatime = $this->wakatime;
-        $dateNow  = date('Y-m-d');
+        $wakatime  = $this->wakatime;
+        $dateNow   = date('Y-m-d');
+        $yesterday = now()->yesterday()->format('Y-m-d');
 
         $requestEditors        = Curl::to($wakatime->editors)->asJson()->get();
         $requestLanguages      = Curl::to($wakatime->languages)->asJson()->get();
@@ -44,30 +45,66 @@ class WakatimeJob implements ShouldQueue
 
         $editors        = json_encode($requestEditors->data);
         $languages      = json_encode($requestLanguages->data);
-        $codingActivity = collect($requestCodingActivity->data)->filter(function($item) {
-            return $item->range->date == date('Y-m-d');
-        })->first();
+        $codingActivity = collect($requestCodingActivity->data)->filter(function($item) use ($dateNow, $yesterday) {
+            return $item->range->date == $dateNow or $item->range->date == $yesterday;
+        });
 
-        $total = $codingActivity->grand_total;
-        $range = $codingActivity->range;
+        foreach ($codingActivity as $item) {
+            $total = $item->grand_total;
+            $range = $item->range;
+    
+            WakatimeTracking::updateOrInsert(
+                [
+                    'user_id' => $wakatime->user_id,
+                    'date'    => $range->date
+                ],
+                [
+                    'user_id'       => $wakatime->user_id,
+                    'digital'       => $total->digital,
+                    'hours'         => $total->hours,
+                    'minutes'       => $total->minutes,
+                    'text_duration' => $total->text,
+                    'date'          => $range->date,
+                    'languages'     => $languages,
+                    'editors'       => $editors,
+                    'created_at'    => date('Y-m-d H:s:i'),
+                    'updated_at'    => date('Y-m-d H:s:i')
+                ]
+            );
+        }
+        // $dateNow   = date('Y-m-d');
+        // $yesterday = now()->yesterday()->format('Y-m-d');
 
-        WakatimeTracking::updateOrInsert(
-            [
-                'user_id' => $wakatime->user_id,
-                'date'    => $dateNow
-            ],
-            [
-                'user_id'       => $wakatime->user_id,
-                'digital'       => $total->digital,
-                'hours'         => $total->hours,
-                'minutes'       => $total->minutes,
-                'text_duration' => $total->text,
-                'date'          => $range->date,
-                'languages'     => $languages,
-                'editors'       => $editors,
-                'created_at'    => date('Y-m-d H:s:i'),
-                'updated_at'    => date('Y-m-d H:s:i')
-            ]
-        );
+        // $requestEditors        = Curl::to($wakatime->editors)->asJson()->get();
+        // $requestLanguages      = Curl::to($wakatime->languages)->asJson()->get();
+        // $requestCodingActivity = Curl::to($wakatime->coding_activity)->asJson()->get();
+
+        // $editors        = json_encode($requestEditors->data);
+        // $languages      = json_encode($requestLanguages->data);
+        // $codingActivity = collect($requestCodingActivity->data)->filter(function($item) {
+        //     return $item->range->date == date('Y-m-d');
+        // })->first();
+
+        // $total = $codingActivity->grand_total;
+        // $range = $codingActivity->range;
+
+        // WakatimeTracking::updateOrInsert(
+        //     [
+        //         'user_id' => $wakatime->user_id,
+        //         'date'    => $dateNow
+        //     ],
+        //     [
+        //         'user_id'       => $wakatime->user_id,
+        //         'digital'       => $total->digital,
+        //         'hours'         => $total->hours,
+        //         'minutes'       => $total->minutes,
+        //         'text_duration' => $total->text,
+        //         'date'          => $range->date,
+        //         'languages'     => $languages,
+        //         'editors'       => $editors,
+        //         'created_at'    => date('Y-m-d H:s:i'),
+        //         'updated_at'    => date('Y-m-d H:s:i')
+        //     ]
+        // );
     }
 }

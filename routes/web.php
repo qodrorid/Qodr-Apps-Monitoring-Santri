@@ -17,9 +17,7 @@
 */
 
 // auto redirect to login
-Route::get('/', function () {
-    return redirect('login');
-});
+Route::get('/', 'IndexController@index');
 
 // disactive register and active verify
 Auth::routes([
