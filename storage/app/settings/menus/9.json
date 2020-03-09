@@ -10,6 +10,11 @@
                 "parent": true
             },
             {
+                "title": "Todo List",
+                "icon": "icon-edit",
+                "parent": true
+            },
+            {
                 "title": "Wakatime",
                 "icon": "icon-clock",
                 "parent": true,
