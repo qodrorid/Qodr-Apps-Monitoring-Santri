@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="form-group form-primary">
-                <input type="text" name="username" class="form-control @error('username') form-control-danger @enderror" required placeholder="Username">
+                <input type="text" name="username" class="form-control @error('username') form-control-danger @enderror" required placeholder="Username" autofocus>
                 @error('username')
                 <span class="form-bar text-danger">{{ $message }}</span>
                 @enderror
