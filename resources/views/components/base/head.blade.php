@@ -5,7 +5,6 @@
 <link rel="icon" href="{{ asset('img/master/favicon.ico') }}" type="image/x-icon">
 {{ HTML::style('https://fonts.googleapis.com/css?family=Open+Sans:400,600') }}
 {{ HTML::style('plugins/bootstrap/css/bootstrap.min.css') }}
-{{ HTML::style('plugins/icons/themify/themify-icons.css') }}
 {{ HTML::style('plugins/icons/icofont/css/icofont.css') }}
 {{ HTML::style('plugins/icons/feather/css/feather.css') }}
 {{ HTML::style('plugins/sweetalert/sweetalert.min.css') }}

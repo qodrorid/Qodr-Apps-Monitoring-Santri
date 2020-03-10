@@ -35,17 +35,17 @@
                             <li>
                                 <i class="icofont icofont-chart-bar-graph text-primary p-absolute text-center d-block f-30"></i>
                                 <h6><b>Coding Activity</b></h6>
-                                <code id="coding_activity">{{ $wakatime->coding_activity ?? 'null' }}</code>
+                                <pre><code id="coding_activity">{{ $wakatime->coding_activity ?? 'null' }}</code></pre>
                             </li>
                             <li>
                                 <i class="icofont icofont-chart-pie-alt text-primary p-absolute text-center d-block f-30"></i>
                                 <h6><b>Languages</b></h6>
-                                <code id="languages">{{ $wakatime->languages ?? 'null' }}</code>
+                                <pre><code id="languages">{{ $wakatime->languages ?? 'null' }}</code></pre>
                             </li>
                             <li>
                                 <i class="icofont icofont-chart-pie text-primary p-absolute text-center d-block f-30"></i>
                                 <h6><b>Editors</b></h6>
-                                <code id="editors">{{ $wakatime->editors ?? 'null' }}</code>
+                                <pre><code id="editors">{{ $wakatime->editors ?? 'null' }}</code></pre>
                             </li>
                         </ul>
                         <div class="float-left">

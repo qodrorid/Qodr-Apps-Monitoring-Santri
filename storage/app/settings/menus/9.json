@@ -12,6 +12,7 @@
             {
                 "title": "Todo List",
                 "icon": "icon-edit",
+                "route": "todo.index",
                 "parent": true
             },
             {
