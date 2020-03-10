@@ -10,3 +10,38 @@ pre#view-log {
         margin-top: 3px;
     }
 }
+
+// todo list
+.panel-todo {
+    padding: 0 !important;
+}
+
+.todo-list {
+    
+    li {
+        padding: 10px;
+        display: flex;
+        border-bottom: 1px solid #f3f3f3;
+
+        .box-check {
+            margin: auto 10px auto 0;
+
+            i {
+                font-size: 20px;
+                color: #bdbdbd;
+            }
+
+        }
+
+        .box-text {
+            margin: auto 0;
+            flex: 1;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+    }
+
+}

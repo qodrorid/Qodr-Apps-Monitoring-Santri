@@ -1,1 +1,67 @@
-pre#view-log{padding:15px;background-color:#f2f3f7}.mobile-menu .icon-menu{font-size:24px;float:right;margin-top:3px}.card-list{border-bottom:1px solid #e8e8ec!important;padding:20px!important;margin-bottom:15px}.table-list td{padding:13px 10px}.table-list td.action{padding:7px 5px}.table-list td.action .dropdown-item{cursor:pointer}.swal2-icon-size>.swal2-styled.swal2-confirm{font-size:1.5em!important;border-left-color:#d4d4d4!important;border-right-color:#d4d4d4!important}.swal2-bg{background-color:transparent}
+pre#view-log {
+  padding: 15px;
+  background-color: #f2f3f7;
+}
+
+.mobile-menu .icon-menu {
+  font-size: 24px;
+  float: right;
+  margin-top: 3px;
+}
+
+.panel-todo {
+  padding: 0 !important;
+}
+
+.todo-list li {
+  padding: 10px;
+  display: flex;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.todo-list li .box-check {
+  margin: auto 10px auto 0;
+}
+
+.todo-list li .box-check i {
+  font-size: 20px;
+  color: #bdbdbd;
+}
+
+.todo-list li .box-text {
+  margin: auto 0;
+  flex: 1;
+}
+
+.todo-list li:last-child {
+  border-bottom: none;
+}
+
+.card-list {
+  border-bottom: 1px solid #e8e8ec !important;
+  padding: 20px !important;
+  margin-bottom: 15px;
+}
+
+.table-list td {
+  padding: 13px 10px;
+}
+
+.table-list td.action {
+  padding: 7px 5px;
+}
+
+.table-list td.action .dropdown-item {
+  cursor: pointer;
+}
+
+.swal2-icon-size > .swal2-styled.swal2-confirm {
+  font-size: 1.5em !important;
+  border-left-color: #d4d4d4 !important;
+  border-right-color: #d4d4d4 !important;
+}
+
+.swal2-bg {
+  background-color: transparent;
+}
+

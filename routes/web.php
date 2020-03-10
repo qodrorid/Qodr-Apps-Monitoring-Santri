@@ -74,6 +74,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
     // access only for santri
     Route::middleware('role:9')->group(function() {
 
+        // todo list
+        Route::get('/todo', 'TodoController@index')->name('todo.index');
+        Route::post('/todo/store', 'TodoController@store')->name('todo.store');
+        Route::put('/todo/update/{todo}', 'TodoController@update')->name('todo.update');
+
         // Wakatime
         Route::get('/wakatime/report', 'WakatimeController@report')->name('wakatime.report');
         Route::get('/wakatime/url', 'WakatimeController@url')->name('wakatime.url');
