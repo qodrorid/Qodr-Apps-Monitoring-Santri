@@ -16,11 +16,11 @@
                     </div>
                     <div class="form-group">
                         <label for="start">Date Start</label>
-                        <input type="date" name="start" id="start" class="form-control" required placeholder="Date Start">
+                        <input type="datetime-local" name="start" id="start" class="form-control" required placeholder="Date Start">
                     </div>
                     <div class="form-group">
                         <label for="end">Date End</label>
-                        <input type="date" name="end" id="end" class="form-control" required placeholder="Date End">
+                        <input type="datetime-local" name="end" id="end" class="form-control" required placeholder="Date End">
                     </div>
                 </div>
                 <div class="modal-footer">
