@@ -20,7 +20,7 @@
             </div>
             
             <div class="form-group form-primary">
-                <input type="email" name="email" class="form-control @error('email') form-control-danger @enderror" required placeholder="Your Email Address">
+                <input type="email" name="email" class="form-control @error('email') form-control-danger @enderror" value="{{ old('email') }}" required placeholder="Your Email Address">
                 @error('email')
                 <span class="form-bar text-danger">{{ $message }}</span>
                 @enderror
