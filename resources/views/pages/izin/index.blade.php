@@ -1,5 +1,9 @@
 @extends('templates.base')
 
+@section('stylesheet')
+{{ HTML::style('plugins/daterangepicker/daterangepicker.css') }}
+@endsection
+
 @section('content')
 
 @include('components.page-header', [
@@ -30,10 +34,14 @@
                                 {!! HelperTag::showItem(request()->show ?? 5) !!}
                             </select>
                         </div>
-                        <div class="col"></div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" name="daterange" class="form-control" placeholder="Date Range">
+                            </div>
+                        </div>
                         <div class="col-md-4">
                             <div class="input-group input-group-button">
-                                <input type="text" name="keyword" data-url="/izin" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
+                                <input type="datetime-local" name="keyword" data-url="/izin" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
                                 <button type="button" class="input-group-addon btn btn-primary btn-paginate-search" data-url="/izin">
                                     <i class="feather icon-search"></i> Search
                                 </button>
@@ -115,5 +123,7 @@
 @endsection
 
 @section('javascript')
+{{ HTML::script('plugins/moment/moment.min.js') }}
+{{ HTML::script('plugins/daterangepicker/daterangepicker.js') }}
 {{ HTML::script('js/pages/izin.js') }}
 @endsection

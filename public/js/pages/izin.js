@@ -1,3 +1,22 @@
+// ready script
+(function() {
+    $('input[name="daterange"]').daterangepicker({
+        timePicker: true,
+        locale: {
+            format: 'YYYY-MM-DD hh:mm'
+        }
+    })
+})()
+
+// apply date range
+$('input[name="daterange"]').on('apply.daterangepicker', function () {
+    let date  = $(this).val().split(' - ')
+    let start = date[0]
+    let end   = date[1]
+
+    $.listdata('/izin', { start, end })
+})
+
 // submit form name="form-izin"
 $('form[name="form-izin"').on('submit', function(e) {
     e.preventDefault()

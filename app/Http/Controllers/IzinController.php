@@ -18,6 +18,10 @@ class IzinController extends Controller
     public function index(Request $request)
     {
         $izin = Izin::where(function($query) use ($request) {
+            if (!is_null($request->start) and !is_null($request->end)) {
+                $query->whereBetween('start', [$request->start, $request->end])
+                    ->orWhereBetween('end', [$request->start, $request->end]);
+            }
             if (!is_null($request->keyword)) {
                 $query->where('name', 'like', "%$request->keyword%")
                     ->orWhere('information', 'like', "%$request->keyword%");
