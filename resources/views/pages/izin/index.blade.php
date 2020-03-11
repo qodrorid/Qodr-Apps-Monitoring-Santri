@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="datetime-local" name="daterange" class="form-control" placeholder="Date Range">
+                                <input type="text" name="daterange" class="form-control" placeholder="Date Range">
                             </div>
                         </div>
                         <div class="col-md-4">
