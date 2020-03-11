@@ -36,12 +36,12 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="text" name="daterange" class="form-control" placeholder="Date Range">
+                                <input type="datetime-local" name="daterange" class="form-control" placeholder="Date Range">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="input-group input-group-button">
-                                <input type="datetime-local" name="keyword" data-url="/izin" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
+                                <input type="text" name="keyword" data-url="/izin" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
                                 <button type="button" class="input-group-addon btn btn-primary btn-paginate-search" data-url="/izin">
                                     <i class="feather icon-search"></i> Search
                                 </button>
