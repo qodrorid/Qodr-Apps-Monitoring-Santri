@@ -3,11 +3,11 @@
 @section('content')
 
 @include('components.page-header', [
-    'title' => 'Report Student',
-    'subtitle' => 'report wakatime student',
+    'title' => 'Url Status',
+    'subtitle' => 'status url wakatime student',
     'breadcrumb' => [
         'wakatime',
-        'report student'
+        'url status'
     ]
 ])
 
