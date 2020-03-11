@@ -32,13 +32,14 @@ class TodoNotif extends Notification
 
         $content  = "📝 *TODO LIST QODR SAMARINDA*\n";
         $content .= "=============================\n\n";
-        $content .= "👤 " . strtoupper($nameUser) . "\n\n";
+        $content .= "👤 *$nameUser*\n\n";
 
         foreach ($todoList as $key => $item) {
             $content .= "=> $item->todo\n";
         }
 
-        $content .= "\nJangan lupa untuk di laksanakan semua yaa";
+        $content .= "\nJangan lupa untuk di laksanakan semua yaa\n\n";
+        $content .= "Happy nice day. 👍";
 
         return TelegramMessage::create()
             ->to("$notifiable")
