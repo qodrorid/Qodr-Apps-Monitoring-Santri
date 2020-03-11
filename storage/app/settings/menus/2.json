@@ -32,7 +32,7 @@
         "childs": [
             {
                 "title": "Setting",
-                "icon": "icon-tool",
+                "icon": "icon-cpu",
                 "parent": true,
                 "childs": [
                     {

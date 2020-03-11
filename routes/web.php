@@ -61,7 +61,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     });
 
     // access only for super user and admin
-    Route::middleware('role:1')->group(function() {
+    Route::middleware('role:1,2')->group(function() {
 
         // Telegram Chat Id
         Route::get('/telegram', 'TelegramController@index')->name('telegram.index');
