@@ -2,13 +2,13 @@
 @foreach ($izin as $item)    
 <tr>
     <td align="center">{{ $no }}</td>
-    <td>{{ $item->name }}</td>
+    <td>{{ $item->information }}</td>
     <td>{{ date('H:i d F Y', strtotime($item->start)) }}</td>
     <td>{{ date('H:i d F Y', strtotime($item->end)) }}</td>
     <td>
-        @if ($item->approved == 1)
-        <span class="label label-primary">Approved</span>
-        @elseif ($item->approved == 0)
+        @if ($item->approved === 1)
+        <span class="label label-success">Approved</span>
+        @elseif ($item->approved === 0)
         <span class="label label-danger">Rejected</span>
         @else
         <span class="label label-info">Process</span>
@@ -20,9 +20,11 @@
                 <i class="feather icon-cpu"></i> Action
             </button>
             <div class="dropdown-menu" aria-labelledby="action" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                @if (is_null($item->approved))
                 <a class="dropdown-item" onclick="edit({{ $item->id }})">
                     <i class="feather icon-edit"></i> Edit
                 </a>
+                @endif
                 <a class="dropdown-item" onclick="deleted({{ $item->id }})">
                     <i class="feather icon-trash"></i> Delete
                 </a>

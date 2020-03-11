@@ -35,6 +35,10 @@ function edit(id) {
         
         $.each(response.data, (key, val) => {
             form.find(`[name="${key}"]`).val(val)
+            if (key == 'start' || key == 'end') {
+                let date = val.replace(' ', 'T')
+                form.find(`[name="${key}"]`).val(date)
+            }
         })
         
         $('#form-izin').modal('show').find('.modal-title').text('Update data izin')
