@@ -77,6 +77,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/wakatime/url/list', 'WakatimeController@indexurl')->name('wakatime.index-url');
         Route::get('/wakatime/url/{wakatime}/status', 'WakatimeController@status')->name('wakatime.status');
 
+        // todo list
+        Route::get('/todo/student', 'TodoController@student')->name('todo.student');
+        Route::get('/todo/view/{user}/{date}', 'TodoController@view')->name('todo.view');
+
     });
 
     // access only for santri
