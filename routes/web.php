@@ -79,7 +79,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
         // todo list
         Route::get('/todo/student', 'TodoController@student')->name('todo.student');
-        Route::get('/todo/view/{user}/{date}', 'TodoController@view')->name('todo.view');
+        Route::get('/todo/view/{user}', 'TodoController@view')->name('todo.view');
 
     });
 
