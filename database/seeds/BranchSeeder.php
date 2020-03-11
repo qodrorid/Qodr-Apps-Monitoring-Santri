@@ -13,7 +13,8 @@ class BranchSeeder extends Seeder
     {
         DB::table('branches')->insert([
             [
-                'name' => 'Qodr Samarinda'
+                'name' => 'Qodr Samarinda',
+                'telegram' => '-1001180523947'
             ]
         ]);
     }

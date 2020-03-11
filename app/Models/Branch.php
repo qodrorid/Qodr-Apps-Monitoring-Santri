@@ -14,7 +14,8 @@ class Branch extends Model
 
     protected $fillable = [
         'name',
-        'address'
+        'address',
+        'telegram'
     ];
 
     protected $hidden = [
