@@ -8,6 +8,18 @@
                 "icon": "icon-home",
                 "route": "dashboard",
                 "parent": true
+            }
+        ]
+    },
+    {
+        "title": "Divisi IT",
+        "level": true,
+        "childs": [
+            {
+                "title": "Todo Student",
+                "icon": "icon-edit",
+                "route": "todo.student",
+                "parent": true
             },
             {
                 "title": "Wakatime",

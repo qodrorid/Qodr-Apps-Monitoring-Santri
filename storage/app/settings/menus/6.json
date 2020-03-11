@@ -10,6 +10,12 @@
                 "parent": true
             },
             {
+                "title": "Todo Student",
+                "icon": "icon-edit",
+                "route": "todo.student",
+                "parent": true
+            },
+            {
                 "title": "Wakatime",
                 "icon": "icon-clock",
                 "parent": true,
