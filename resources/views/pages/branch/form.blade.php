@@ -18,6 +18,10 @@
                         <label for="address">Address</label>
                         <textarea name="address" id="address" class="form-control" rows="4" placeholder="Text Address .."></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="telegram">Token Telegram</label>
+                        <input type="text" name="telegram" id="telegram" class="form-control" required placeholder="Token Telegram">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
