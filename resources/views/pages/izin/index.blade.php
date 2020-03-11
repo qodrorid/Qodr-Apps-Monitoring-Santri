@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-settings">
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-izin">
                                 <i class="feather icon-plus"></i> Add
                             </button>
                         </div>
