@@ -34,6 +34,12 @@
                 "parent": true
             },
             {
+                "title": "Telegram Chat ID",
+                "icon": "icon-send",
+                "route": "telegram.index",
+                "parent": true
+            },
+            {
                 "title": "Logs",
                 "icon": "icon-file-text",
                 "route": "logs.index",

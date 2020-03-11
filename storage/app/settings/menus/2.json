@@ -25,5 +25,22 @@
                 ]
             }
         ]
+    },
+    {
+        "title": "Configurations",
+        "level": true,
+        "childs": [
+            {
+                "title": "Setting",
+                "icon": "icon-tool",
+                "parent": true,
+                "childs": [
+                    {
+                        "title": "Telegram Chat ID",
+                        "route": "telegram.index"
+                    }
+                ]
+            }
+        ]
     }
 ]
