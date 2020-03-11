@@ -53,9 +53,9 @@
                                     @endif
                                 </div>
                                 <div class="panel-body panel-todo">
-                                    <ul class="todo-list" list-todos="{{ $item->todo }}">
+                                    <ul class="todo-list" @if ($item->date === date('Y-m-d'))list-todos="{{ $item->todo }}"@endif>
                                         @foreach (json_decode($item->todo) as $key => $todo)
-                                        <li onclick="checkTodo({{ $item->id }}, {{ $key }}, this)">
+                                        <li @if ($item->date === date('Y-m-d'))onclick="checkTodo({{ $item->id }}, {{ $key }}, this)@endif">
                                             <div class="box-check">
                                                 <i class="fa fa-check-square {{ ($todo->status == 1) ? 'text-primary' : '' }}"></i>
                                             </div>

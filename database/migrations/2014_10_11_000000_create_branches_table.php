@@ -17,6 +17,7 @@ class CreateBranchesTable extends Migration
             $table->increments('id');
             $table->string('name', 64);
             $table->text('address')->nullable();
+            $table->string('telegram')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

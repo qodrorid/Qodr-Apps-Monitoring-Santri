@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Jobs\TodoJob;
 use App\Models\Todo;
 
 use Auth;
@@ -38,7 +39,9 @@ class TodoController extends Controller
             'status' => 'present|array'
         ]);
 
-        $input = $request->all();
+        $userId = Auth::user()->id;
+        $token  = Auth::user()->branch->telegram;
+        $input  = $request->all();
         
         if (empty($input['todo']) or is_null($input['todo'][0])) abort(400, 'Todo required!');
 
@@ -54,18 +57,19 @@ class TodoController extends Controller
         }
 
         $params = [
-            'user_id' => Auth::user()->id,
+            'user_id' => $userId,
             'date'    => $input['date']
         ];
 
         $data = [
-            'user_id' => Auth::user()->id,
+            'user_id' => $userId,
             'date'    => $input['date'],
             'todo'    => json_encode($todos)
         ];
 
         try {
             Todo::updateOrInsert($params, $data);
+            TodoJob::dispatch($params, $token);
             return $this->success('Successfuly save todo!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);
