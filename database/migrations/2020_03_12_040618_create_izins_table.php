@@ -20,7 +20,7 @@ class CreateIzinsTable extends Migration
             $table->text('information');
             $table->datetime('start');
             $table->datetime('end');
-            $table->boolean('approved')->default(false);
+            $table->boolean('approved')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
