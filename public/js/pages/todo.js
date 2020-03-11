@@ -1,3 +1,5 @@
+const headers = { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+
 // submit form name="form-todo"
 $('form[name="form-todo"').on('submit', function(e) {
     e.preventDefault()
@@ -8,6 +10,34 @@ $('form[name="form-todo"').on('submit', function(e) {
 
     $.created(url, data).then(() => {
         $.listdata('/todo')
+    })
+})
+
+$('form[name="search-todo"]').on('submit', function(e) {
+    e.preventDefault()
+    
+    let form = $(this)
+    let user = form.attr('action-user')
+    let data = form.serializeObject()
+    let url  = `/todo/view/${user}`
+
+    $.ajax({
+        url: urlbase(url),
+        headers,
+        method: 'GET',
+        data: data,
+        dataType: 'html',
+        success: (response) => {
+            $('#listitem').html(response)
+        },
+        error: (error) => {
+            Swal.fire({
+                type: 'error',
+                title: 'Error!',
+                text: 'Internal Server Error',
+                allowOutsideClick: false
+            })
+        }
     })
 })
 
@@ -55,8 +85,6 @@ function todo(date, todoString) {
 function checkTodo(id, key, that) {
     let todo = JSON.parse($(that).parent().attr('list-todos'))
     let url  = `/todo/update/${id}`
-
-    const headers = { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
 
     todo.map((item, idx) => {
         if (idx === key) {
