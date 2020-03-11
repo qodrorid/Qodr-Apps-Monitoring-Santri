@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Jobs\TodoJob;
 use App\Models\Todo;
 
-use NotificationChannels\Telegram\TelegramChannel;
-use App\Notifications\TodoNotif;
-
-use Notification;
 use Auth;
 
 class TodoController extends Controller
@@ -72,9 +69,7 @@ class TodoController extends Controller
 
         try {
             Todo::updateOrInsert($params, $data);
-
-            Notification::send($token, new TodoNotif($params));
-
+            TodoJob::dispatch($params, $token);
             return $this->success('Successfuly save todo!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);

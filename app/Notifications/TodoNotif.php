@@ -39,7 +39,7 @@ class TodoNotif extends Notification
         }
 
         $content .= "\nJangan lupa untuk di laksanakan semua yaa\n\n";
-        $content .= "Happy nice day. 👍";
+        $content .= "Have a nice day. 👍";
 
         return TelegramMessage::create()
             ->to("$notifiable")
