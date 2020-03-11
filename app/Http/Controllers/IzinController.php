@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Izin;
 use Illuminate\Http\Request;
 
+use Auth;
+
 class IzinController extends Controller
 {
     /**
