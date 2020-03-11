@@ -95,6 +95,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/wakatime/report', 'WakatimeController@report')->name('wakatime.report');
         Route::get('/wakatime/url', 'WakatimeController@url')->name('wakatime.url');
         Route::put('/wakatime/url/{wakatime}', 'WakatimeController@update')->name('wakatime.update');
+
+        // izin
+        Route::resource('izin', 'IzinController')->except(['create', 'show']);
     
     });
 
