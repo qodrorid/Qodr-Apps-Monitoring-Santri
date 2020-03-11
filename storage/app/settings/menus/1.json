@@ -34,7 +34,7 @@
                 "parent": true
             },
             {
-                "title": "Telegram Chat ID",
+                "title": "Telegram",
                 "icon": "icon-send",
                 "route": "telegram.index",
                 "parent": true

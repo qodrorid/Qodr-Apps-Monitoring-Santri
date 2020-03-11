@@ -36,7 +36,7 @@
                 "parent": true,
                 "childs": [
                     {
-                        "title": "Telegram Chat ID",
+                        "title": "Telegram",
                         "route": "telegram.index"
                     }
                 ]
