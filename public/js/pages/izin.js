@@ -88,6 +88,43 @@ function deleted(id) {
     })
 }
 
+/**
+ * function delete izin
+ * @param id 
+ * @return @void
+ */
+function approved(id, userid, approved) {
+    var message = {}
+    if (approved) {
+        message = {
+            title: 'Are you sure approved ?',
+            text: 'students will be allowed permission',
+            confirmButtonText: 'Approve'
+        }
+    } else {
+        message = {
+            title: 'Are you sure rejected ?',
+            text: 'students will be banned for permission',
+            confirmButtonText: 'Rejected'
+        }
+    }
+
+    Swal.fire({
+        ...message,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#1ABC9C',
+        cancelButtonColor: '#E74C3C',
+        allowOutsideClick: false
+    }).then((result) => {
+        if (result.value) {
+            $.updated(`/izin/approved/${id}`, { approved }).then(() => {
+                $.listdata(`/izin/list/${userid}`)
+            })
+        }
+    })
+}
+
 // clear form izin
 $('#form-izin').on('hide.bs.modal', function () {
     let modal = $(this)

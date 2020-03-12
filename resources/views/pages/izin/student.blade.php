@@ -3,10 +3,10 @@
 @section('content')
 
 @include('components.page-header', [
-    'title' => 'Todo Student',
-    'subtitle' => 'list todo student',
+    'title' => 'Izin Student',
+    'subtitle' => 'list izin student',
     'breadcrumb' => [
-        'todo student'
+        'izin student'
     ]
 ])
 
@@ -26,15 +26,15 @@
                 <div class="card-block">
                     <div class="row">
                         <div class="col-md-2">
-                            <select name="showitem" class="form-control" data-url="/todo/student">
+                            <select name="showitem" class="form-control" data-url="/izin/student">
                                 {!! HelperTag::showItem(request()->show ?? 5) !!}
                             </select>
                         </div>
                         <div class="col"></div>
                         <div class="col-md-4">
                             <div class="input-group input-group-button">
-                                <input type="text" name="keyword" data-url="/todo/student" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
-                                <button type="button" class="input-group-addon btn btn-primary btn-paginate-search" data-url="/todo/student">
+                                <input type="text" name="keyword" data-url="/izin/student" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
+                                <button type="button" class="input-group-addon btn btn-primary btn-paginate-search" data-url="/izin/student">
                                     <i class="feather icon-search"></i> Search
                                 </button>
                             </div>
@@ -60,8 +60,8 @@
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->username }}</td>
                                     <td class="action">
-                                        <a href="{{ route('todo.view', ['user' => $item->id]) }}" class="btn btn-block btn-sm btn-primary">
-                                            <i class="feather icon-eye"></i> View Todo
+                                        <a href="{{ route('izin.list', ['user' => $item->id]) }}" class="btn btn-block btn-sm btn-primary">
+                                            <i class="feather icon-eye"></i> View Izin
                                         </a>
                                     </td>
                                 </tr>

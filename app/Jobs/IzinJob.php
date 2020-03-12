@@ -7,26 +7,27 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Notifications\TodoNotif;
+use App\Notifications\IzinNotif;
+use App\Models\Izin;
 
 use Notification;
 
-class TodoJob implements ShouldQueue
+class IzinJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $todo;
     private $token;
+    private $izin;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($todo, $token)
+    public function __construct(string $token, Izin $izin)
     {
-        $this->todo  = $todo;
         $this->token = $token;
+        $this->izin  = $izin;
     }
 
     /**
@@ -36,6 +37,12 @@ class TodoJob implements ShouldQueue
      */
     public function handle()
     {
-        Notification::send($this->token, new TodoNotif($this->todo));
+        $data = (object) [
+            'token' => $this->token,
+            'info'  => $this->izin->information,
+            'user'  => $this->izin->name
+        ];
+
+        Notification::send($data, new IzinNotif);
     }
 }

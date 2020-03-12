@@ -1,9 +1,5 @@
 @extends('templates.base')
 
-@section('stylesheet')
-{{ HTML::style('plugins/daterangepicker/daterangepicker.css') }}
-@endsection
-
 @section('content')
 
 @include('components.page-header', [
@@ -31,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <select name="showitem" class="form-control" data-url="/izin">
+                                <select name="showitem" class="form-control" data-url="/izin/list">
                                     {!! HelperTag::showItem(request()->show ?? 5) !!}
                                 </select>
                             </div>
@@ -41,18 +37,13 @@
                                 <input type="text" name="daterange" class="form-control" placeholder="Date Range">
                             </div>
                         </div>
+                        <div class="col-md-2">
+                        </div>
                         <div class="col-md-4">
                             <div class="input-group input-group-button">
-                                <input type="text" name="keyword" data-url="/izin" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
-                                <button type="button" class="input-group-addon btn btn-primary btn-paginate-search" data-url="/izin">
+                                <input type="text" name="keyword" data-url="/izin/list" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
+                                <button type="button" class="input-group-addon btn btn-primary btn-paginate-search" data-url="/izin/list">
                                     <i class="feather icon-search"></i> Search
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-izin">
-                                    <i class="feather icon-plus"></i> Add
                                 </button>
                             </div>
                         </div>
@@ -82,26 +73,24 @@
                                         <span class="label label-success">Approved</span>
                                         @elseif ($item->approved === 0)
                                         <span class="label label-danger">Rejected</span>
-                                        @else
-                                        <span class="label label-info">Process</span>
                                         @endif
                                     </td>
                                     <td class="action">
+                                        @if (is_null($item->approved))
                                         <div class="dropdown-primary dropdown open btn-block">
                                             <button class="btn btn-primary btn-sm btn-block dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                 <i class="feather icon-cpu"></i> Action
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="action" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                @if (is_null($item->approved))
-                                                <a class="dropdown-item" onclick="edit({{ $item->id }})">
-                                                    <i class="feather icon-edit"></i> Edit
+                                                <a class="dropdown-item" onclick="approved({{ $item->id }}, {{ $userId }}, 1)">
+                                                    <i class="feather icon-user-check"></i> Approve
                                                 </a>
-                                                @endif
-                                                <a class="dropdown-item" onclick="deleted({{ $item->id }})">
-                                                    <i class="feather icon-trash"></i> Delete
+                                                <a class="dropdown-item" onclick="approved({{ $item->id }}, {{ $userId }}, 0)">
+                                                    <i class="feather icon-user-x"></i> Reject
                                                 </a>
                                             </div>
                                         </div>
+                                        @endif
                                     </td>
                                 </tr>
                                 @php($no = $no + 1)
@@ -123,7 +112,6 @@
         </div>
     </div>
 </div>
-@include('pages.izin.form')
 @endsection
 
 @section('javascript')

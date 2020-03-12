@@ -25,7 +25,7 @@ class TodoNotif extends Notification
 
     public function toTelegram($notifiable)
     {
-        $urlQodr  = config('app.debug') ? 'https://samarinda.qodr.or.id/todo' : config('app.url') . '/todo';
+        $urlQodr  = config('app.debug') ? 'https://samarinda.qodr.or.id' : config('app.url');
         $todo     = $this->todo;
         $todoList = json_decode($todo->todo);
         $nameUser = $todo->user->name;

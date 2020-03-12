@@ -12,6 +12,18 @@
         ]
     },
     {
+        "title": "Sekretaris",
+        "level": true,
+        "childs": [
+            {
+                "title": "Izin Student",
+                "icon": "icon-check-square",
+                "route": "izin.student",
+                "parent": true
+            }
+        ]
+    },
+    {
         "title": "Divisi IT",
         "level": true,
         "childs": [

@@ -8,6 +8,12 @@
                 "icon": "icon-home",
                 "route": "dashboard",
                 "parent": true
+            },
+            {
+                "title": "Izin Student",
+                "icon": "icon-check-square",
+                "route": "izin.student",
+                "parent": true
             }
         ]
     }
