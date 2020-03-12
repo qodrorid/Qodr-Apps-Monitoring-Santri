@@ -44,8 +44,7 @@ class ClassItController extends Controller
             'description' => 'required',
             'speaker'     => 'required',
             'audience'    => 'required',
-            'start'       => 'required',
-            'end'         => 'required',
+            'start_time'  => 'required'
         ]);
 
         $data = $request->all();
@@ -83,8 +82,7 @@ class ClassItController extends Controller
             'description' => 'required',
             'speaker'     => 'required',
             'audience'    => 'required',
-            'start'       => 'required',
-            'end'         => 'required',
+            'start_time'  => 'required'
         ]);
         
         try {

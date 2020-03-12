@@ -17,8 +17,7 @@ class ClassIt extends Model
         'description',
         'speaker',
         'audience',
-        'start',
-        'end'
+        'start_time'
     ];
 
     protected $hidden = [

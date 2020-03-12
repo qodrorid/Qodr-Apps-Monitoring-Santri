@@ -16,6 +16,12 @@
                 "parent": true
             },
             {
+                "title": "Class IT",
+                "icon": "icon-server",
+                "route": "classit.index",
+                "parent": true
+            },
+            {
                 "title": "Wakatime",
                 "icon": "icon-clock",
                 "parent": true,

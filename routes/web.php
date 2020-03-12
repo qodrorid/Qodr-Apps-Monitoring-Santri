@@ -83,7 +83,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::middleware('role:3,6')->group(function() {
 
         // class it
-        Route::resource('classit', 'ClassITController')->except(['create', 'show']);
+        Route::resource('classit', 'ClassItController')->except(['create', 'show']);
 
     });
 

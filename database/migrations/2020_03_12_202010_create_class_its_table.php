@@ -18,9 +18,8 @@ class CreateClassItsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('speaker');
-            $table->interger('audience');
-            $table->datetime('start');
-            $table->datetime('end');
+            $table->integer('audience');
+            $table->datetime('start_time');
             $table->timestamps();
             $table->softDeletes();
         });
