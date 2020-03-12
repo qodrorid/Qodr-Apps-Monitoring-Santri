@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Izin;
 use Illuminate\Http\Request;
+use App\Models\Izin;
 
 use Auth;
 
