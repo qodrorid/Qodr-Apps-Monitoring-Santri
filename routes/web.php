@@ -25,6 +25,7 @@ Auth::routes([
     'register' => false
 ]);
 
+use App\Job\IzinJob;
 // access user auth and verified
 Route::middleware(['auth', 'verified'])->group(function() {
 
@@ -65,6 +66,16 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
         // Telegram Chat Id
         Route::get('/telegram', 'TelegramController@index')->name('telegram.index');
+
+    });
+
+    // access only for ketua and sekretaris
+    Route::middleware('role:3,4')->group(function() {
+
+        // Izin Student
+        Route::get('/izin/student', 'IzinController@student')->name('izin.student');
+        Route::get('/izin/list/{user}', 'IzinController@list')->name('izin.list');
+        Route::put('/izin/approved/{izin}', 'IzinController@approved')->name('izin.approved');
 
     });
 
