@@ -30,9 +30,11 @@
                 <div class="card-block">
                     <div class="row">
                         <div class="col-md-2">
-                            <select name="showitem" class="form-control" data-url="/izin">
-                                {!! HelperTag::showItem(request()->show ?? 5) !!}
-                            </select>
+                            <div class="form-group">
+                                <select name="showitem" class="form-control" data-url="/izin">
+                                    {!! HelperTag::showItem(request()->show ?? 5) !!}
+                                </select>
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
@@ -48,9 +50,11 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-izin">
-                                <i class="feather icon-plus"></i> Add
-                            </button>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-izin">
+                                    <i class="feather icon-plus"></i> Add
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="table-responsive">
