@@ -28,6 +28,12 @@
                 "parent": true
             },
             {
+                "title": "Cekcok",
+                "icon": "icon-message-square",
+                "route": "cekcok.index",
+                "parent": true
+            },
+            {
                 "title": "Wakatime",
                 "icon": "icon-clock",
                 "parent": true,

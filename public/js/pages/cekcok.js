@@ -2,8 +2,8 @@
     $("#participant").select2();
 })(jQuery)
 
-// submit form name="form-classit"
-$('form[name="form-classit"').on('submit', function(e) {
+// submit form name="form-cekcok"
+$('form[name="form-cekcok"').on('submit', function(e) {
     e.preventDefault()
     
     let form = $(this)
@@ -13,26 +13,26 @@ $('form[name="form-classit"').on('submit', function(e) {
 
     if (type == 'create') {
         $.created(url, data).then(() => {
-            $('#form-classit').modal('hide')
-            $.listdata('/classit')
+            $('#form-cekcok').modal('hide')
+            $.listdata('/cekcok')
         })
     } else {
         $.updated(url, data).then(() => {
-            $('#form-classit').modal('hide')
-            $.listdata('/classit')
+            $('#form-cekcok').modal('hide')
+            $.listdata('/cekcok')
         })
     }
 })
 
 /**
- * function edit class
+ * function edit cekcok
  * @param id 
  * @return @void
  */
 function edit(id) {
-    var url = `/classit/${id}`
-    $.finddata(url + '/edit', 'form-classit').then(response => {
-        let form = $(`form[name="form-classit"]`)
+    var url = `/cekcok/${id}`
+    $.finddata(url + '/edit', 'form-cekcok').then(response => {
+        let form = $(`form[name="form-cekcok"]`)
 
         form.attr('action-link', url)
         form.attr('action-type', 'update')
@@ -48,12 +48,12 @@ function edit(id) {
             }
         })
         
-        $('#form-classit').modal('show').find('.modal-title').text('Update data class it')
+        $('#form-cekcok').modal('show').find('.modal-title').text('Update data cekcok')
     })
 }
 
 /**
- * function delete class
+ * function delete cekcok
  * @param id 
  * @return @void
  */
@@ -69,21 +69,21 @@ function deleted(id) {
         allowOutsideClick: false
     }).then((result) => {
         if (result.value) {
-            $.deleted(`/classit/${id}`).then(() => {
-                $.listdata('/classit')
+            $.deleted(`/cekcok/${id}`).then(() => {
+                $.listdata('/cekcok')
             })
         }
     })
 }
 
-// clear form class
-$('#form-classit').on('hide.bs.modal', function () {
+// clear form cekcok
+$('#form-cekcok').on('hide.bs.modal', function () {
     let modal = $(this)
-    let form  = modal.find('form[name="form-classit"]')
+    let form  = modal.find('form[name="form-cekcok"]')
     
-    modal.find('.modal-title').text('Create new class it')
+    modal.find('.modal-title').text('Create new cekcok')
     
-    form.attr('action-link', '/classit')
+    form.attr('action-link', '/cekcok')
     form.attr('action-type', 'create')
 
     form.find('[name]').val('')

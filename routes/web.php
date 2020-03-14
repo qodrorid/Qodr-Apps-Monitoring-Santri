@@ -88,6 +88,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
         // event it
         Route::resource('eventit', 'EventItController')->except(['create', 'show']);
 
+        // cekcok
+        Route::resource('cekcok', 'CekcokController')->except(['create', 'show']);
+
     });
 
     // access only for admin, ketua and divisi It
