@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ClassIt extends Model
+class EventIt extends Model
 {
 
     use SoftDeletes;
 
-    protected $table = 'class_its';
+    protected $table = 'event_its';
 
     protected $fillable = [
         'title',
         'description',
-        'mentor',
         'participant',
-        'start_time'
+        'start',
+        'end',
+        'budget'
     ];
 
     protected $hidden = [

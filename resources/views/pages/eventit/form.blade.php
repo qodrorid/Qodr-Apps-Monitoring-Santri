@@ -1,32 +1,36 @@
-{{-- FORM CLASS IT --}}
-<div class="modal fade" id="form-classit" data-backdrop="static" tabindex="-1" role="dialog">
+{{-- FORM EVENT IT --}}
+<div class="modal fade" id="form-eventit" data-backdrop="static" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create new class it</h5>
+                <h5 class="modal-title">Create new event it</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form name="form-classit" autocomplete="off" action-link="/classit" action-type="create">
+            <form name="form-eventit" autocomplete="off" action-link="/eventit" action-type="create">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="title">Title Class</label>
-                        <input type="text" name="title" id="title" class="form-control" required placeholder="Title Class">
+                        <label for="title">Title Event</label>
+                        <input type="text" name="title" id="title" class="form-control" required placeholder="Title Event">
                     </div>
                     <div class="form-group">
-                        <label for="start_time">Start Time</label>
-                        <input type="datetime-local" name="start_time" id="start_time" class="form-control" required placeholder="Start Time">
+                        <label for="start">Start Time</label>
+                        <input type="datetime-local" name="start" id="start" class="form-control" required placeholder="Start Time">
                     </div>
                     <div class="form-group">
-                        <label for="mentor">Mentor</label>
-                        <input type="text" name="mentor" id="mentor" class="form-control" required placeholder="Mentor">
+                        <label for="end">End Time</label>
+                        <input type="datetime-local" name="end" id="end" class="form-control" required placeholder="End Time">
                     </div>
                     <div class="form-group">
                         <label for="participant">Participant</label>
                         <select name="participant" multiple="multiple" id="participant" class="form-control" required>
                             {!! HelperTag::userSelect(null, 'name') !!}
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget</label>
+                        <input type="number" name="budget" id="budget" class="form-control" required placeholder="Budget" value="0">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>

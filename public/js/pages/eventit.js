@@ -2,8 +2,8 @@
     $("#participant").select2();
 })(jQuery)
 
-// submit form name="form-classit"
-$('form[name="form-classit"').on('submit', function(e) {
+// submit form name="form-eventit"
+$('form[name="form-eventit"').on('submit', function(e) {
     e.preventDefault()
     
     let form = $(this)
@@ -13,47 +13,47 @@ $('form[name="form-classit"').on('submit', function(e) {
 
     if (type == 'create') {
         $.created(url, data).then(() => {
-            $('#form-classit').modal('hide')
-            $.listdata('/classit')
+            $('#form-eventit').modal('hide')
+            $.listdata('/eventit')
         })
     } else {
         $.updated(url, data).then(() => {
-            $('#form-classit').modal('hide')
-            $.listdata('/classit')
+            $('#form-eventit').modal('hide')
+            $.listdata('/eventit')
         })
     }
 })
 
 /**
- * function edit setting
+ * function edit eventit
  * @param id 
  * @return @void
  */
 function edit(id) {
-    var url = `/classit/${id}`
-    $.finddata(url + '/edit', 'form-classit').then(response => {
-        let form = $(`form[name="form-classit"]`)
+    var url = `/eventit/${id}`
+    $.finddata(url + '/edit', 'form-eventit').then(response => {
+        let form = $(`form[name="form-eventit"]`)
 
         form.attr('action-link', url)
         form.attr('action-type', 'update')
         
         $.each(response.data, (key, val) => {
             form.find(`[name="${key}"]`).val(val)
-            if (key === 'start_time') {
+            if (key === 'start' || key === 'end') {
                 form.find(`[name="${key}"]`).val(val.replace(' ', 'T'))
-            }
-
+            } 
+            
             if(key === 'participant') {
                 $("#participant").select2().val(val).trigger('change')
             }
         })
         
-        $('#form-classit').modal('show').find('.modal-title').text('Update data class it')
+        $('#form-eventit').modal('show').find('.modal-title').text('Update data event it')
     })
 }
 
 /**
- * function delete setting
+ * function delete eventit
  * @param id 
  * @return @void
  */
@@ -69,23 +69,25 @@ function deleted(id) {
         allowOutsideClick: false
     }).then((result) => {
         if (result.value) {
-            $.deleted(`/classit/${id}`).then(() => {
-                $.listdata('/classit')
+            $.deleted(`/eventit/${id}`).then(() => {
+                $.listdata('/eventit')
             })
         }
     })
 }
 
-// clear form settings
-$('#form-classit').on('hide.bs.modal', function () {
+// clear form eventit
+$('#form-eventit').on('hide.bs.modal', function () {
     let modal = $(this)
-    let form  = modal.find('form[name="form-classit"]')
+    let form  = modal.find('form[name="form-eventit"]')
     
-    modal.find('.modal-title').text('Create new class it')
+    modal.find('.modal-title').text('Create new event it')
     
-    form.attr('action-link', '/classit')
+    form.attr('action-link', '/eventit')
     form.attr('action-type', 'create')
 
     form.find('[name]').val('')
-    $("#participant").select2().val('').trigger('change')
+    form.find('[name="budget"]').val('0')
+
+    $("#participant").select2().val('').trigger('change');
 })

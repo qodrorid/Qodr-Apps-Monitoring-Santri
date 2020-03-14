@@ -1,11 +1,10 @@
-@php($no = $classit->perPage() * $classit->currentPage() - $classit->perPage() + 1)
-@foreach ($classit as $item)    
+@php($no = $eventit->perPage() * $eventit->currentPage() - $eventit->perPage() + 1)
+@foreach ($eventit as $item)    
 <tr>
     <td align="center">{{ $no }}</td>
-    <td>{{ date('H:i | d F Y', strtotime($item->start_time)) }}</td>
     <td>{{ $item->title }}</td>
-    <td>{{ $item->mentor }}</td>
-    <td><span class="label label-primary">{{ count(json_decode($item->participant)) }} Participant</span></td>
+    <td>{{ date('H:i | d F Y', strtotime($item->start)) }}</td>
+    <td>{{ date('H:i | d F Y', strtotime($item->end)) }}</td>
     <td class="action">
         <div class="dropdown-primary dropdown open btn-block">
             <button class="btn btn-primary btn-sm btn-block dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -25,16 +24,16 @@
 @php($no = $no + 1)
 @endforeach
 
-@if ($classit->total() < 1)
+@if ($eventit->total() < 1)
 <tr>
-    <td colspan="6" align="center">Data not found</td>
+    <td colspan="5" align="center">Data not found</td>
 </tr>
 @endif
 
 <script>
 (function() {
-    @if ($classit->lastPage() > 1)
-        $('#pagination').html(`{{ $classit->links('components.pagination.ajax') }}`)
+    @if ($eventit->lastPage() > 1)
+        $('#pagination').html(`{{ $eventit->links('components.pagination.ajax') }}`)
     @else
         $('#pagination').html('')
     @endif

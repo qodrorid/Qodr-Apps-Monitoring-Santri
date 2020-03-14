@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClassIt;
+use App\Models\EventIt;
 use Illuminate\Http\Request;
 
-class ClassItController extends Controller
+class EventItController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +15,18 @@ class ClassItController extends Controller
      */
     public function index(Request $request)
     {
-        $classit = ClassIt::where(function($query) use ($request) {
+        $eventit = EventIt::where(function($query) use ($request) {
             if (!is_null($request->keyword)) {
                 $query->where('title', 'like', "%$request->keyword%")
-                    ->orWhere('description', 'like', "%$request->keyword%")
-                    ->orWhere('mentor', 'like', "%$request->keyword%");
+                    ->orWhere('description', 'like', "%$request->keyword%");
             }
         })->paginate($request->showitem ?? 5);
 
-        $classit->appends($request->query());
+        $eventit->appends($request->query());
 
         $view = $request->ajax() ? 'list' : 'index';
 
-        return view('pages.classit.' . $view, compact('classit'));
+        return view('pages.eventit.' . $view, compact('eventit'));
     }
 
     /**
@@ -41,9 +40,10 @@ class ClassItController extends Controller
         $request->validate([
             'title'       => 'required',
             'description' => 'required',
-            'mentor'      => 'required',
             'participant' => 'required',
-            'start_time'  => 'required'
+            'start'       => 'required',
+            'end'         => 'required',
+            'budget'      => 'required'
         ]);
 
         $data = $request->except(['participant']);
@@ -51,8 +51,8 @@ class ClassItController extends Controller
         $data['participant'] = is_array($request->participant) ? json_encode($request->participant) : json_encode([$request->participant]);
 
         try {
-            ClassIt::create($data);
-            return $this->success('Successfuly create new class it!');
+            EventIt::create($data);
+            return $this->success('Successfuly create new event it!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);
         }
@@ -61,31 +61,32 @@ class ClassItController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ClassIt  $classit
+     * @param  \App\Models\EventIt  $eventit
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClassIt $classit)
+    public function edit(EventIt $eventit)
     {
-        $data = $classit->toArray();
+        $data = $eventit->toArray();
         $data['participant'] = json_decode($data['participant']);
-        return $this->success('Successfuly get data class it!', $data);
+        return $this->success('Successfuly get data event it!', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ClassIt  $classit
+     * @param  \App\Models\EventIt  $eventit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClassIt $classit)
+    public function update(Request $request, EventIt $eventit)
     {
         $request->validate([
             'title'       => 'required',
             'description' => 'required',
-            'mentor'      => 'required',
             'participant' => 'required',
-            'start_time'  => 'required'
+            'start'       => 'required',
+            'end'         => 'required',
+            'budget'      => 'required'
         ]);
 
         $data = $request->except(['participant']);
@@ -93,8 +94,8 @@ class ClassItController extends Controller
         $data['participant'] = is_array($request->participant) ? json_encode($request->participant) : json_encode([$request->participant]);
         
         try {
-            $classit->update($data);
-            return $this->success('Successfuly update data class it!');
+            $eventit->update($data);
+            return $this->success('Successfuly update data event it!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);
         }
@@ -103,14 +104,14 @@ class ClassItController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ClassIt  $classit
+     * @param  \App\Models\EventIt  $eventit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClassIt $classit)
+    public function destroy(EventIt $eventit)
     {
         try {
-            $classit->delete();
-            return $this->success('Successfuly delete class it!');
+            $eventit->delete();
+            return $this->success('Successfuly delete event it!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);
         }

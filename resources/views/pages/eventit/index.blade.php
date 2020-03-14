@@ -3,10 +3,10 @@
 @section('content')
 
 @include('components.page-header', [
-    'title' => 'Class IT',
-    'subtitle' => 'Managent Class IT',
+    'title' => 'Event IT',
+    'subtitle' => 'Managent Event IT',
     'breadcrumb' => [
-        'Class IT'
+        'Event IT'
     ]
 ])
 
@@ -15,7 +15,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header card-list">
-                    <h5>List Class IT</h5>
+                    <h5>List Event IT</h5>
                     <div class="card-header-right">
                         <ul class="list-unstyled card-option">
                             <li><i class="feather icon-minus minimize-card"></i></li>
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <select name="showitem" class="form-control" data-url="/classit">
+                                <select name="showitem" class="form-control" data-url="/eventit">
                                     {!! HelperTag::showItem(request()->show ?? 5) !!}
                                 </select>
                             </div>
@@ -35,15 +35,15 @@
                         <div class="col"></div>
                         <div class="col-md-4">
                             <div class="input-group input-group-button">
-                                <input type="text" name="keyword" data-url="/classit" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
-                                <button type="button" class="input-group-addon btn btn-primary btn-paginate-search" data-url="/classit">
+                                <input type="text" name="keyword" data-url="/eventit" class="form-control" placeholder="Search ..." value="{{ request()->keyword }}">
+                                <button type="button" class="input-group-addon btn btn-primary btn-paginate-search" data-url="/eventit">
                                     <i class="feather icon-search"></i> Search
                                 </button>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-classit">
+                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-eventit">
                                     <i class="feather icon-plus"></i> Add
                                 </button>
                             </div>
@@ -54,22 +54,20 @@
                             <thead>
                                 <tr class="bg-primary">
                                     <th width="40">No</th>
-                                    <th width="150">Start Time</th>
                                     <th>Title</th>
-                                    <th width="150">Mentor</th>
-                                    <th width="150">Participant</th>
+                                    <th width="150">Start Time</th>
+                                    <th width="150">End Time</th>
                                     <th width="190">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="listitem">
-                                @php($no = $classit->perPage() * $classit->currentPage() - $classit->perPage() + 1)
-                                @foreach ($classit as $item)    
+                                @php($no = $eventit->perPage() * $eventit->currentPage() - $eventit->perPage() + 1)
+                                @foreach ($eventit as $item)    
                                 <tr>
                                     <td align="center">{{ $no }}</td>
-                                    <td>{{ date('H:i | d F Y', strtotime($item->start_time)) }}</td>
                                     <td>{{ $item->title }}</td>
-                                    <td>{{ $item->mentor }}</td>
-                                    <td><span class="label label-primary">{{ count(json_decode($item->participant)) }} Participant</span></td>
+                                    <td>{{ date('H:i | d F Y', strtotime($item->start)) }}</td>
+                                    <td>{{ date('H:i | d F Y', strtotime($item->end)) }}</td>
                                     <td class="action">
                                         <div class="dropdown-primary dropdown open btn-block">
                                             <button class="btn btn-primary btn-sm btn-block dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -89,25 +87,25 @@
                                 @php($no = $no + 1)
                                 @endforeach
 
-                                @if ($classit->total() < 1)
+                                @if ($eventit->total() < 1)
                                 <tr>
-                                    <td colspan="6" align="center">Data not found</td>
+                                    <td colspan="5" align="center">Data not found</td>
                                 </tr>
                                 @endif
                             </tbody>
                         </table>
                     </div>
                     <div class="float-right" id="pagination">
-                        {{ $classit->links('components.pagination.ajax') }}
+                        {{ $eventit->links('components.pagination.ajax') }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@include('pages.classit.form')
+@include('pages.eventit.form')
 @endsection
 
 @section('javascript')
-{{ HTML::script('js/pages/classit.js') }}
+{{ HTML::script('js/pages/eventit.js') }}
 @endsection

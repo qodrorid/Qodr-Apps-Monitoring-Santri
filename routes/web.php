@@ -85,6 +85,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
         // class it
         Route::resource('classit', 'ClassItController')->except(['create', 'show']);
 
+        // event it
+        Route::resource('eventit', 'EventItController')->except(['create', 'show']);
+
     });
 
     // access only for admin, ketua and divisi It
