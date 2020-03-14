@@ -79,6 +79,20 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     });
 
+    // access only for ketua and divisiit
+    Route::middleware('role:3,6')->group(function() {
+
+        // class it
+        Route::resource('classit', 'ClassItController')->except(['create', 'show']);
+
+        // event it
+        Route::resource('eventit', 'EventItController')->except(['create', 'show']);
+
+        // cekcok
+        Route::resource('cekcok', 'CekcokController')->except(['create', 'show']);
+
+    });
+
     // access only for admin, ketua and divisi It
     Route::middleware('role:2,3,6')->group(function() {
 

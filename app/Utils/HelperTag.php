@@ -3,6 +3,7 @@
 namespace App\Utils;
 
 use DB;
+use Auth;
 
 class HelperTag
 {
@@ -35,6 +36,18 @@ class HelperTag
         $roles = DB::table('branches')->select('id', 'name')->whereNull('deleted_at')->get();
         foreach ($roles as $role) {
             $result .= '<option value="' . $role->id . '" ' . ($selected === $role->id ? 'selected' : '') . '>' . $role->name . '</option>';
+        }
+        
+        return $result;
+    }
+    
+    public static function userSelect($selected = null, $fieldKey = 'id')
+    {
+        $branchId = Auth::user()->branch_id;
+        $result = '';
+        $roles = DB::table('users')->select('name')->where('branch_id', $branchId)->where('role_id', 9)->whereNull('deleted_at')->get();
+        foreach ($roles as $role) {
+            $result .= '<option value="' . $role->$fieldKey . '" ' . ($selected === $role->$fieldKey ? 'selected' : '') . '>' . $role->name . '</option>';
         }
         
         return $result;

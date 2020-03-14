@@ -16,6 +16,24 @@
                 "parent": true
             },
             {
+                "title": "Class IT",
+                "icon": "icon-server",
+                "route": "classit.index",
+                "parent": true
+            },
+            {
+                "title": "Event IT",
+                "icon": "icon-calendar",
+                "route": "eventit.index",
+                "parent": true
+            },
+            {
+                "title": "Cekcok",
+                "icon": "icon-message-square",
+                "route": "cekcok.index",
+                "parent": true
+            },
+            {
                 "title": "Wakatime",
                 "icon": "icon-clock",
                 "parent": true,
