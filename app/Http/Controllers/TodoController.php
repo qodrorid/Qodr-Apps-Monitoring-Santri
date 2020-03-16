@@ -19,7 +19,7 @@ class TodoController extends Controller
     public function index(Request $request)
     {
         $userId = Auth::user()->id;
-        $todos  = Todo::where('user_id', $userId)->whereMonth('date', date('m'))->orderBy('date', 'desc')->get();
+        $todos  = Todo::where('user_id', $userId)->whereMonth('date', date('m'))->whereYear('date', date('Y'))->orderBy('date', 'desc')->get();
 
         $view = ($request->ajax()) ? 'list' : 'index';
 
@@ -141,7 +141,7 @@ class TodoController extends Controller
 
         $view  = true;
         $date  = (!is_null($request->month_year)) ? $request->month_year . '-01' : date('Y-m-d');
-        $todos = Todo::where('user_id', $userId)->whereMonth('date', date('m', strtotime($date)))->orderBy('date', 'desc')->get();
+        $todos = Todo::where('user_id', $userId)->whereMonth('date', date('m', strtotime($date)))->whereYear('date', date('Y', strtotime($date)))->orderBy('date', 'desc')->get();
 
         $view = ($request->ajax()) ? 'list' : 'index';
 

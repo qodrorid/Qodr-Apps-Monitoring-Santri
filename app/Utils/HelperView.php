@@ -107,4 +107,15 @@ class HelperView
         }
     }
 
+    /**
+     * Currency
+     *
+     * @param int $role
+     * @return string
+     */
+    public static function currency(int $number)
+    {
+        return '<span style="float:left">Rp. </span>' . number_format($number, 0, ',', '.') . ',-';
+    }
+
 }

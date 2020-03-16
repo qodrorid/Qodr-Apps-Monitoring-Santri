@@ -8,6 +8,27 @@
                 "icon": "icon-home",
                 "route": "dashboard",
                 "parent": true
+            },
+            {
+                "title": "Rab",
+                "icon": "icon-file-text",
+                "route": "rab.index",
+                "parent": true
+            },
+            {
+                "title": "Cash Flow",
+                "icon": "icon-dollar-sign",
+                "parent": true
+            },
+            {
+                "title": "Credit Student",
+                "icon": "icon-user-minus",
+                "parent": true
+            },
+            {
+                "title": "Income Student",
+                "icon": "icon-user-plus",
+                "parent": true
             }
         ]
     }

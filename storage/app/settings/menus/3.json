@@ -24,6 +24,33 @@
         ]
     },
     {
+        "title": "Bendahara",
+        "level": true,
+        "childs": [
+            {
+                "title": "Rab",
+                "icon": "icon-file-text",
+                "route": "rab.index",
+                "parent": true
+            },
+            {
+                "title": "Cash Flow",
+                "icon": "icon-dollar-sign",
+                "parent": true
+            },
+            {
+                "title": "Credit Student",
+                "icon": "icon-user-minus",
+                "parent": true
+            },
+            {
+                "title": "Income Student",
+                "icon": "icon-user-plus",
+                "parent": true
+            }
+        ]
+    },
+    {
         "title": "Divisi IT",
         "level": true,
         "childs": [
@@ -31,6 +58,24 @@
                 "title": "Todo Student",
                 "icon": "icon-edit",
                 "route": "todo.student",
+                "parent": true
+            },
+            {
+                "title": "Class IT",
+                "icon": "icon-server",
+                "route": "classit.index",
+                "parent": true
+            },
+            {
+                "title": "Event IT",
+                "icon": "icon-calendar",
+                "route": "eventit.index",
+                "parent": true
+            },
+            {
+                "title": "Cekcok",
+                "icon": "icon-message-square",
+                "route": "cekcok.index",
                 "parent": true
             },
             {

@@ -8,6 +8,7 @@
 {{ HTML::style('plugins/icons/icofont/css/icofont.css') }}
 {{ HTML::style('plugins/icons/feather/css/feather.css') }}
 {{ HTML::style('plugins/sweetalert/sweetalert.min.css') }}
+{{ HTML::style('plugins/select2/select2.min.css') }}
 {{ HTML::style('css/style.css') }}
 {{ HTML::style('css/jquery.mCustomScrollbar.css') }}
 {{ HTML::style('css/app.css') }}

@@ -79,6 +79,29 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     });
 
+    // access only for ketua and bendahara
+    Route::middleware('role:3,5')->group(function() {
+
+        // rab
+        Route::resource('rab', 'RabController')->except(['create', 'show', 'edit']);
+        Route::post('/rab/create', 'RabController@create')->name('rab.create');
+
+    });
+
+    // access only for ketua and divisiit
+    Route::middleware('role:3,6')->group(function() {
+
+        // class it
+        Route::resource('classit', 'ClassItController')->except(['create', 'show']);
+
+        // event it
+        Route::resource('eventit', 'EventItController')->except(['create', 'show']);
+
+        // cekcok
+        Route::resource('cekcok', 'CekcokController')->except(['create', 'show']);
+
+    });
+
     // access only for admin, ketua and divisi It
     Route::middleware('role:2,3,6')->group(function() {
 
