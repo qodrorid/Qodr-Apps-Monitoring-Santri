@@ -79,6 +79,14 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     });
 
+    // access only for ketua and bendahara
+    Route::middleware('role:3,5')->group(function() {
+
+        // rab
+        Route::resource('rab', 'RabController')->except(['show']);
+
+    });
+
     // access only for ketua and divisiit
     Route::middleware('role:3,6')->group(function() {
 

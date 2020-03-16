@@ -53,4 +53,16 @@ class HelperTag
         return $result;
     }
 
+    public static function rab($selected = null)
+    {
+        $branchId = Auth::user()->branch_id;
+        $result = '';
+        $roles = DB::table('rabs')->select('id', DB::raw("CONCAT(`month`, ' ', `year`) as name"))->where('branch_id', $branchId)->orderBy('date', 'desc')->get();
+        foreach ($roles as $role) {
+            $result .= '<option value="' . $role->id . '" ' . ($selected === $role->id ? 'selected' : '') . '>' . $role->name . '</option>';
+        }
+        
+        return $result;
+    }
+
 }
