@@ -10,6 +10,7 @@ class Rab extends Model
     protected $table = 'rabs';
 
     protected $fillable = [
+        'branch_id',
         'date',
         'month',
         'year'

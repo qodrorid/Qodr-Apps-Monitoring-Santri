@@ -83,7 +83,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::middleware('role:3,5')->group(function() {
 
         // rab
-        Route::resource('rab', 'RabController')->except(['show']);
+        Route::resource('rab', 'RabController')->except(['create', 'show', 'edit']);
+        Route::post('/rab/create', 'RabController@create')->name('rab.create');
 
     });
 

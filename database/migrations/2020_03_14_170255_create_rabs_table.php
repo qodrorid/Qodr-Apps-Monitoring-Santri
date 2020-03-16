@@ -19,7 +19,7 @@ class CreateRabsTable extends Migration
             $table->date('date');
             $table->string('month', 10);
             $table->string('year', 4);
-            $table->integer('total');
+            $table->integer('total')->default(0);
             $table->timestamps();
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
         });

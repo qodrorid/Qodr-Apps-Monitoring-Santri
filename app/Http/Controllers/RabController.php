@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\RabDetail;
 use App\Models\Rab;
+use App\Utils\HelperTag;
 
 use Auth;
 
@@ -23,14 +24,17 @@ class RabController extends Controller
         $rabId    = $request->rab_id;
         $parent   = Rab::where(function ($query) use ($rabId) {
             if (!is_null($rabId)) {
-                $query->whare('id', $rabId);
+                $query->where('id', $rabId);
+            } else {
+                $query->where('month', date('F'));
             }
         })->where('branch_id', $branchId)->orderBy('date', 'desc')->first();
-        $rab      = $parent ? RabDetail::where('rab_id', $parent->id)->get() : [];
+        
+        $rab     = $parent ? RabDetail::where('rab_id', $parent->id)->get() : [];
+        $view    = $request->ajax() ? 'list' : 'index';
+        $disable = ($parent->month !== date('F') and $parent->month !== now()->addMonth('1')->format('F')) ? true : false;
 
-        $view = $request->ajax() ? 'list' : 'index';
-
-        return view('pages.rab.' . $view, compact('rab', 'parent'));
+        return view('pages.rab.' . $view, compact('rab', 'disable'));
     }
 
     /**
@@ -41,7 +45,34 @@ class RabController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        $request->validate([
+            'date' => 'required'
+        ]);
+
+        $branchId = Auth::user()->branch_id;
+        $date     = $request->date . '-01';
+
+        $check = Rab::where('date', $date)->first();
+
+        if ($check) {
+            return $this->error(400, 'Rab is exist!');
+        }
+        
+        $data = [
+            'branch_id' => $branchId,
+            'date'      => $date,
+            'month'     => date('F', strtotime($date)),
+            'year'      => date('Y', strtotime($date))
+        ];
+
+        try {
+            Rab::create($data);
+
+            $rabs = HelperTag::rab();
+            return $this->success('Successfuly create new rab!', $rabs);
+        } catch (QueryException $error) {
+            return $this->responseQueryException($error);
+        }
     }
 
     /**
@@ -71,17 +102,6 @@ class RabController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\RabDetail $rab
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(RabDetail $rab)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -90,7 +110,22 @@ class RabController extends Controller
      */
     public function update(Request $request, RabDetail $rab)
     {
-        //
+        $request->validate([
+            'rab_id' => 'required',
+            'for'    => 'required',
+            'qty'    => 'required',
+            'price'  => 'required',
+            'total'  => 'required'
+        ]);
+
+        $data = $request->all();
+        
+        try {
+            $rab->update($data);
+            return $this->success('Successfuly update data setting!');
+        } catch (QueryException $error) {
+            return $this->responseQueryException($error);
+        }
     }
 
     /**
@@ -101,6 +136,11 @@ class RabController extends Controller
      */
     public function destroy(RabDetail $rab)
     {
-        //
+        try {
+            $rab->delete();
+            return $this->success('Successfuly delete rab!');
+        } catch (QueryException $error) {
+            return $this->responseQueryException($error);
+        }
     }
 }
