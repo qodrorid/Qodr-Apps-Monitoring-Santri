@@ -32,7 +32,7 @@ class RabController extends Controller
         
         $rab     = $parent ? RabDetail::where('rab_id', $parent->id)->get() : [];
         $view    = $request->ajax() ? 'list' : 'index';
-        $disable = ($parent->month !== date('F') and $parent->month !== now()->addMonth('1')->format('F')) ? true : false;
+        $disable = ($parent && $parent->month !== date('F') and $parent->month !== now()->addMonth('1')->format('F')) ? true : false;
 
         return view('pages.rab.' . $view, compact('rab', 'disable'));
     }
