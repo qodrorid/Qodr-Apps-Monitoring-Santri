@@ -43,7 +43,7 @@ function addRow() {
     }
 
     if (typeof $('#listitem > tr.add-row, #listitem > tr.edit-row, #listitem > tr.disabled-row').html() === 'undefined') {
-        $('tbody#listitem').append(row)
+        $('tbody#listitem > tr:last').before(row)
         $('#listitem #for').focus()
         $('#listitem #price').autoNumeric({
             anDefault: 0,

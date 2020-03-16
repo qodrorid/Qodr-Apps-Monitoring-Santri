@@ -17,3 +17,10 @@
     </td>
 </tr>
 @endforeach
+<tr>
+    <td colspan="4" align="center">
+        <b>TOTAL</b>
+    </td>
+    <td align="right"><b>{!! !empty($parent->total) ? HelperView::currency($parent->total) : HelperView::currency(0) !!}</b></td>
+    <td></td>
+</tr>
