@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CashFlow;
+use App\Models\CashFlowDetail;
 use Illuminate\Http\Request;
 
 class CashFlowController extends Controller
@@ -10,11 +11,26 @@ class CashFlowController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $branchId   = Auth::user()->branch_id;
+        $cashFlowId = $request->rab_id;
+        $parent     = CashFlow::where(function ($query) use ($cashFlowId) {
+            if (!is_null($cashFlowId)) {
+                $query->where('id', $cashFlowId);
+            } else {
+                $query->where('month', date('F'));
+            }
+        })->where('branch_id', $branchId)->orderBy('date', 'desc')->first();
+        
+        $cashFlow = $parent ? CashFlowDetail::where('cash_flow_id', $parent->id)->get() : [];
+        $view     = $request->ajax() ? 'list' : 'index';
+        $disable  = ($parent && $parent->month !== date('F') and $parent->month !== now()->addMonth('1')->format('F')) ? true : false;
+
+        return view('pages.cashflow.' . $view, compact('cashFlow', 'disable', 'parent'));
     }
 
     /**
