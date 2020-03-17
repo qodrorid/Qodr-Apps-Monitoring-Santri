@@ -76,8 +76,22 @@ class HelperTag
         $branchId = Auth::user()->branch_id;
         $result = '';
         $rabs = DB::table('rabs')->select('id', 'month', DB::raw("CONCAT(`month`, ' ', `year`) as name"))->where('branch_id', $branchId)->orderBy('date', 'desc')->get();
+        
         foreach ($rabs as $rab) {
             $result .= '<option value="' . $rab->id . '" ' . (($selected === $rab->id or date('F') === $rab->month) ? 'selected' : '') . '>' . $rab->name . '</option>';
+        }
+        
+        return $result;
+    }
+
+    public static function cashflow($selected = null)
+    {
+        $result    = '';
+        $branchId  = Auth::user()->branch_id;
+        $cashflows = DB::table('cash_flows')->select('id', 'month', DB::raw("CONCAT(`month`, ' ', `year`) as name"))->where('branch_id', $branchId)->orderBy('date', 'desc')->get();
+        
+        foreach ($cashflow as $cashflow) {
+            $result .= '<option value="' . $cashflow->id . '" ' . (($selected === $cashflow->id or date('F') === $cashflow->month) ? 'selected' : '') . '>' . $cashflow->name . '</option>';
         }
         
         return $result;
