@@ -15,7 +15,7 @@ class CreateCashFlowsTable extends Migration
     {
         Schema::create('cash_flows', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('rab_id')->nullable();
+            $table->unsignedBigInteger('rab_id')->nullable();
             $table->unsignedInteger('branch_id');
             $table->date('date');
             $table->string('month', 10);
