@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRabDetailsTable extends Migration
+class CreateCashFlowDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,19 @@ class CreateRabDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rab_details', function (Blueprint $table) {
+        Schema::create('cash_flow_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('rab_id');
+            $table->unsignedBigInteger('cash_flow_id');
+            $table->date('date');
             $table->string('for');
             $table->integer('qty');
             $table->string('type');
             $table->integer('price');
-            $table->integer('total');
+            $table->integer('debit')->default(0);
+            $table->integer('kredit')->default(0);
+            $table->integer('total')->default(0);
             $table->timestamps();
-            $table->foreign('rab_id')->references('id')->on('rabs')->onDelete('cascade');
+            $table->foreign('cash_flow_id')->references('id')->on('cash_flows')->onDelete('cascade');
         });
     }
 
@@ -33,6 +36,6 @@ class CreateRabDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rab_details');
+        Schema::dropIfExists('cash_flow_details');
     }
 }

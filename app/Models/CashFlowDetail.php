@@ -4,23 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RabDetail extends Model
+class CashFlowDetail extends Model
 {
 
-    protected $table = 'rab_details';
+    protected $table = 'cash_flow_details';
 
     protected $fillable = [
-        'rab_id',
+        'cash_flow_id',
+        'date',
         'for',
         'qty',
         'type',
         'price',
-        'total'
+        'debit',
+        'kredit'
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
-
+    
 }

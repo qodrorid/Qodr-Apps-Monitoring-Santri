@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rab extends Model
+class CashFlow extends Model
 {
 
-    protected $table = 'rabs';
+    protected $table = 'cash_flows';
 
     protected $fillable = [
+        'rab_id',
         'branch_id',
         'date',
         'month',
@@ -20,13 +21,5 @@ class Rab extends Model
         'created_at',
         'updated_at'
     ];
-
-    public static function boot() {
-        parent::boot();
-
-        static::created(function($model) {
-            
-        });
-    }
 
 }
