@@ -75,6 +75,7 @@ function createRow() {
         rab_id,
         for: newRow.find('#for').val(),
         qty: newRow.find('#qty').val(),
+        type: newRow.find('#type').val(),
         price: newRow.find('#price').val().replace('Rp. ', '').replace(/\./g, ''),
         total: newRow.find('#total').val().replace('Rp. ', '').replace(/\./g, '')
     }
@@ -82,6 +83,7 @@ function createRow() {
     newRow.addClass('table-active')
     newRow.find('#for').prop('disabled', true)
     newRow.find('#qty').prop('disabled', true)
+    newRow.find('#type').prop('disabled', true)
     newRow.find('#price').prop('disabled', true)
     newRow.find('.btn-remove').prop('disabled', true)
     newRow.find('.btn-submit').prop('disabled', true)
@@ -127,6 +129,7 @@ function editRow() {
         rab_id,
         for: editRow.find('#for').val(),
         qty: editRow.find('#qty').val(),
+        type: editRow.find('#type').val(),
         price: editRow.find('#price').val().replace('Rp. ', '').replace(/\./g, ''),
         total: editRow.find('#total').val().replace('Rp. ', '').replace(/\./g, '')
     }
@@ -134,6 +137,7 @@ function editRow() {
     editRow.addClass('table-active')
     editRow.find('#for').prop('disabled', true)
     editRow.find('#qty').prop('disabled', true)
+    editRow.find('#type').prop('disabled', true)
     editRow.find('#price').prop('disabled', true)
     editRow.find('.btn-remove').prop('disabled', true)
     editRow.find('.btn-submit').prop('disabled', true)
@@ -270,6 +274,7 @@ function edit(id, data) {
 
     rowEdit.find('#for').attr('value', dataRab.for)
     rowEdit.find('#qty').attr('value', dataRab.qty)
+    rowEdit.find('#type').attr('value', dataRab.type)
     rowEdit.find('#price').autoNumeric('set', dataRab.price)
     rowEdit.find('#total').autoNumeric('set', dataRab.total)
 }
@@ -280,8 +285,7 @@ function cancleEdit(no, data) {
     let rowEdit = $(`#row-rab-${dataRab.id}`)
     let element = `<td align="center">${no}</td>`
 
-    element += `<td>${dataRab.for}</td>`
-    element += `<td align="center">${dataRab.qty}</td>`
+    element += `<td>${dataRab.for}</td><td align="center">${dataRab.qty}</td><td align="center">${dataRab.type}</td>`
     element += `<td align="right"><span style="float:left">Rp. </span>${new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(dataRab.price)},-</td>`
     element += `<td align="right"><span style="float:left">Rp. </span>${new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(dataRab.total)},-</td>`
     element += `<td class="action" align="center">`

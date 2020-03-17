@@ -19,6 +19,24 @@ class HelperTag
         return $result;
     }
     
+    public static function setting($name, $value, $selected = null)
+    {
+        $result = '';
+        $settings = DB::table('settings')->select('setting')->where('name', $name)->first();
+
+        if ($settings) {
+            foreach (json_decode($settings->setting) as $key => $item) {
+                if ($value) {
+                    $result .= '<option value="' . $item . '" ' . ($selected === $item ? 'selected' : '') . '>' . $item . '</option>';
+                } else {
+                    $result .= '<option value="' . $key . '" ' . ($selected === $key ? 'selected' : '') . '>' . $item . '</option>';
+                }
+            }
+        }
+
+        return $result;
+    }
+    
     public static function roleSelect($selected = null)
     {
         $result = '';

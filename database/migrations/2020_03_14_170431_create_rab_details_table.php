@@ -18,6 +18,7 @@ class CreateRabDetailsTable extends Migration
             $table->unsignedBigInteger('rab_id');
             $table->string('for');
             $table->integer('qty');
+            $table->string('type');
             $table->integer('price');
             $table->integer('total');
             $table->timestamps();

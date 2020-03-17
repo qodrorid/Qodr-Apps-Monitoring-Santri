@@ -13,6 +13,15 @@
 <div class="page-body">
     <div class="row">
         <div class="col-sm-12">
+            <div class="alert alert-info icons-alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="icofont icofont-close-line-circled"></i>
+                </button>
+                <ul>
+                    <li>1. shortcut for add row use <code>ctrl + space</code></li>
+                    <li>2. shortcut for submit row use <code>ctrl + enter</code></li>
+                </ul>
+            </div>
             <div class="card">
                 <div class="card-header card-list">
                     <h5>List Data</h5>
@@ -56,6 +65,7 @@
                                     <th width="45">No</th>
                                     <th>For</th>
                                     <th width="80">Qty</th>
+                                    <th width="100">Type</th>
                                     <th width="140">Price</th>
                                     <th width="140">Total</th>
                                     <th width="100">Action</th>
@@ -67,6 +77,7 @@
                                     <td align="center">{{ $loop->iteration }}</td>
                                     <td>{{ $item->for }}</td>
                                     <td align="center">{{ $item->qty }}</td>
+                                    <td align="center">{{ $item->type }}</td>
                                     <td align="right">{!! HelperView::currency($item->price) !!}</td>
                                     <td align="right">{!! HelperView::currency($item->total) !!}</td>
                                     <td class="action" align="center">
@@ -82,7 +93,7 @@
                                 </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="4" align="center">
+                                    <td colspan="5" align="right">
                                         <b>TOTAL</b>
                                     </td>
                                     <td align="right"><b>{!! !empty($parent->total) ? HelperView::currency($parent->total) : HelperView::currency(0) !!}</b></td>
@@ -110,6 +121,11 @@
                 </td>
                 <td class="p-1">
                     <input type="number" name="qty" id="qty" min="1" class="form-control" value="1" onkeyup="countTotal()" onchange="countTotal()" placeholder="qty" data-toggle="tooltip" data-placement="bottom" title="required" data-trigger="manual">
+                </td>
+                <td class="p-1">
+                    <select name="type" id="type" class="form-control" onchange="countTotal()" data-toggle="tooltip" data-placement="bottom" title="required" data-trigger="manual">
+                        {!! HelperTag::setting('type_rab', true) !!}
+                    </select>
                 </td>
                 <td class="p-1">
                     <input type="text" name="price" id="price" class="form-control" value="0" onkeyup="countTotal()" onchange="countTotal()" placeholder="price" data-toggle="tooltip" data-placement="bottom" title="required" data-trigger="manual">

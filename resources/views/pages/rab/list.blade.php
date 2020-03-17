@@ -3,6 +3,7 @@
     <td align="center">{{ $loop->iteration }}</td>
     <td>{{ $item->for }}</td>
     <td align="center">{{ $item->qty }}</td>
+    <td align="center">{{ $item->type }}</td>
     <td align="right">{!! HelperView::currency($item->price) !!}</td>
     <td align="right">{!! HelperView::currency($item->total) !!}</td>
     <td class="action" align="center">
@@ -18,7 +19,7 @@
 </tr>
 @endforeach
 <tr>
-    <td colspan="4" align="center">
+    <td colspan="5" align="right">
         <b>TOTAL</b>
     </td>
     <td align="right"><b>{!! !empty($parent->total) ? HelperView::currency($parent->total) : HelperView::currency(0) !!}</b></td>

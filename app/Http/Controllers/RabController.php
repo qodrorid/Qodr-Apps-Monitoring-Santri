@@ -87,6 +87,7 @@ class RabController extends Controller
             'rab_id' => 'required',
             'for'    => 'required',
             'qty'    => 'required',
+            'type'   => 'required',
             'price'  => 'required',
             'total'  => 'required'
         ]);
@@ -114,6 +115,7 @@ class RabController extends Controller
             'rab_id' => 'required',
             'for'    => 'required',
             'qty'    => 'required',
+            'type'   => 'required',
             'price'  => 'required',
             'total'  => 'required'
         ]);
@@ -122,7 +124,7 @@ class RabController extends Controller
         
         try {
             $rab->update($data);
-            return $this->success('Successfuly update data setting!');
+            return $this->success('Successfuly update data rab!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);
         }

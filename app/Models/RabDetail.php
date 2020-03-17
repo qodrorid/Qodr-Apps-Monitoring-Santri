@@ -16,6 +16,7 @@ class RabDetail extends Model
         'rab_id',
         'for',
         'qty',
+        'type',
         'price',
         'total'
     ];
