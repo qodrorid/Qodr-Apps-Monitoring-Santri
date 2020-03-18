@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form name="form-settings" autocomplete="off" action-link="/credit" action-type="create">
+            <form name="form-credit" autocomplete="off" action-link="/credit" action-type="create">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">Name Student</label>
@@ -17,6 +17,10 @@
                             {!! HelperTag::userSelect() !!}
                         </select>
                         <input type="hidden" name="name" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="nominal">Nominal</label>
+                        <input type="number" name="nominal" id="nominal" class="form-control" placeholder="Nominal">
                     </div>
                     <div class="form-group">
                         <label for="borrowed_date">Borrowed Date</label>

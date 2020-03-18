@@ -52,6 +52,7 @@
                                     <th width="40">No</th>
                                     <th>Name</th>
                                     <th width="150">Nominal</th>
+                                    <th width="100">Status</th>
                                     <th width="190">Action</th>
                                 </tr>
                             </thead>
@@ -61,13 +62,24 @@
                                 <tr>
                                     <td align="center">{{ $no }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->nominal }}</td>
+                                    <td align="right">{!! HelperView::currency($item->nominal) !!}</td>
+                                    <td align="center">
+                                        @if ($item->status)
+                                        <span class="label label-primary">Refunded</span>
+                                        @else
+                                        <span class="label label-danger">Borrowed</span>
+                                        @endif
+                                    </td>
                                     <td class="action">
+                                        @if (!$item->status)
                                         <div class="dropdown-primary dropdown open btn-block">
                                             <button class="btn btn-primary btn-sm btn-block dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                 <i class="feather icon-cpu"></i> Action
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="action" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                <a class="dropdown-item" onclick="refund({{ $item->id }})">
+                                                    <i class="feather icon-corner-up-left"></i> Refund
+                                                </a>
                                                 <a class="dropdown-item" onclick="edit({{ $item->id }})">
                                                     <i class="feather icon-edit"></i> Edit
                                                 </a>
@@ -76,6 +88,7 @@
                                                 </a>
                                             </div>
                                         </div>
+                                        @endif
                                     </td>
                                 </tr>
                                 @php($no = $no + 1)
@@ -83,7 +96,7 @@
 
                                 @if ($credit->total() < 1)
                                 <tr>
-                                    <td colspan="4" align="center">Data not found</td>
+                                    <td colspan="5" align="center">Data not found</td>
                                 </tr>
                                 @endif
                             </tbody>

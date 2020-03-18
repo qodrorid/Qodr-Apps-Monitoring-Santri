@@ -107,4 +107,21 @@ class CreditController extends Controller
             return $this->responseQueryException($error);
         }
     }
+
+    /**
+     * Refunded Credit
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function refund(Credit $credit)
+    {
+        try {
+            $credit->status = 1;
+            $credit->update();
+            return $this->success('Successfuly refunded credit!');
+        } catch (QueryException $error) {
+            return $this->responseQueryException($error);
+        }
+    }
 }

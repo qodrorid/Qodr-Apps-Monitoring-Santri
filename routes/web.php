@@ -91,6 +91,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
         // credit
         Route::resource('credit', 'CreditController')->except(['create', 'show']);
+        Route::get('/credit/refund/{credit}', 'CreditController@refund')->name('credit.refund');
 
     });
 

@@ -42,6 +42,7 @@
             {
                 "title": "Credit Student",
                 "icon": "icon-user-minus",
+                "route": "credit.index",
                 "parent": true
             },
             {

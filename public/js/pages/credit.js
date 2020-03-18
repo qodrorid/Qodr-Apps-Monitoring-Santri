@@ -65,6 +65,43 @@ function deleted(id) {
     })
 }
 
+/**
+ * funtion verified user
+ * @param id 
+ * @return @void
+ */
+function refund(id) {
+    Swal.fire({
+        title: "Refund this credit ?",
+        text: "will increase cash flow debit",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#1ABC9C',
+        cancelButtonColor: '#E74C3C',
+        confirmButtonText: 'Refund',
+        allowOutsideClick: false
+    }).then((result) => {
+        if (result.value) {
+            Swal.fire({
+                customClass: {
+                    actions: 'swal2-icon-size',
+                    popup: 'swal2-bg'
+                },
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    $.get(`/credit/refund/${id}`).then(response => {
+                        Swal.fire("Success!", response.message, "success")
+                        $.listdata('/credit')
+                    }).catch(error => {
+                        Swal.fire("Error!", error.statusText, "error")
+                    })
+                }
+            })
+        }
+    })
+}
+
 // clear form credit
 $('#form-credit').on('hide.bs.modal', function () {
     let modal = $(this)
@@ -76,4 +113,10 @@ $('#form-credit').on('hide.bs.modal', function () {
     form.attr('action-type', 'create')
 
     form.find('[name]').val('')
+})
+
+$('select[name="user_id"]').change(function() {
+    let name = $(this).find('option:selected').text()
+    
+    $('input[name="name"]').val(name)
 })
