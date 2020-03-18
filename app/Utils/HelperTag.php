@@ -63,7 +63,7 @@ class HelperTag
     {
         $branchId = Auth::user()->branch_id;
         $result = '';
-        $users = DB::table('users')->select('name')->where('branch_id', $branchId)->where('role_id', 9)->whereNull('deleted_at')->get();
+        $users = DB::table('users')->where('branch_id', $branchId)->where('role_id', 9)->whereNull('deleted_at')->get();
         foreach ($users as $user) {
             $result .= '<option value="' . $user->$fieldKey . '" ' . ($selected === $user->$fieldKey ? 'selected' : '') . '>' . $user->name . '</option>';
         }
