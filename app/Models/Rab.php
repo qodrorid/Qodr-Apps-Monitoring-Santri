@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CashFlow;
 
 class Rab extends Model
 {
@@ -20,5 +21,19 @@ class Rab extends Model
         'created_at',
         'updated_at'
     ];
+
+    public static function boot() {
+        parent::boot();
+
+        static::created(function($model) {
+            CashFlow::create([
+                'rab_id'    => $model->id,
+                'branch_id' => $model->branch_id,
+                'date'      => $model->date,
+                'month'     => $model->month,
+                'year'      => $model->year
+            ]);
+        });
+    }
 
 }

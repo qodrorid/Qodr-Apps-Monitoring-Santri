@@ -36,6 +36,7 @@
             {
                 "title": "Cash Flow",
                 "icon": "icon-dollar-sign",
+                "route": "cashflow.index",
                 "parent": true
             },
             {

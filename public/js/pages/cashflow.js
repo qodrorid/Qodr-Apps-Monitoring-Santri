@@ -1,36 +1,20 @@
 (function() {
-    let rabAlert = localStorage.getItem('rabAlert')
+    let cashflowAlert = localStorage.getItem('cashflowAlert')
 
-    if (rabAlert == 'hide') {
-        $('.alert-rab').hide()
+    if (cashflowAlert == 'hide') {
+        $('.alert-cashflow').hide()
     } else {
-        $('.alert-rab').show()
+        $('.alert-cashflow').show()
     }
 })()
 
 // save alert
 function saveAlert() {
-    localStorage.setItem('rabAlert', 'hide')
+    localStorage.setItem('cashflowAlert', 'hide')
 }
 
 // token CSRF
 const headers = { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-
-// submit form name="form-rab"
-$('form[name="form-rab"').on('submit', function(e) {
-    e.preventDefault()
-    
-    let form   = $(this)
-    let data   = form.serializeObject()
-    let url    = '/rab/create'
-    let id_rab = $('select[name="rab_id"]').val()
-    
-    $.created(url, data).then(response => {
-        $('#form-rab').modal('hide')
-        $.listdata('/rab', { id_rab })
-        $('select#rab_id').html(response.data)
-    })
-})
 
 // add with keydown
 document.addEventListener('keyup', function(e) {
@@ -50,68 +34,81 @@ document.addEventListener('keyup', function(e) {
 // add row
 function addRow() {
     let row = $('#new-row > table > tbody').html()
-    let rab = $('select[name="rab_id"]').val()
+    let cashflow = $('select[name="cash_flow_id"]').val()
     
-    if (rab === null) {
-        $('#form-rab').modal('show')
+    if (cashflow === null) {
         return false
     }
 
-    if (typeof $('#listitem > tr.add-row, #listitem > tr.edit-row, #listitem > tr.disabled-row').html() === 'undefined') {
-        $('tbody#listitem > tr:last').before(row)
-        $('#listitem #for').focus()
-        $('#listitem #price').autoNumeric({
-            anDefault: 0,
-            vMin: 0,
-            aSign: 'Rp. ',
-            aSep: '.',
-            aDec: ',',
-            mDec: 0
-        })
+    if (typeof $('#listitem > tr.add-row, #listitem > tr.edit-row, #listitem > tr.disabled-row').html() !== 'undefined') return false
+    
+    $('tbody#listitem > tr:last').before(row)
+    $('#listitem #date').focus()
+    $('#listitem #price').autoNumeric({
+        anDefault: 0,
+        vMin: 0,
+        aSign: 'Rp. ',
+        aSep: '.',
+        aDec: ',',
+        mDec: 0
+    })
 
-        $('#listitem #total').autoNumeric({
-            anDefault: 0,
-            vMin: 0,
-            aSign: 'Rp. ',
-            aSep: '.',
-            aDec: ',',
-            mDec: 0
-        })
-        return false
-    }
+    $('#listitem #debit').autoNumeric({
+        anDefault: 0,
+        vMin: 0,
+        aSign: 'Rp. ',
+        aSep: '.',
+        aDec: ',',
+        mDec: 0
+    })
+
+    $('#listitem #kredit').autoNumeric({
+        anDefault: 0,
+        vMin: 0,
+        aSign: 'Rp. ',
+        aSep: '.',
+        aDec: ',',
+        mDec: 0
+    })
+    
+    return false
 }
 
 // create row
 function createRow() {
     if (!validity()) return false
-    let rab_id = $('select[name="rab_id"]').val()
+    let cash_flow_id = $('select[name="cash_flow_id"]').val()
     let newRow = $('#listitem > tr.add-row')
     let data = {
-        rab_id,
+        cash_flow_id,
+        date: newRow.find('#date').val(),
         for: newRow.find('#for').val(),
         qty: newRow.find('#qty').val(),
         type: newRow.find('#type').val(),
         price: newRow.find('#price').val().replace('Rp. ', '').replace(/\./g, ''),
-        total: newRow.find('#total').val().replace('Rp. ', '').replace(/\./g, '')
+        debit: newRow.find('#debit').val().replace('Rp. ', '').replace(/\./g, ''),
+        kredit: newRow.find('#kredit').val().replace('Rp. ', '').replace(/\./g, '')
     }
 
     newRow.addClass('table-active')
+    newRow.find('#date').prop('disabled', true)
     newRow.find('#for').prop('disabled', true)
     newRow.find('#qty').prop('disabled', true)
     newRow.find('#type').prop('disabled', true)
     newRow.find('#price').prop('disabled', true)
+    newRow.find('#to').prop('disabled', true)
     newRow.find('.btn-remove').prop('disabled', true)
     newRow.find('.btn-submit').prop('disabled', true)
     
     $.ajax({
-        url: urlbase('/rab'),
+        url: urlbase('/cashflow'),
         headers,
         method: 'POST',
         data: data,
         dataType: 'json',
         success: (response) => {
             if (response.status) {
-                $.listdata('/rab', { rab_id })
+                $.listdata('/cashflow', { cash_flow_id })
             }
         },
         error: (error) => {
@@ -137,38 +134,41 @@ function createRow() {
 // edit row
 function editRow() {
     if (!validity()) return false
-    let rab_id  = $('select[name="rab_id"]').val()
+    let cash_flow_id  = $('select[name="cash_flow_id"]').val()
     let editRow = $('#listitem > tr.edit-row')
-    let id      = editRow.attr('id').replace('row-rab-', '')
+    let id      = editRow.attr('id').replace('row-cashflow-', '')
     let data = {
-        rab_id,
+        cash_flow_id,
+        date: editRow.find('#date').val(),
         for: editRow.find('#for').val(),
         qty: editRow.find('#qty').val(),
         type: editRow.find('#type').val(),
         price: editRow.find('#price').val().replace('Rp. ', '').replace(/\./g, ''),
-        total: editRow.find('#total').val().replace('Rp. ', '').replace(/\./g, '')
+        debit: editRow.find('#debit').val().replace('Rp. ', '').replace(/\./g, ''),
+        kredit: editRow.find('#kredit').val().replace('Rp. ', '').replace(/\./g, '')
     }
 
     editRow.addClass('table-active')
+    editRow.find('#date').prop('disabled', true)
     editRow.find('#for').prop('disabled', true)
     editRow.find('#qty').prop('disabled', true)
     editRow.find('#type').prop('disabled', true)
     editRow.find('#price').prop('disabled', true)
+    editRow.find('#to').prop('disabled', true)
     editRow.find('.btn-remove').prop('disabled', true)
     editRow.find('.btn-submit').prop('disabled', true)
     
     $.ajax({
-        url: urlbase(`/rab/${id}`),
+        url: urlbase(`/cashflow/${id}`),
         headers,
         method: 'PUT',
         data: data,
         dataType: 'json',
         success: (response) => {
-            if (response.status) {
-                $.listdata('/rab', { rab_id })
-            }
+            $.listdata('/cashflow', { cash_flow_id })
         },
         error: (error) => {
+            $.listdata('/cashflow', { cash_flow_id })
             if (error.responseJSON) {
                 Swal.fire({
                     type: 'error',
@@ -197,11 +197,19 @@ function removeRow(that) {
 // count total price
 function countTotal() {
     let newRow = $('#listitem > tr.add-row, #listitem > tr.edit-row')
+    let to     = newRow.find('#to').val()
     let qty    = parseInt(newRow.find('#qty').val().replace(/\./g, ''))
     let price  = parseInt(newRow.find('#price').val().replace('Rp. ', '').replace(/\./g, ''))
     
     let total  = (isNaN(qty) || isNaN(price) || parseInt(qty * price) < 0) ? 0 : parseInt(qty * price)
-    $('#listitem #total').autoNumeric('set', total)
+
+    if (to === 'kredit') {
+        $('#listitem #debit').autoNumeric('set', 0)
+        $('#listitem #kredit').autoNumeric('set', total)
+    } else {
+        $('#listitem #debit').autoNumeric('set', total)
+        $('#listitem #kredit').autoNumeric('set', 0)
+    }
 }
 
 // validation form
@@ -211,11 +219,15 @@ function validity() {
     if (typeof newRow.html() === 'undefined') return false
     
     let data = {
+        date: newRow.find('#date').val(),
         for: newRow.find('#for').val(),
         qty: newRow.find('#qty').val(),
-        price: newRow.find('#price').val().replace('Rp. ', '').replace(/\./g, ''),
-        total: newRow.find('#total').val().replace('Rp. ', '').replace(/\./g, '')
+        price: newRow.find('#price').val().replace('Rp. ', '').replace(/\./g, '')
     }
+
+    let to     = newRow.find('#to').val()
+    let debit  = newRow.find('#debit').val().replace('Rp. ', '').replace(/\./g, '')
+    let kredit = newRow.find('#kredit').val().replace('Rp. ', '').replace(/\./g, '')
 
     for (const key in data) {
         if (data[key] === '' || data[key] === '0') {
@@ -226,16 +238,21 @@ function validity() {
         }
     }
 
+    if (debit == '0' && kredit == '0') {
+        $('#' + to).tooltip('show').focus()
+        return false
+    }
+
     return true
 }
 
 /**
- * function delete rab
+ * function delete cashflow
  * @param id 
  * @return @void
  */
 function deleted(id) {
-    let rab_id  = $('select[name="rab_id"]').val()
+    let cash_flow_id  = $('select[name="cash_flow_id"]').val()
     Swal.fire({
         title: 'Are you sure ?',
         text: 'the data will go into the trash',
@@ -247,8 +264,8 @@ function deleted(id) {
         allowOutsideClick: false
     }).then((result) => {
         if (result.value) {
-            $.deleted(`/rab/${id}`).then(() => {
-                $.listdata('/rab', { rab_id })
+            $.deleted(`/cashflow/${id}`).then(() => {
+                $.listdata('/cashflow', { cash_flow_id })
             })
         }
     })
@@ -256,12 +273,16 @@ function deleted(id) {
 
 // edit
 function edit(id, data) {
-    let rowEdit = $(`#row-rab-${id}`)
-    let rowNo   = rowEdit.find('td:first').text()
-    let rowElmt = $('#new-row > table > tbody > tr').clone()
-    let dataRab = JSON.parse(data)
+    if (typeof $('#listitem > tr.add-row, #listitem > tr.edit-row').html() !== 'undefined') {
+        $('#listitem .btn-remove').click()
+    }
 
-    let dataStr = JSON.stringify(dataRab)
+    let rowEdit      = $(`#row-cashflow-${id}`)
+    let rowNo        = rowEdit.find('td:first').text()
+    let rowElmt      = $('#new-row > table > tbody > tr').clone()
+    let dataCashflow = JSON.parse(data)
+
+    let dataStr = JSON.stringify(dataCashflow)
 
     rowElmt.find('.btn-remove').attr('onclick', `cancleEdit('${rowNo}', '${dataStr}')`)
     rowElmt.find('.btn-submit').attr('onclick', `editRow()`)
@@ -278,7 +299,7 @@ function edit(id, data) {
         mDec: 0
     })
 
-    rowEdit.find('#total').autoNumeric({
+    $('#listitem #debit').autoNumeric({
         anDefault: 0,
         vMin: 0,
         aSign: 'Rp. ',
@@ -287,34 +308,63 @@ function edit(id, data) {
         mDec: 0
     })
 
-    rowEdit.find('#for').val(dataRab.for)
-    rowEdit.find('#qty').val(dataRab.qty)
-    rowEdit.find('#type').val(dataRab.type)
-    rowEdit.find('#price').autoNumeric('set', dataRab.price)
-    rowEdit.find('#total').autoNumeric('set', dataRab.total)
+    $('#listitem #kredit').autoNumeric({
+        anDefault: 0,
+        vMin: 0,
+        aSign: 'Rp. ',
+        aSep: '.',
+        aDec: ',',
+        mDec: 0
+    })
+
+    rowEdit.find('#date').val(dataCashflow.date)
+    rowEdit.find('#for').val(dataCashflow.for)
+    rowEdit.find('#qty').val(dataCashflow.qty)
+    rowEdit.find('#type').val(dataCashflow.type)
+    rowEdit.find('#price').autoNumeric('set', dataCashflow.price)
+    rowEdit.find('#debit').autoNumeric('set', dataCashflow.debit)
+    rowEdit.find('#kredit').autoNumeric('set', dataCashflow.kredit)
+
+    if (dataCashflow.debit != 0) {
+        rowEdit.find('#to').val('debit')
+    } else {
+        rowEdit.find('#to').val('kredit')
+    }
 }
 
 // cacle edit
 function cancleEdit(no, data) {
-    let dataRab = JSON.parse(data)
-    let rowEdit = $(`#row-rab-${dataRab.id}`)
+    let dataCashflow = JSON.parse(data)
+    let rowEdit = $(`#row-cashflow-${dataCashflow.id}`)
     let element = `<td align="center">${no}</td>`
 
-    element += `<td>${dataRab.for}</td><td align="center">${dataRab.qty}</td><td align="center">${dataRab.type}</td>`
-    element += `<td align="right"><span style="float:left">Rp. </span>${new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(dataRab.price)},-</td>`
-    element += `<td align="right"><span style="float:left">Rp. </span>${new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(dataRab.total)},-</td>`
+    element += `<td>${changeDate(dataCashflow.date)}</td><td>${dataCashflow.for}</td><td align="center">${dataCashflow.qty}</td><td align="center">${dataCashflow.type}</td>`
+    element += `<td align="right"><span style="float:left">Rp. </span>${new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(dataCashflow.price)},-</td>`
+    element += `<td align="right"><span style="float:left">Rp. </span>${new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(dataCashflow.debit)},-</td>`
+    element += `<td align="right"><span style="float:left">Rp. </span>${new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(dataCashflow.kredit)},-</td>`
+    element += `<td align="right"><span style="float:left">Rp. </span>${new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(dataCashflow.total)},-</td>`
     element += `<td class="action" align="center">`
     element += `<button type="button" class="btn btn-primary btn-sm pr-2">`
     element += `<i class="feather icon-edit"></i></button> `
-    element += `<button type="button" class="btn btn-danger btn-sm pr-2" onclick="deleted(${dataRab.id})"><i class="feather icon-trash-2"></i></button></td>`
+    element += `<button type="button" class="btn btn-danger btn-sm pr-2" onclick="deleted(${dataCashflow.id})"><i class="feather icon-trash-2"></i></button></td>`
 
     rowEdit.removeClass('edit-row')
     rowEdit.html(element)
-    rowEdit.find('.action > button:first').attr('onclick', `edit(${dataRab.id}, '${data}')`)
+    rowEdit.find('.action > button:first').attr('onclick', `edit(${dataCashflow.id}, '${data}')`)
 }
 
-// change rab id
-$('select[name="rab_id"]').change(function() {
-    let rab_id = $(this).val()
-    $.listdata('/rab', { rab_id })
+// change cashflow id
+$('select[name="cash_flow_id"]').change(function() {
+    let cash_flow_id = $(this).val()
+    $.listdata('/cashflow', { cash_flow_id })
 })
+
+// change date
+function changeDate(params) {
+    let date = new Date(params)
+    let dd   = String(date.getDate()).padStart(2, '0')
+    let mm   = String(date.getMonth()).padStart(2, '0')
+    let yyyy = date.getFullYear()
+    
+    return `${dd}/${mm}/${yyyy}`
+}

@@ -4,18 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RabDetail extends Model
+class CashFlow extends Model
 {
 
-    protected $table = 'rab_details';
+    protected $table = 'cash_flows';
 
     protected $fillable = [
         'rab_id',
-        'for',
-        'qty',
-        'type',
-        'price',
-        'total'
+        'branch_id',
+        'date',
+        'month',
+        'year'
     ];
 
     protected $hidden = [
