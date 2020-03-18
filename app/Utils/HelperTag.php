@@ -90,7 +90,7 @@ class HelperTag
         $branchId  = Auth::user()->branch_id;
         $cashflows = DB::table('cash_flows')->select('id', 'month', DB::raw("CONCAT(`month`, ' ', `year`) as name"))->where('branch_id', $branchId)->orderBy('date', 'desc')->get();
         
-        foreach ($cashflow as $cashflow) {
+        foreach ($cashflows as $cashflow) {
             $result .= '<option value="' . $cashflow->id . '" ' . (($selected === $cashflow->id or date('F') === $cashflow->month) ? 'selected' : '') . '>' . $cashflow->name . '</option>';
         }
         

@@ -23,7 +23,6 @@ class CreateCashFlowDetailsTable extends Migration
             $table->integer('price');
             $table->integer('debit')->default(0);
             $table->integer('kredit')->default(0);
-            $table->integer('total')->default(0);
             $table->timestamps();
             $table->foreign('cash_flow_id')->references('id')->on('cash_flows')->onDelete('cascade');
         });

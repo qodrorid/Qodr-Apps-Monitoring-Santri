@@ -86,6 +86,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::resource('rab', 'RabController')->except(['create', 'show', 'edit']);
         Route::post('/rab/create', 'RabController@create')->name('rab.create');
 
+        // cashflow
+        Route::resource('cashflow', 'CashFlowController')->except(['create', 'show', 'edit']);
+
     });
 
     // access only for ketua and divisiit

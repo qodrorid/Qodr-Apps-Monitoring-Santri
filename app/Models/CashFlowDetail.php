@@ -24,5 +24,10 @@ class CashFlowDetail extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function dateIndo()
+    {
+        return date('d/m/Y', strtotime($this->date));
+    }
     
 }
