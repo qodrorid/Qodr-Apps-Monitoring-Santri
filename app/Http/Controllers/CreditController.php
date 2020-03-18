@@ -40,6 +40,7 @@ class CreditController extends Controller
             'user_id'       => 'required',
             'name'          => 'required',
             'information'   => 'required',
+            'nominal'       => 'required',
             'borrowed_date' => 'required',
             'refund_date'   => 'required'
         ]);
@@ -78,6 +79,7 @@ class CreditController extends Controller
             'user_id'       => 'required',
             'name'          => 'required',
             'information'   => 'required',
+            'nominal'       => 'required',
             'borrowed_date' => 'required',
             'refund_date'   => 'required'
         ]);

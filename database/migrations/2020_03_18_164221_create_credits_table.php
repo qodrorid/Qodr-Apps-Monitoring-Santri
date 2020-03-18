@@ -19,6 +19,7 @@ class CreateCreditsTable extends Migration
             $table->unsignedBigInteger('cash_flow_detail_id');
             $table->string('name');
             $table->string('information');
+            $table->integer('nominal');
             $table->date('borrowed_date');
             $table->date('refund_date');
             $table->timestamps();

@@ -12,6 +12,7 @@ class Credit extends Model
         'cash_flow_detail_id',
         'name',
         'information',
+        'nominal',
         'borrowed_date',
         'refund_date'
     ];
