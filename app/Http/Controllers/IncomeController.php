@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Credit;
+use App\Models\Income;
 use App\Models\CashFlow;
 use Illuminate\Http\Request;
 
-class CreditController extends Controller
+class IncomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,18 +15,18 @@ class CreditController extends Controller
      */
     public function index(Request $request)
     {
-        $credit = Credit::where(function($query) use ($request) {
+        $income = Income::where(function($query) use ($request) {
             if (!is_null($request->keyword)) {
                 $query->where('name', 'like', "%$request->keyword%")
                     ->orWhere('information', 'like', "%$request->keyword%");
             }
         })->paginate($request->showitem ?? 5);
 
-        $credit->appends($request->query());
+        $income->appends($request->query());
 
         $view = $request->ajax() ? 'list' : 'index';
 
-        return view('pages.credit.' . $view, compact('credit'));
+        return view('pages.income.' . $view, compact('income'));
     }
 
     /**
@@ -38,21 +38,19 @@ class CreditController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id'       => 'required',
-            'name'          => 'required',
-            'information'   => 'required',
-            'nominal'       => 'required',
-            'borrowed_date' => 'required',
-            'refund_date'   => 'required'
+            'user_id' => 'required',
+            'name'    => 'required',
+            'date'    => 'required',
+            'nominal' => 'required'
         ]);
 
-        if ($this->checkCashFLow($request->borrowed_date)) return abort(400, 'Cash flow not found!');
+        if ($this->checkCashFLow($request->date)) return abort(400, 'Cash flow not found!');
 
         $data = $request->all();
 
         try {
-            Credit::create($data);
-            return $this->success('Successfuly create new credit!');
+            Income::create($data);
+            return $this->success('Successfuly create new income!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);
         }
@@ -61,35 +59,33 @@ class CreditController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Credit $credit
+     * @param  \App\Models\Income  $income
      * @return \Illuminate\Http\Response
      */
-    public function edit(Credit $credit)
+    public function edit(Income $income)
     {
-        return $this->success('Successfuly get data credit!', $credit);
+        return $this->success('Successfuly get data income!', $income);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Credit $credit
+     * @param  \App\Models\Income  $income
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Credit $credit)
+    public function update(Request $request, Income $income)
     {
         $request->validate([
-            'user_id'       => 'required',
-            'name'          => 'required',
-            'information'   => 'required',
-            'nominal'       => 'required',
-            'borrowed_date' => 'required',
-            'refund_date'   => 'required'
+            'user_id' => 'required',
+            'name'    => 'required',
+            'date'    => 'required',
+            'nominal' => 'required'
         ]);
         
         try {
-            $credit->update($request->all());
-            return $this->success('Successfuly update data credit!');
+            $income->update($request->all());
+            return $this->success('Successfuly update data income!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);
         }
@@ -98,31 +94,14 @@ class CreditController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Credit $credit
+     * @param  \App\Models\Income  $income
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Credit $credit)
+    public function destroy(Income $income)
     {
         try {
-            $credit->delete();
-            return $this->success('Successfuly delete credit!');
-        } catch (QueryException $error) {
-            return $this->responseQueryException($error);
-        }
-    }
-
-    /**
-     * Refunded Credit
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function refund(Credit $credit)
-    {
-        try {
-            $credit->status = 1;
-            $credit->update();
-            return $this->success('Successfuly refunded credit!');
+            $income->delete();
+            return $this->success('Successfuly delete income!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);
         }
