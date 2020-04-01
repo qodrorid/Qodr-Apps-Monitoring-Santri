@@ -56,7 +56,7 @@
                                 <tr class="bg-primary">
                                     <th width="45">No</th>
                                     <th width="103">Date</th>
-                                    <th>For</th>
+                                    <th width="100">For</th>
                                     <th width="80">Qty</th>
                                     <th width="100">Type</th>
                                     <th width="140">Price</th>

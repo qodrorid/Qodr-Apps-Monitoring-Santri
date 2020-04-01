@@ -93,6 +93,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::resource('credit', 'CreditController')->except(['create', 'show']);
         Route::get('/credit/refund/{credit}', 'CreditController@refund')->name('credit.refund');
 
+        // income
+        Route::resource('income', 'IncomeController')->except(['create', 'show']);
+
     });
 
     // access only for ketua and divisiit

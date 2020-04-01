@@ -48,6 +48,7 @@
             {
                 "title": "Income Student",
                 "icon": "icon-user-plus",
+                "route": "income.index",
                 "parent": true
             }
         ]

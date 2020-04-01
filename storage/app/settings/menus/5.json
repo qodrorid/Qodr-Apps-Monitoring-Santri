@@ -24,11 +24,13 @@
             {
                 "title": "Credit Student",
                 "icon": "icon-user-minus",
+                "route": "credit.index",
                 "parent": true
             },
             {
                 "title": "Income Student",
                 "icon": "icon-user-plus",
+                "route": "income.index",
                 "parent": true
             }
         ]
