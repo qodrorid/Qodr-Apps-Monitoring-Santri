@@ -8,6 +8,88 @@
                 "icon": "icon-home",
                 "route": "dashboard",
                 "parent": true
+            },
+            {
+                "title": "Rab",
+                "icon": "icon-file-text",
+                "parent": true
+            },
+            {
+                "title": "Cash Flow",
+                "icon": "icon-dollar-sign",
+                "parent": true
+            },
+            {
+                "title": "Hasil Rapat",
+                "icon": "icon-edit",
+                "parent": true
+            },
+            {
+                "title": "Kegiatan IT",
+                "icon": "icon-monitor",
+                "parent": true,
+                "childs": [
+                    {
+                        "title": "Todo Student",
+                        "icon": "icon-edit",
+                        "parent": true
+                    },
+                    {
+                        "title": "Class IT",
+                        "icon": "icon-server",
+                        "parent": true
+                    },
+                    {
+                        "title": "Event IT",
+                        "icon": "icon-calendar",
+                        "parent": true
+                    },
+                    {
+                        "title": "Cekcok",
+                        "icon": "icon-message-square",
+                        "parent": true
+                    },
+                    {
+                        "title": "Wakatime",
+                        "icon": "icon-clock",
+                        "parent": true,
+                        "childs": [
+                            {
+                                "title": "Report Student"
+                            },
+                            {
+                                "title": "Url Status"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Kegiatan Agama",
+                "icon": "icon-book-open",
+                "parent": true,
+                "childs": [
+                    {
+                        "title": "Kajian Ustadz",
+                        "icon": "icon-book",
+                        "parent": true
+                    },
+                    {
+                        "title": "Kajian Video",
+                        "icon": "icon-film",
+                        "parent": true
+                    },
+                    {
+                        "title": "Piket Masjid",
+                        "icon": "icon-moon",
+                        "parent": true
+                    },
+                    {
+                        "title": "Monitoring Ibadah",
+                        "icon": "icon-tv",
+                        "parent": true
+                    }
+                ]
             }
         ]
     }

@@ -8,6 +8,26 @@
                 "icon": "icon-home",
                 "route": "dashboard",
                 "parent": true
+            },
+            {
+                "title": "Kajian Ustadz",
+                "icon": "icon-book",
+                "parent": true
+            },
+            {
+                "title": "Kajian Video",
+                "icon": "icon-film",
+                "parent": true
+            },
+            {
+                "title": "Piket Masjid",
+                "icon": "icon-moon",
+                "parent": true
+            },
+            {
+                "title": "Monitoring Ibadah",
+                "icon": "icon-tv",
+                "parent": true
             }
         ]
     }
