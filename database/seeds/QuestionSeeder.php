@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Models\Question;
 
-
 class QuestionSeeder extends Seeder
 {
     /**
@@ -18,7 +17,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'What does HTML stand for?',
                 'category_id'=> 1,
-                'answer_id' => 3,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -26,7 +24,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'Who is making the Web standards?',
                 'category_id'=> 1,
-                'answer_id' => 8,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -34,7 +31,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'Choose the correct HTML element for the largest heading:',
                 'category_id'=> 1,
-                'answer_id' => 12,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -42,7 +38,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'What is the correct HTML element for inserting a line break?',
                 'category_id'=> 1,
-                'answer_id' => 15,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -50,7 +45,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'What is the correct HTML for adding a background color?',
                 'category_id'=> 1,
-                'answer_id' => 17,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -58,7 +52,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'What does CSS stand for?',
                 'category_id'=> 2,
-                'answer_id' => 22,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -66,7 +59,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'What is the correct HTML for referring to an external style sheet?',
                 'category_id'=> 2,
-                'answer_id' => 27,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -74,7 +66,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'Where in an HTML document is the correct place to refer to an external style sheet?',
                 'category_id'=> 2,
-                'answer_id' => 30,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -82,7 +73,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'Which HTML tag is used to define an internal style sheet?',
                 'category_id'=> 2,
-                'answer_id' => 35,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -90,7 +80,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'Which HTML attribute is used to define inline styles?',
                 'category_id'=> 2,
-                'answer_id' => 38,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -98,7 +87,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'Inside which HTML element do we put the JavaScript?',
                 'category_id'=> 3,
-                'answer_id' => 41,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -108,7 +96,6 @@ class QuestionSeeder extends Seeder
 
                 <p id="demo">This is a demonstration.</p>',
                 'category_id'=> 3,
-                'answer_id' => 47,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -116,7 +103,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'Where is the correct place to insert a JavaScript?',
                 'category_id'=> 3,
-                'answer_id' => 49,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -124,7 +110,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'What is the correct syntax for referring to an external script called "xxx.js"?',
                 'category_id'=> 3,
-                'answer_id' => 55,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9
@@ -132,7 +117,6 @@ class QuestionSeeder extends Seeder
             [
                 'title' => 'How do you write "Hello World" in an alert box?',
                 'category_id'=> 3,
-                'answer_id' => 58,
                 'note' => 'mantap',
                 'is_active' => true,
                 'author_id' => 9

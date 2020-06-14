@@ -17,13 +17,11 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->unsignedbigInteger('category_id');
-            $table->unsignedbigInteger('answer_id');
             $table->text('note')->nullable();
             $table->boolean('is_active')->default(1);
             $table->unsignedbigInteger('author_id');
             $table->timestamps();
 
-            // $table->foreign('answer_id')->references('id')->on('question_options')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('question_categories')->onDelete('cascade');
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
         });
