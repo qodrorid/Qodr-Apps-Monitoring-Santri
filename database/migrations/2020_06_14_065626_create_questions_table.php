@@ -23,7 +23,6 @@ class CreateQuestionsTable extends Migration
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('question_categories');
-            $table->foreign('answer_id')->references('id')->on('question_options');
             $table->foreign('author_id')->references('id')->on('users');
         });
     }
