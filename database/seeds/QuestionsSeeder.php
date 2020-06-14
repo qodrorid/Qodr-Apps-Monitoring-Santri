@@ -12,6 +12,34 @@ class QuestionsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // category
+        DB::table('question_categories')->insert([
+            [
+                'name' => 'Programming Surveys'
+            ],
+            [
+                'name' => 'Social Surveys'
+            ]
+        ]);
+
+        // question
+        // DB::table('questions')->insert([
+        //     [
+        //         'name' => 'Programming Surveys'
+        //     ],
+        //     [
+        //         'name' => 'Social Surveys'
+        //     ]
+        // ]);
+
+        // options
+        // DB::table('question_categories')->insert([
+        //     [
+        //         'name' => 'Programming Surveys'
+        //     ],
+        //     [
+        //         'name' => 'Social Surveys'
+        //     ]
+        // ]);
     }
 }
