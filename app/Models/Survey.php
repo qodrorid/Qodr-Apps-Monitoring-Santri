@@ -16,4 +16,5 @@ class Survey extends Model
         'time_limit',
         'note'
     ];
+    //
 }
