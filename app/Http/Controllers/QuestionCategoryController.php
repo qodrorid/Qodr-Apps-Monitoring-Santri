@@ -9,8 +9,8 @@ class QuestionCategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $questions = QuestionCategory::orderBy('id','desc')->limit(100)->get();
+        $categories = QuestionCategory::orderBy('id','desc')->limit(100)->get();
 
-        return view('pages.QuestionCategory.index', compact('QuestionCategorys'));
+        return view('pages.question_category.index', compact('categories'));
     }
 }

@@ -59,12 +59,12 @@
                 "parent": true,
                 "childs": [
                     {
-                        "title": "Category Question",
-                        "route": ""
-                    },
-                    {
                         "title": "Soal",
                         "route": "soal.index"
+                    },
+                    {
+                        "title": "Kategori Soal",
+                        "route": "kategori-soal.index"
                     }
                 ]
             }
