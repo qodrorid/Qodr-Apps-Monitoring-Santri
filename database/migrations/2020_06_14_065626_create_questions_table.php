@@ -19,9 +19,12 @@ class CreateQuestionsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('answer_id');
             $table->text('note');
-            $table->tinyInteger('is_active');
+            $table->boolean('is_active');
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('question_categories');
+            $table->foreign('answer_id')->references('id')->on('question_options');
+            $table->foreign('author_id')->references('id')->on('users');
         });
     }
 
