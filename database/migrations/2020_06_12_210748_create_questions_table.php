@@ -19,7 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->unsignedbigInteger('category_id');
             $table->unsignedbigInteger('answer_id');
             $table->text('note')->nullable();
-            $table->boolean('is_active')->nullable();
+            $table->boolean('is_active')->default(1);
             $table->unsignedbigInteger('author_id');
             $table->timestamps();
 
