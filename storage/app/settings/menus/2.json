@@ -63,8 +63,8 @@
                         "route": ""
                     },
                     {
-                        "title": "Question",
-                        "route": ""
+                        "title": "Soal",
+                        "route": "soal.index"
                     }
                 ]
             }

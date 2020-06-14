@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QuestionCategorie extends Model
+class QuestionCategory extends Model
 {
     //
 }

@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\QuestionCategorie;
+use App\Models\QuestionCategory;
 
 
-class QuestionCategorieSeeder extends Seeder
+class QuestionCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -25,6 +25,6 @@ class QuestionCategorieSeeder extends Seeder
             ]
         ];
 
-        QuestionCategorie::insert($data);
+        QuestionCategory::insert($data);
     }
 }
