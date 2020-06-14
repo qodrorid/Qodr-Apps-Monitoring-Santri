@@ -52,7 +52,23 @@
                         "route": "telegram.index"
                     }
                 ]
+            },
+            {
+                "title": "Master",
+                "icon": "icon-menu",
+                "parent": true,
+                "childs": [
+                    {
+                        "title": "Category Question",
+                        "route": ""
+                    },
+                    {
+                        "title": "Question",
+                        "route": ""
+                    }
+                ]
             }
         ]
-    }
+    }   
+   
 ]
