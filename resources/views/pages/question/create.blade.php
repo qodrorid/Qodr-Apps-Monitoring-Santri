@@ -42,8 +42,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="author_id">Pembuat</label>
-                                    <input type="text" name="author_id" class="form-control" id="author_id" value="{{Auth()->User()->id}}" readonly>
+                                    <input type="hidden" name="author_id" class="form-control" id="author_id" value="{{Auth()->User()->id}}" readonly>
                                 </div>
                                 <button type="submit" class="btn btn-primary">
                                     <i class="feather icon-plus"></i> Add
