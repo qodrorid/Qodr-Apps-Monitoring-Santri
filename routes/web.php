@@ -71,6 +71,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::resource('/soal', 'QuestionController');
         Route::resource('/kategori-soal', 'QuestionCategoryController');
 
+        //Survey
+        Route::resource('/survey', 'SurveyController');
+
     });
 
     // access only for ketua and sekretaris
