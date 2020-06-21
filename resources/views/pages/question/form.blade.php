@@ -11,7 +11,7 @@
 <div class="form-group row">
     <label for="category_id" class="col-sm-2 col-form-label">Kategori</label>
     <div class="col-sm-10">
-        <select name="category_id" id="category_id" class="form-control">
+        <select name="category_id" id="category_id" class="form-control select2">
             <option value="">----- PILIH KATEGORI ------</option>
             @foreach ($categories as $id => $category)
             <option value="{{$id}}" {{ ( $data->category_id ?? old('category_id')) == $id ? 'selected' : ''}}>
@@ -48,8 +48,8 @@
 <div class="form-group row">
     <label for="author_id" class="col-sm-2 col-form-label">Penulis</label>
     <div class="col-sm-10">
-        <select name="author_id" id="author_id" class="form-control">
-            <option value="">----- PILIH Penulis ------</option>
+        <select name="author_id" id="author_id" class="form-control select2">
+            <option value="">----- PILIH Pembuat ------</option>
             @foreach ($authors as $id => $author)
             <option value="{{$id}}" {{ ( $data->author_id ?? old('author_id')) == $id ? 'selected' : ''}}>{{ $author }}
             </option>

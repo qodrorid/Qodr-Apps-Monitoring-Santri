@@ -12,3 +12,4 @@
 {{ HTML::script('js/script.js') }}
 {{ HTML::script('js/app.js') }}
 @yield('javascript')
+@stack('js')
