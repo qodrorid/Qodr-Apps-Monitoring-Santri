@@ -3,10 +3,11 @@
 @section('content')
 
 @include('components.page-header', [
-    'title' => 'Kategori Soal',
-    'subtitle' => 'Manajement kategori Soal',
+    'title' => 'Survey Soal',
+    'subtitle' => 'Manajement Survey Soal',
     'breadcrumb' => [
-        'Settings'
+        'Master',
+        'Survey Soal'
     ]
 ])
 
@@ -26,7 +27,7 @@
                 </div>
                 <div class="card-block">
                         <div class="col-md-2">
-                        <a href="{{ url('kategori-soal/create') }}" class="btn btn-primary btn-block"><i class="feather icon-plus"></i> Add</a>
+                        <a href="{{ url('survey/create') }}" class="btn btn-primary btn-block"><i class="feather icon-plus"></i> Add</a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -34,25 +35,35 @@
                             <thead>
                                 <tr class="bg-primary">
                                     <th>No</th>
-                                    <th>Nama</th>
+                                    <th>Judul Survey</th>
+                                    <th>Pembuat</th>
+                                    <th>Tanggal Awal</th>
+                                    <th>Tanggal Akhir</th>
+                                    <th>Batas Waktu</th>
+                                    <th>Catatan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="listitem">
-                                @foreach ($categories as $item)
+                                @foreach ($surveys as $item)
                                 <tr>
                                     <td align="center">{{ $loop->iteration }}</td>
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->author->username }}</td>
+                                    <td>{{ $item->date_start }}</td>
+                                    <td>{{ $item->date_end }}</td>
+                                    <td>{{ $item->time_limit }}</td>
+                                    <td>{{ $item->note }}</td>
                                     <td class="action">
                                         <div class="dropdown-primary dropdown open btn-block">
                                             <button class="btn btn-primary btn-sm btn-block dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                 <i class="feather icon-cpu"></i> Action
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="action" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                <form action="{{url('kategori-soal/'.$item->id)}}" method="post">
+                                                <form action="{{url('survey/'.$item->id)}}" method="post">
                                                     @method('delete')
                                                     @csrf
-                                                    <a href="{{url('kategori-soal/'.$item->id.'/edit') }}" class="dropdown-item">
+                                                    <a href="{{url('survey/'.$item->id.'/edit') }}" class="dropdown-item">
                                                         <i class="feather icon-edit"></i> Edit
                                                     </a>
                                                     <button type="submit" class="dropdown-item btn-sm" onclick="return confirm('Anda yakin ingin menghapus data ?');">

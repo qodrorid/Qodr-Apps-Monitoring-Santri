@@ -58,7 +58,7 @@
                 "icon": "icon-menu",
                 "parent": true,
                 "childs": [
-                
+
                     {
                         "title": "Soal",
                         "route": "soal.index"
@@ -66,10 +66,14 @@
                     {
                         "title": "Kategori Soal",
                         "route": "kategori-soal.index"
+                    },
+                    {
+                        "title":  "Survey Soal",
+                        "route": "survey.index"
                     }
                 ]
             }
         ]
-    }   
-   
+    }
+
 ]

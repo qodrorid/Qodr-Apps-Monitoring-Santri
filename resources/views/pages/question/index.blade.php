@@ -40,7 +40,7 @@
                                 <th>No</th>
                                 <th>Judul Soal</th>
                                 <th>Kategori</th>
-                                <th>Note</th>
+                                <th>Catatan</th>
                                 <th>Is_Active</th>
                                 <th>Pembuat</th>
                                 <th>Aksi</th>
@@ -88,6 +88,21 @@
 </div>
 </div>
 @endsection
+@push('css')
+<style>
+    select.form-control:not([size]):not([multiple]) {
+        height: calc(2.25rem + 2px);
+        margin-left: 32px;
+        padding: 1px;
+    }
+
+    div.dataTables_wrapper div.dataTables_info {
+        display: inline-block;
+        margin-left: 32px;
+    }
+
+</style>
+@endpush
 @section('css')
 <!-- Data Table Css -->
 <link rel="stylesheet" type="text/css"

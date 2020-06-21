@@ -26,7 +26,7 @@
                         @csrf
 
                         {{-- form  start --}}
-                        @include('pages.question.form', ['question' => $data])
+                        @include('pages.question.form', ['question' => $data ])
                         {{-- form end --}}
                         <div class="form-group row">
                             <label class="col-sm-2"></label>

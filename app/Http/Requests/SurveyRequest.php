@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuestionRequest extends FormRequest
+class SurveyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,11 @@ class QuestionRequest extends FormRequest
     {
         return [
             'title'         => 'required',
-            'category_id'   => 'required|numeric',
-            'note'          => 'nullable',
-            'is_active'     => 'required|numeric|',
-            'author_id'     => 'required|numeric'
+            'author_id'     => 'required|numeric',
+            'date_start'    =>  'required',
+            'date_end'      =>  'required',
+            'time_limit'    =>  'required',
+            'note'          =>  'nullable'
         ];
     }
 }
