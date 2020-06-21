@@ -65,3 +65,7 @@ pre#view-log {
   background-color: transparent;
 }
 
+.dataTables_filter {
+    float: right;
+    margin-right: 2rem;
+}
