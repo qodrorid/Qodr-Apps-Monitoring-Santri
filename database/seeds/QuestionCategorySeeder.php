@@ -3,8 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Models\QuestionCategory;
 
-
-
 class QuestionCategorySeeder extends Seeder
 {
     /**

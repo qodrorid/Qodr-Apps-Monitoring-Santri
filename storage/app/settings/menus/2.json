@@ -66,10 +66,6 @@
                     {
                         "title": "Kategori Soal",
                         "route": "kategori-soal.index"
-                    },
-                    {
-                        "title":  "Survey Soal",
-                        "route": "survey.index"
                     }
                 ]
             }

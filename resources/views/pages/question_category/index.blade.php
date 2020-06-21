@@ -4,13 +4,11 @@
 
 @include('components.page-header', [
     'title' => 'Kategori Soal',
-    'subtitle' => 'Manajement kategori Soal',
+    'subtitle' => 'Manajemen Kategori Soal',
     'breadcrumb' => [
-        'Settings'
+        'Master'
     ]
 ])
-
-@include('templates.alert')
 <div class="page-body">
     <div class="row">
         <div class="col-sm-12">
@@ -25,8 +23,11 @@
                     </div>
                 </div>
                 <div class="card-block">
+                    <div class="row">
                         <div class="col-md-2">
-                        <a href="{{ url('kategori-soal/create') }}" class="btn btn-primary btn-block"><i class="feather icon-plus"></i> Add</a>
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-soal">
+                                <i class="feather icon-plus"></i> Add
+                            </button>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -49,16 +50,12 @@
                                                 <i class="feather icon-cpu"></i> Action
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="action" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                <form action="{{url('kategori-soal/'.$item->id)}}" method="post">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <a href="{{url('kategori-soal/'.$item->id.'/edit') }}" class="dropdown-item">
-                                                        <i class="feather icon-edit"></i> Edit
-                                                    </a>
-                                                    <button type="submit" class="dropdown-item btn-sm" onclick="return confirm('Anda yakin ingin menghapus data ?');">
-                                                        <i class="feather icon-trash"></i> Delete
-                                                    </button>
-                                                </form>
+                                                <a class="dropdown-item" onclick="edit({{ $item->id }})">
+                                                    <i class="feather icon-edit"></i> Edit
+                                                </a>
+                                                <a class="dropdown-item" onclick="deleted({{ $item->id }})">
+                                                    <i class="feather icon-trash"></i> Delete
+                                                </a>
                                             </div>
                                         </div>
                                     </td>
@@ -73,66 +70,17 @@
     </div>
 </div>
 @endsection
-@push('css')
-<style>
-    select.form-control:not([size]):not([multiple]) {
-        height: calc(2.25rem + 2px);
-        margin-left: 32px;
-        padding: 1px;
-    }
 
-    div.dataTables_wrapper div.dataTables_info {
-        display: inline-block;
-        margin-left: 32px;
-    }
-
-</style>
-@endpush
-@section('css')
-    <!-- Data Table Css -->
- <link rel="stylesheet" type="text/css" href="{{asset ('plugins\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}">
- <link rel="stylesheet" type="text/css" href="{{asset ('plugins\assets\pages\data-table\css\buttons.dataTables.min.css') }}">
- <link rel="stylesheet" type="text/css" href="{{asset ('plugins\bower_components\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css') }}">
- <link rel="stylesheet" type="text/css" href="{{asset ('plugins\assets\pages\data-table\extensions\autofill\css\autoFill.dataTables.min.css') }}">
- <link rel="stylesheet" type="text/css" href="{{asset ('plugins\assets\pages\data-table\extensions\autofill\css\select.dataTables.min.css') }}">
+@section('stylesheet')
+    {{-- <link rel="stylesheet" href="{{ asset('plugins/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"> --}}
 @endsection
 
 @section('javascript')
- <!-- data-table js -->
- <script src="{{ asset ('plugins\bower_components\datatables.net\js\jquery.dataTables.min.js') }}"></script>
- <script src="{{ asset ('plugins\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js') }}"></script>
- <script src="{{ asset ('plugins\assets\pages\data-table\js\jszip.min.js') }}"></script>
- <script src="{{ asset ('plugins\assets\pages\data-table\js\pdfmake.min.js') }}"></script>
- <script src="{{ asset ('plugins\assets\pages\data-table\js\vfs_fonts.js') }}"></script>
- <script src="{{ asset ('plugins\assets\pages\data-table\extensions\autofill\js\dataTables.autoFill.min.js') }}"></script>
- <script src="{{ asset ('plugins\assets\pages\data-table\extensions\autofill\js\dataTables.select.min.js') }}"></script>
- <script src="{{ asset ('plugins\bower_components\datatables.net-buttons\js\buttons.print.min.js') }}"></script>
- <script src="{{ asset ('plugins\bower_components\datatables.net-buttons\js\buttons.html5.min.js') }}"></script>
- <script src="{{ asset ('plugins\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js') }}"></script>
- <script src="{{ asset ('plugins\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
- <script src="{{ asset ('plugins\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
- <script>
-   $(document).ready( function () {
-     $('.table').DataTable({
-       language: {
-         "sProcessing":   "Sedang proses...",
-         "sLengthMenu":   " _MENU_",
-         "sZeroRecords":  "Tidak ditemukan data yang sesuai",
-         "sInfo":         "Tampilan _START_ sampai _END_ dari _TOTAL_ entri",
-         "sInfoEmpty":    "Tampilan 0 hingga 0 dari 0 entri",
-         "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
-         "sInfoPostFix":  "",
-         "sSearch":       "Cari:",
-         "sUrl":          "",
-         "oPaginate": {
-             "sFirst":    "Awal",
-             "sPrevious": "<i class='fa fa-arrow-left'><i> Kembali",
-             "sNext":     "Lanjut",
-             "sLast":     "Akhir"
-       }
-     }
-
-     });
-   });
- </script>
+    <script src="{{ asset('plugins/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable();
+        });
+    </script>
 @endsection

@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\RabDetail;
 use App\Models\Rab;
 use App\Utils\HelperTag;
-
 use Auth;
 
 class RabController extends Controller
