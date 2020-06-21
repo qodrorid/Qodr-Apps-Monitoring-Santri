@@ -70,7 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
         // Question
         Route::resource('/soal', 'QuestionController');
         Route::resource('/kategori-soal', 'QuestionCategoryController');
-
+        
     });
 
     // access only for ketua and sekretaris

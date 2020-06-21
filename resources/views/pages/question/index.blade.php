@@ -9,7 +9,6 @@
         'Master'
     ]
 ])
-
 <div class="page-body">
     <div class="row">
         <div class="col-sm-12">
@@ -26,9 +25,7 @@
                 <div class="card-block">
                     <div class="row">
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-soal">
-                                <i class="feather icon-plus"></i> Add
-                            </button>
+                            <a href="{{ route('soal.create')}}" class="btn btn-primary btn-block"><i class="feather icon-plus"></i> Add</a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -47,22 +44,15 @@
                                 <tr>
                                     <td align="center">{{ $loop->iteration }}</td>
                                     <td>{{ $item->title }}</td>
-                                    <td>{{ $item->category_id }}</td>
-                                    <td>{{ $item->author_id }}</td>
+                                    <td>{{ $item->kategori->name }}</td>
+                                    <td>{{ $item->author->username }}</td>
                                     <td class="action">
-                                        <div class="dropdown-primary dropdown open btn-block">
-                                            <button class="btn btn-primary btn-sm btn-block dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                <i class="feather icon-cpu"></i> Action
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="action" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                <a class="dropdown-item" onclick="edit({{ $item->id }})">
-                                                    <i class="feather icon-edit"></i> Edit
-                                                </a>
-                                                <a class="dropdown-item" onclick="deleted({{ $item->id }})">
-                                                    <i class="feather icon-trash"></i> Delete
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <a type="submit" class="btn btn-sm btn-info text-white" href="{{ route('soal.edit', $item['id']) }}"><i class="feather icon-edit"></i> Edit</a>
+                                        <form method="post" action="{{ route('soal.destroy', $item['id']) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-sm btn-danger"><i class="feather icon-trash"></i> Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -76,6 +66,15 @@
 </div>
 @endsection
 
-@section('javascript')
+@section('stylesheet')
 
+@endsection
+
+@section('javascript')
+    <script src="{{ asset('plugins/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable();
+        });
+    </script>
 @endsection

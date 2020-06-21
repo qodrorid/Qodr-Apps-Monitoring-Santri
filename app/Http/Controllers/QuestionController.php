@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\QuestionCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Question\Question as QuestionQuestion;
 
@@ -15,18 +17,18 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        // $Question = Question::where(function($query) use ($request) {
-        //     if (!is_null($request->keyword)) {
-        //         $query->where('name', 'like', "%$request->keyword%");
-        //     }
-        // })->paginate($request->showitem ?? 5);
-
-        // $Question->appends($request->query());
-
-        // $view = $request->ajax() ? 'list' : 'index';
-            $questions = Question::orderBy('id','desc')->limit(100)->get();
+        $questions = Question::orderBy('id','desc')->limit(100)->get();
 
         return view('pages.question.index', compact('questions'));
+    }
+
+    public function create()
+    {
+        $questions = Question::all();
+        $categories = QuestionCategory::all();
+        $author = User::all();
+
+        return view('pages.question.create', compact('questions','categories','author'));
     }
 
     /**
@@ -38,17 +40,16 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'title'       => 'required',
+            'category_id' => 'required',
+            'note'        => 'nullable',
+            'is_active'   => 'nullable',
+            'author_id'   => 'required',
         ]);
 
-        $data = $request->all();
+        Question::create($request->all());
 
-        try {
-            Question::create($data);
-            return $this->success('Successfuly create new Question!');
-        } catch (QueryException $error) {
-            return $this->responseQueryException($error);
-        }
+        return redirect()->route('soal.index');
     }
 
     /**
@@ -57,9 +58,11 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $Question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $Question)
+    public function edit($id)
     {
-        return $this->success('Successfuly get data Question!', $Question);
+        $questions = Question::find($id);
+        $categories = QuestionCategory::all();
+        return view('pages.question.edit', compact('questions','categories'));
     }
 
     /**
@@ -69,18 +72,17 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $Question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $Question)
+    public function update(Request $request, Question $question)
     {
-        $request->validate([
-            'name' => 'required'
+        Question::where('id', $question->id)
+        ->update ([
+            'title'       => $request->title,
+            'category_id' => $request->category_id,
+            'note'        => $request->note,
+            'is_active'   => $request->is_active,
+            'author_id'   => $request->author_id
         ]);
-        
-        try {
-            $Question->update($request->all());
-            return $this->success('Successfuly update data Question!');
-        } catch (QueryException $error) {
-            return $this->responseQueryException($error);
-        }
+        return redirect('/soal');
     }
 
     /**
@@ -89,10 +91,10 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $Question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $Question)
+    public function destroy(Question $question)
     {
         try {
-            $Question->delete();
+            $question->delete();
             return $this->success('Successfuly delete Question!');
         } catch (QueryException $error) {
             return $this->responseQueryException($error);

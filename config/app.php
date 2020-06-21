@@ -167,6 +167,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Ixudra\Curl\CurlServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +234,7 @@ return [
         'HelperView' => App\Utils\HelperView::class,
         'HelperTag' => App\Utils\HelperTag::class,
         'Curl' => Ixudra\Curl\Facades\Curl::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 

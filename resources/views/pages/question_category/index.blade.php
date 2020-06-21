@@ -72,6 +72,18 @@
 </div>
 @endsection
 
-@section('javascript')
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('plugins/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+@endsection
 
+@section('javascript')
+    <script src="{{ asset('plugins/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable({
+                
+            });
+        });
+    </script>
 @endsection
