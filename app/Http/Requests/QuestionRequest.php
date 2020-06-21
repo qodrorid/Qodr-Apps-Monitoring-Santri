@@ -26,9 +26,7 @@ class QuestionRequest extends FormRequest
         return [
             'title'         => 'required',
             'category_id'   => 'required|numeric',
-            'note'          => 'nullable',
-            'is_active'     => 'required|numeric|',
-            'author_id'     => 'required|numeric'
+            'note'          => 'nullable'
         ];
     }
 }

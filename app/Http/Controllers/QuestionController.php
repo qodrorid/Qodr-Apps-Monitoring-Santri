@@ -55,7 +55,6 @@ class QuestionController extends Controller
 
         $question = Question::create($request->all());
 
-
         return redirect('/soal')->with('success', 'berhasil menambah data baru');
     }
 

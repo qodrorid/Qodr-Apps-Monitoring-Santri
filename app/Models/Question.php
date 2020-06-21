@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Question extends Model
 {
@@ -14,6 +15,22 @@ class Question extends Model
         'author_id'
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        // add author id & created at field
+        static::creating(function (Question $item) {
+            $item->author_id  = Auth::user()->id;
+            $item->created_at = date('Y-m-d H:i:s');
+        });
+
+        // update author id & updated at field
+        static::updating(function (Question $item) {
+            $item->author_id  = Auth::user()->id;
+            $item->updated_at = date('Y-m-d H:i:s');
+        });
+    }
 
     public function category()
     {
@@ -24,7 +41,4 @@ class Question extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
-
-
-
 }
