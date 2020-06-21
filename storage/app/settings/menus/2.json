@@ -58,17 +58,22 @@
                 "icon": "icon-menu",
                 "parent": true,
                 "childs": [
+
                     {
-                        "title": "Category Question",
-                        "route": ""
+                        "title": "Soal",
+                        "route": "soal.index"
                     },
                     {
-                        "title": "Question",
-                        "route": ""
+                        "title": "Kategori Soal",
+                        "route": "kategori-soal.index"
+                    },
+                    {
+                        "title":  "Survey Soal",
+                        "route": "survey.index"
                     }
                 ]
             }
         ]
-    }   
-   
+    }
+
 ]

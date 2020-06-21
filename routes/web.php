@@ -58,7 +58,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/trash/view', 'TrashController@view')->name('trash.view');
         Route::get('/trash/restore/{id}/{table}', 'TrashController@restore')->name('trash.restore');
         Route::get('/trash/delete/{id}/{table}', 'TrashController@delete')->name('trash.delete');
-    
+
     });
 
     // access only for super user and admin
@@ -66,6 +66,14 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
         // Telegram Chat Id
         Route::get('/telegram', 'TelegramController@index')->name('telegram.index');
+
+        //Question
+        Route::resource('/soal', 'QuestionController');
+        Route::resource('/kategori-soal', 'QuestionCategoryController');
+
+        //Survey
+        Route::resource('/survey', 'SurveyController');
+
 
     });
 
@@ -142,7 +150,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
         // izin
         Route::resource('izin', 'IzinController')->except(['create', 'show']);
-    
+
     });
 
 

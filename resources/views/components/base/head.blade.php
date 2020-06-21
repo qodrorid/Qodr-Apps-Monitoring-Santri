@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="icon" href="{{ asset('img/master/favicon.ico') }}" type="image/x-icon">
+@stack('css')
 {{ HTML::style('https://fonts.googleapis.com/css?family=Open+Sans:400,600') }}
 {{ HTML::style('plugins/bootstrap/css/bootstrap.min.css') }}
 {{ HTML::style('plugins/icons/icofont/css/icofont.css') }}
@@ -19,3 +20,4 @@ function urlbase(url) {
     return base + (url || '')
 }
 </script>
+
