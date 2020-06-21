@@ -67,21 +67,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
         // Telegram Chat Id
         Route::get('/telegram', 'TelegramController@index')->name('telegram.index');
 
-<<<<<<< HEAD
-        //Question
-        Route::resource('/soal', 'QuestionController');
-        Route::resource('/kategori-soal', 'QuestionCategoryController');
-
-        //Survey
-        Route::resource('/survey', 'SurveyController');
-
-
-=======
         // Question
         Route::resource('/soal', 'QuestionController');
         Route::resource('/kategori-soal', 'QuestionCategoryController');
-        
->>>>>>> a79c0bcc0ce0b691b13aba1a3ff13cffc7e89d85
+
     });
 
     // access only for ketua and sekretaris
