@@ -72,17 +72,13 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $Question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, $id)
     {
-        Question::where('id', $question->id)
-        ->update ([
-            'title'       => $request->title,
-            'category_id' => $request->category_id,
-            'note'        => $request->note,
-            'is_active'   => $request->is_active,
-            'author_id'   => $request->author_id
-        ]);
-        return redirect('/soal');
+       $check = Question::findOrFail($id);
+
+       $check->update($request->all());
+       
+       return redirect('/soal')->with('success','Berhasil Mengubah Data!');
     }
 
     /**

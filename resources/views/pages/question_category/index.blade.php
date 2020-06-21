@@ -9,7 +9,6 @@
         'Master'
     ]
 ])
-
 <div class="page-body">
     <div class="row">
         <div class="col-sm-12">
@@ -73,7 +72,7 @@
 @endsection
 
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('plugins/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('plugins/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"> --}}
 @endsection
 
 @section('javascript')
@@ -81,9 +80,7 @@
     <script src="{{ asset('plugins/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('.table').DataTable({
-                
-            });
+            $('.table').DataTable();
         });
     </script>
 @endsection
