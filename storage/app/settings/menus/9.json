@@ -35,6 +35,12 @@
                         "route": "wakatime.url"
                     }
                 ]
+            },
+            {
+                "title": "Survey",
+                "icon": "icon-feather",
+                "route": "survey.santri",
+                "parent": true
             }
         ]
     }

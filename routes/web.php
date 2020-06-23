@@ -151,6 +151,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
         // izin
         Route::resource('izin', 'IzinController')->except(['create', 'show']);
 
+        //survey
+        Route::get('/santri/survey', 'SurveyController@santri')->name('survey.santri');
+
+
     });
 
 

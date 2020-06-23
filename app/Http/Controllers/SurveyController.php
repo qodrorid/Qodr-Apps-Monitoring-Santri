@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SurveyRequest;
 use App\Models\Survey;
 use App\Models\User;
+use Illuminate\Cache\RetrievesMultipleKeys;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class SurveyController extends Controller
 {
@@ -59,5 +61,11 @@ class SurveyController extends Controller
         Survey::destroy($id);
 
         return redirect('/survey');
+    }
+
+    public function santri()
+    {
+        $surveys = Survey::orderBy('id', 'desc')->limit(100)->get();
+        return view('pages.survey.santri', compact('surveys'));
     }
 }
