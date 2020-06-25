@@ -37,20 +37,10 @@
                 ]
             },
             {
-                "title": "Kuesioner",
-                "icon": "icon-calendar",
-                "route": "izin.index",
-                "parent": true,
-                "childs": [
-                    {
-                        "title": "Report Tracking",
-                        "route": "wakatime.report"
-                    },
-                    {
-                        "title": "Url Embed",
-                        "route": "wakatime.url"
-                    }
-                ]
+                "title": "Survey",
+                "icon": "icon-list",
+                "route": "survey.index",
+                "parent": true
             }
         ]
     }

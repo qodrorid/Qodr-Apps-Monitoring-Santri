@@ -25,10 +25,12 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card-block">
+                <div class="card-block">       
+                        @if (auth()->user()->role_id == 2)
                         <div class="col-md-2">
-                        <a href="{{ url('survey/create') }}" class="btn btn-primary btn-block"><i class="feather icon-plus"></i> Add</a>
+                            <a href="{{ url('survey/create') }}" class="btn btn-primary btn-block"><i class="feather icon-plus"></i> Add</a>
                         </div>
+                        @endif
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-list">
@@ -55,6 +57,19 @@
                                     <td>{{ $item->time_limit }}</td>
                                     <td>{{ $item->note }}</td>
                                     <td class="action">
+                                        @if (auth()->user()->role_id == 9)
+                                        <div class="dropdown-primary dropdown open btn-block">
+                                            <button class="btn btn-primary btn-sm btn-block dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <i class="feather icon-cpu"></i> Action
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="action" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                    <a href="#" class="dropdown-item">
+                                                        <i class="feather icon-external-link"></i> Mulai
+                                                    </a>
+                                            </div>
+                                        </div>
+                                        @endif
+                                        @if (auth()->user()->role_id == 2)
                                         <div class="dropdown-primary dropdown open btn-block">
                                             <button class="btn btn-primary btn-sm btn-block dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                 <i class="feather icon-cpu"></i> Action
@@ -72,6 +87,7 @@
                                                 </form>
                                             </div>
                                         </div>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

@@ -49,6 +49,26 @@
 
       {{-- datepicker --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha256-siyOpF/pBWUPgIcQi17TLBkjvNgNQArcmwJB8YvkAgg=" crossorigin="anonymous" />
+    <style>
+        .datepicker-days {
+            padding: .5rem;
+        }
+        .datepicker table tr td.today, .datepicker table tr td.today.disabled, .datepicker table tr td.today.disabled:hover, .datepicker table tr td.today:hover {
+            background-color: #fde19a;
+            background-image: -moz-linear-gradient(to bottom,#fdd49a,#fdf59a);
+            background-image: -ms-linear-gradient(to bottom,#fdd49a,#fdf59a);
+            background-image: -webkit-gradient(linear,0 0,0 100%,from(#fdd49a),to(#fdf59a));
+            background-image: -webkit-linear-gradient(to bottom,#fdd49a,#fdf59a);
+            background-image: -o-linear-gradient(to bottom,#fdd49a,#fdf59a);
+            background-image: linear-gradient(to bottom,#9ad2fd,#9aa0fd);
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
+            border-color: #b0fd9a #fdf59a #fbed50;
+            border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
+            filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+            color: #000;
+        }
+    </style>
 @endpush
 @push('js')
      {{-- select2 --}}

@@ -135,7 +135,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     });
 
     // access only for santri
-    Route::middleware('role:9')->group(function() {
+    Route::middleware('role:9,2')->group(function() {
 
         // todo list
         Route::get('/todo', 'TodoController@index')->name('todo.index');
@@ -149,6 +149,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
         // izin
         Route::resource('izin', 'IzinController')->except(['create', 'show']);
+
+        //Survey
+        Route::resource('/survey', 'SurveyController')->except(['create','edit','delete']);
 
     });
 
