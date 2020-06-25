@@ -105,7 +105,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name'              => 'Hendy Saputra',
-                'username'          => 'hendy21z',
+                'username'          => 'hendy',
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
@@ -115,6 +115,24 @@ class UserSeeder extends Seeder
             [
                 'name'              => 'Asmawi Lubis',
                 'username'          => 'asmawi',
+                'email'             => Str::random(12) . '@gmail.com',
+                'email_verified_at' => now(),
+                'password'          => bcrypt('bismillah'),
+                'role_id'           => 9,
+                'branch_id'         => 1
+            ],
+            [
+                'name'              => 'Agus Pratama',
+                'username'          => 'agus',
+                'email'             => Str::random(12) . '@gmail.com',
+                'email_verified_at' => now(),
+                'password'          => bcrypt('bismillah'),
+                'role_id'           => 9,
+                'branch_id'         => 1
+            ],
+            [
+                'name'              => 'Alifia',
+                'username'          => 'alif',
                 'email'             => Str::random(12) . '@gmail.com',
                 'email_verified_at' => now(),
                 'password'          => bcrypt('bismillah'),
@@ -176,6 +194,14 @@ class UserSeeder extends Seeder
             [
                 'user_id' => 12,
                 'name'    => 'Asmawi Lubis'
+            ],
+            [
+                'user_id' => 13,
+                'name'    => 'Agus Pratama'
+            ],
+            [
+                'user_id' => 14,
+                'name'    => 'Alifia'
             ]
         ]);
 
