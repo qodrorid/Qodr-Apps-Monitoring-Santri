@@ -44,13 +44,13 @@
 </div>
 @endsection
 @push('css')
+
      {{-- select2 --}}
      <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
 
     {{-- datepicker --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha256-siyOpF/pBWUPgIcQi17TLBkjvNgNQArcmwJB8YvkAgg=" crossorigin="anonymous" />
 
-    {{-- custom --}}
     <style>
         .datepicker-days {
             padding: .5rem;
@@ -72,9 +72,18 @@
             color: #fff;
         }
 
-        .day {
-            padding-left: 1px;
-        }
+        .datepicker td, .datepicker th {
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: none;
+    padding: 1px;
+}
+
+
     </style>
 @endpush
 @push('js')

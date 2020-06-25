@@ -19,18 +19,19 @@ class Question extends Model
     {
         parent::boot();
 
-        // add author id & created at field
         static::creating(function (Question $item) {
-            $item->author_id  = Auth::user()->id;
+            $item->author_id = Auth::user()->id;
             $item->created_at = date('Y-m-d H:i:s');
         });
 
-        // update author id & updated at field
+
+
         static::updating(function (Question $item) {
-            $item->author_id  = Auth::user()->id;
+            $item->author_id = Auth::user()->id;
             $item->updated_at = date('Y-m-d H:i:s');
         });
     }
+
 
     public function category()
     {
