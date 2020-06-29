@@ -42,4 +42,14 @@ class Question extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function options()
+    {
+        return $this->hasMany(QuestionOption::class, 'question_id');
+    }
+
+    public function optionsRandom()
+    {
+        return $this->options()->inRandomOrder()->get();
+    }
 }

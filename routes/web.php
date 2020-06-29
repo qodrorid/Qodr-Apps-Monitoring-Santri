@@ -153,7 +153,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
         //survey
         Route::get('/santri/survey', 'SurveyController@santri')->name('survey.santri');
-
+        Route::get('/santri/survey/{id}', 'SurveyController@santriMulai')->name('survey.santri_mulai');
+        Route::post('/santri/survey/{id}', 'SurveyController@santriSimpan')->name('survey.santri_simpan');
 
     });
 

@@ -40,21 +40,11 @@
                                 <td align="center">{{$loop->iteration}}</td>
                                 <td>{{$item->title}}</td>
                                 <td>{{$item->date_start}} s/d {{$item->date_end}}</td>
-                                <td>{{$item->time_limit}}</td>
-                                <td class="action">
-                                    <div class="dropdown-primary dropdown open btn-block">
-                                        <button class="btn btn-primary btn-sm btn-block dropdown-toggle" type="button"
-                                            id="action" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="true">
-                                            <i class="feather icon-cpu"></i> Action
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="action" data-dropdown-in="fadeIn"
-                                            data-dropdown-out="fadeOut">
-                                            <a href="" class="dropdown-item btn-sm">
-                                                <i class="feather icon-edit"></i> Mulai
-                                            </a>
-                                        </div>
-                                    </div>
+                                <td>{{$item->time_limit}} detik</td>
+                                <td>
+                                    <a href="{{ url('santri/survey/'. $item->id) }}" class="btn-sm btn-primary">
+                                        <i class="feather icon-edit"></i> Mulai
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

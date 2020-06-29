@@ -68,4 +68,13 @@ class SurveyController extends Controller
         $surveys = Survey::orderBy('id', 'desc')->limit(100)->get();
         return view('pages.survey.santri', compact('surveys'));
     }
+
+    public function santriMulai($id)
+    {
+        $survey = Survey::with('questions')->findOrFail($id);
+        $questions = $survey->questions()->inRandomOrder()->get();
+        $option_letter = ['', 'A', 'B', 'C', 'D', 'E'];
+
+        return view('pages.survey.santri_mulai', compact('survey', 'questions', 'option_letter'));
+    }
 }
