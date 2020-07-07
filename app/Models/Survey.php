@@ -20,6 +20,12 @@ class Survey extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class, 'survey_questions', 'survey_id', 'question_id');
+
+    }
+
 
     public function getDateStartAttribute($tanggal)
     {

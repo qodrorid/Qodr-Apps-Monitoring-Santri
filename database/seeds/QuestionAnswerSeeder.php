@@ -16,7 +16,7 @@ class QuestionAnswerSeeder extends Seeder
         // question answer
         $answer_data = [
             [ 'question_id' => 1, 'option_id' => 3],
-            [ 'question_id' => 3, 'option_id' => 8],
+            [ 'question_id' => 2, 'option_id' => 8],
             [ 'question_id' => 3, 'option_id' => 12],
             [ 'question_id' => 4, 'option_id' => 15],
             [ 'question_id' => 5, 'option_id' => 17],

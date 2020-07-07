@@ -19,7 +19,7 @@ class SurveysSeeder extends Seeder
             'author_id'     => 9,
             'date_start'    => date('Y-m-d'),
             'date_end'      => date('Y-m-d'),
-            'time_limit'    => 10,
+            'time_limit'    => 200,
             'note'          => 'Terus lah berlatih'
             ],
             [
@@ -27,7 +27,7 @@ class SurveysSeeder extends Seeder
                 'author_id'     => 9,
                 'date_start'    => date('Y-m-d'),
                 'date_end'      => date('Y-m-d'),
-                'time_limit'    => 10,
+                'time_limit'    => 180,
                 'note'          => 'Terus lah berlatih'
             ],
             [
@@ -35,7 +35,7 @@ class SurveysSeeder extends Seeder
                 'author_id'     => 9,
                 'date_start'    => date('Y-m-d'),
                 'date_end'      => date('Y-m-d'),
-                'time_limit'    => 10,
+                'time_limit'    => 250,
                 'note'          => 'Terus lah berlatih'
             ]
 
