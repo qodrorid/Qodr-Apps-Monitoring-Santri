@@ -22,7 +22,7 @@ class CreateSurveyUserDetailsTable extends Migration
 
             $table->foreign('survey_user_id')->references('id')->on('survey_users')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-            $table->foreign('user_answer_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->foreign('user_answer_id')->references('id')->on('question_options')->onDelete('cascade');
 
         });
     }
